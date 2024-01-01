@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rebuy/core/utils/theme/theme_helper.dart';
-import 'package:rebuy/routes/app_routes.dart';
+import 'package:rebuy/core/app_export.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      title: 'rebuy',
+      title: AppStrings.rebuy,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.registerScreen,
       routes: AppRoutes.routes,

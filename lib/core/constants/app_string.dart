@@ -1,4 +1,5 @@
 class AppStrings {
+  static const String rebuy = "rebuy";
   static const String welcomeToEcom = "Welcome to E-com";
   static const String signInToContinue = "Sign in to continue";
   static const String yourEmail = "Your Email";
