@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/widgets/custom_icon_button.dart';
 
 class DashCategoryWidget extends StatelessWidget {
@@ -7,6 +8,7 @@ class DashCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DashCubit dashCubit = DashCubit.get(context);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(right: 16),
@@ -25,7 +27,7 @@ class DashCategoryWidget extends StatelessWidget {
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (context, index) => SizedBox(width: 12.h),
-                itemCount: 5,
+                itemCount: dashCubit.categoryList.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     width: 70.h,
@@ -38,12 +40,13 @@ class DashCategoryWidget extends StatelessWidget {
                             width: 70.adaptSize,
                             padding: EdgeInsets.all(23.h),
                             child: CustomImageView(
-                              imagePath: AppImageConstants.imgArrowLeftPrimary,
+                              imagePath: dashCubit.categoryList.values
+                                  .elementAt(index),
                             ),
                           ),
                           SizedBox(height: 7.v),
                           Text(
-                            AppStrings.manShirt,
+                            dashCubit.categoryList.keys.elementAt(index),
                             style: CustomTextStyles.bodySmall10,
                           ),
                         ],

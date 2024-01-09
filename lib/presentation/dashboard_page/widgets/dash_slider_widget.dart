@@ -1,17 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 
 // ignore: must_be_immutable
-class DashSliderWidget extends StatefulWidget {
-  DashSliderWidget({required this.sliderIndex, Key? key}) : super(key: key);
-  int sliderIndex = 1;
+class DashSliderWidget extends StatelessWidget {
+  DashSliderWidget({Key? key}) : super(key: key);
 
-  @override
-  State<DashSliderWidget> createState() => _DashSliderWidgetState();
-}
-
-class _DashSliderWidgetState extends State<DashSliderWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,8 +20,7 @@ class _DashSliderWidgetState extends State<DashSliderWidget> {
                 enableInfiniteScroll: false,
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index, reason) {
-                  widget.sliderIndex = index;
-                  setState(() {});
+                  DashCubit.get(context).changeAnimatedSmoothIdex(index);
                 }),
             itemCount: 4,
             itemBuilder: (context, index, realIndex) {
