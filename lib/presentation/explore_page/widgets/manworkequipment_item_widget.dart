@@ -4,10 +4,13 @@ import 'package:rebuy/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class ManworkequipmentItemWidget extends StatelessWidget {
-  const ManworkequipmentItemWidget({Key? key})
+  const ManworkequipmentItemWidget(
+      {Key? key, required this.imagePath, required this.text})
       : super(
           key: key,
         );
+  final String imagePath;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +21,12 @@ class ManworkequipmentItemWidget extends StatelessWidget {
           width: 70.adaptSize,
           padding: EdgeInsets.all(23.h),
           child: CustomImageView(
-            imagePath: AppImageConstants.imgManWorkEquipment,
+            imagePath: imagePath,
           ),
         ),
         SizedBox(height: 8.v),
         Text(
-          "Office Bag",
+          text,
           style: CustomTextStyles.labelMediumBluegray300,
         ),
       ],

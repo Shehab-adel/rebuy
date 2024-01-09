@@ -14,10 +14,15 @@ class DashCubit extends Cubit<DashSatates> {
     emit(ChangeAnimatedSmoothIdex());
   }
 
-  Map<String, String> categoryList = {
+  Map<String, String> categoryMap = {
     'Man Shirt': AppImageConstants.imgManTShirtIcon,
     'Office Bag': AppImageConstants.imgBagIcon,
     'Dress': AppImageConstants.imgDressIcon,
-    'Woman Bag': AppImageConstants.imgWomanBagIcon
+    'Woman Bag': AppImageConstants.imgWomanBagIcon,
+    'Pants': AppImageConstants.imgWomanPantsIcon,
+    'Skirt': AppImageConstants.imgSkirtIcon,
+    'Bag': AppImageConstants.imgWomanBagIcon,
+    'Heels': AppImageConstants.imgHighHeelsIcon,
+    'Bikini': AppImageConstants.imgBikiniIcon,
   };
 }

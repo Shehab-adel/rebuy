@@ -4,10 +4,13 @@ import 'package:rebuy/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class WomantshirticonItemWidget extends StatelessWidget {
-  const WomantshirticonItemWidget({Key? key})
+  const WomantshirticonItemWidget(
+      {Key? key, required this.imagePath, required this.text})
       : super(
           key: key,
         );
+  final String imagePath;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +21,12 @@ class WomantshirticonItemWidget extends StatelessWidget {
           width: 70.adaptSize,
           padding: EdgeInsets.all(23.h),
           child: CustomImageView(
-            imagePath: AppImageConstants.imgWomanTShirtIcon,
+            imagePath: imagePath,
           ),
         ),
         SizedBox(height: 7.v),
         Text(
-          "T-Shirt",
+          text,
           style: CustomTextStyles.labelMediumBluegray300,
         ),
       ],

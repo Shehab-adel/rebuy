@@ -6,6 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../core/utils/theme/theme_helper.dart';
+
 class CustomImageView extends StatelessWidget {
   ///[imagePath] is required parameter for showing image
   String? imagePath;
@@ -96,8 +98,9 @@ class CustomImageView extends StatelessWidget {
               height: height,
               width: width,
               fit: fit ?? BoxFit.contain,
-              colorFilter:
-                  ColorFilter.mode(color ?? Colors.black, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                  color ?? theme.colorScheme.primary.withOpacity(1),
+                  BlendMode.srcIn),
             ),
           );
         case ImageType.file:

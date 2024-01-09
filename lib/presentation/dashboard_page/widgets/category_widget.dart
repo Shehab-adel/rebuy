@@ -27,7 +27,7 @@ class DashCategoryWidget extends StatelessWidget {
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (context, index) => SizedBox(width: 12.h),
-                itemCount: dashCubit.categoryList.length,
+                itemCount: dashCubit.categoryMap.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     width: 70.h,
@@ -40,13 +40,13 @@ class DashCategoryWidget extends StatelessWidget {
                             width: 70.adaptSize,
                             padding: EdgeInsets.all(23.h),
                             child: CustomImageView(
-                              imagePath: dashCubit.categoryList.values
-                                  .elementAt(index),
+                              imagePath:
+                                  dashCubit.categoryMap.values.elementAt(index),
                             ),
                           ),
                           SizedBox(height: 7.v),
                           Text(
-                            dashCubit.categoryList.keys.elementAt(index),
+                            dashCubit.categoryMap.keys.elementAt(index),
                             style: CustomTextStyles.bodySmall10,
                           ),
                         ],

@@ -23,4 +23,7 @@ class AppStrings {
   static const String manShirt = "Man Shirt";
   static const String flashSale = "Flash Sale";
   static const String megaSale = 'Mega Sale';
+  static const String manFashion = "Man Fashion";
+  static const String officeBag = "Office Bag";
+  static const String womenFashion = "Woman Fashion";
 }
