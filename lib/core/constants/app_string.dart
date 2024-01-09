@@ -17,4 +17,10 @@ class AppStrings {
   static const String passwordAgain = "Password Again";
   static const String haveanAccount = "Have an account?";
   static const String signUp = "Sign Up";
+  static const String superFlashSaleOff = "Super Flash Sale\n50% Off";
+  static const String category = "Category";
+  static const String seeMore = "See More";
+  static const String manShirt = "Man Shirt";
+  static const String flashSale = "Flash Sale";
+  static const String megaSale = 'Mega Sale';
 }

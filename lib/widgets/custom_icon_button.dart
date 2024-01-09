@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/core/utils/value_manager.dart';
 
 class CustomIconButton extends StatelessWidget {
   CustomIconButton({
@@ -41,22 +40,21 @@ class CustomIconButton extends StatelessWidget {
   }
 
   Widget get iconButtonWidget => SizedBox(
-        height: height ?? AppSize.s0,
-        width: width ?? AppSize.s0,
+        height: height ?? 0,
+        width: width ?? 0,
         child: IconButton(
           padding: EdgeInsets.zero,
           icon: Container(
-            height: height ?? AppSize.s0,
-            width: width ?? AppSize.s0,
+            height: height ?? 0,
+            width: width ?? 0,
             padding: padding ?? EdgeInsets.zero,
             decoration: decoration ??
                 BoxDecoration(
-                  color: theme.colorScheme.onPrimaryContainer
-                      .withOpacity(AppSize.s1),
-                  borderRadius: BorderRadius.circular(AppSize.s35.h),
+                  color: theme.colorScheme.onPrimaryContainer.withOpacity(1),
+                  borderRadius: BorderRadius.circular(35.h),
                   border: Border.all(
                     color: appTheme.blue50,
-                    width: AppSize.s1.h,
+                    width: 1.h,
                   ),
                 ),
             child: child,
@@ -73,12 +71,12 @@ extension IconButtonStyleHelper on CustomIconButton {
         borderRadius: BorderRadius.circular(16.h),
       );
   static BoxDecoration get outlinePrimary => BoxDecoration(
-        color: theme.colorScheme.primary.withOpacity(1),
-        borderRadius: BorderRadius.circular(AppSize.s36.h),
+    color: theme.colorScheme.primary.withOpacity(1),
+        borderRadius: BorderRadius.circular(36.h),
         boxShadow: [
           BoxShadow(
             color: theme.colorScheme.primary,
-            spreadRadius: AppSize.s2.h,
+            spreadRadius: 2.h,
             blurRadius: 2.h,
             offset: Offset(
               0,

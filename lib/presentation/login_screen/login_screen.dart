@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/core/utils/value_manager.dart';
 import 'package:rebuy/presentation/login_screen/widgets/build_or_line_widget.dart';
 import 'package:rebuy/presentation/login_screen/widgets/social_auth_widget.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
@@ -27,22 +26,20 @@ class LoginScreen extends StatelessWidget {
                 key: _formKey,
                 child: Container(
                     width: double.maxFinite,
-                    padding: EdgeInsets.only(
-                        left: AppPadding.p16.h,
-                        top: AppPadding.p68.v,
-                        right: AppPadding.p16.h),
+                    padding:
+                        EdgeInsets.only(left: 16.h, top: 68.v, right: 16.h),
                     child: Column(children: [
                       CustomPageHeaderWidget(
                           text1: AppStrings.welcomeToEcom,
                           text2: AppStrings.signInToContinue),
-                      SizedBox(height: AppSize.s28.v),
+                      SizedBox(height: 28.v),
                       CustomTextFormField(
                         controller: emailController,
                         hintText: AppStrings.yourEmail,
                         textInputType: TextInputType.emailAddress,
                         imagePath: AppImageConstants.imgMail,
                       ),
-                      SizedBox(height: AppSize.s10.v),
+                      SizedBox(height: 10.v),
                       CustomTextFormField(
                         controller: passwordController,
                         hintText: AppStrings.password,
@@ -57,11 +54,11 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             onTapSignIn(context);
                           }),
-                      SizedBox(height: AppSize.s18.v),
+                      SizedBox(height: 18.v),
                       OrLineWidget(),
-                      SizedBox(height: AppSize.s16.v),
+                      SizedBox(height: 16.v),
                       SocialAuthWidget(),
-                      SizedBox(height: AppSize.s17.v),
+                      SizedBox(height: 17.v),
                       Text(AppStrings.forgotPassword,
                           style: CustomTextStyles.labelLargePrimary),
                       SizedBox(height: 7.v),
@@ -80,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                                     style: CustomTextStyles.labelLargePrimary_1)
                               ]),
                               textAlign: TextAlign.left)),
-                      SizedBox(height: AppSize.s5.v)
+                      SizedBox(height: 5.v)
                     ])))));
   }
 

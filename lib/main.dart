@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: AppStrings.rebuy,
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.registerScreen,
+      initialRoute: AppRoutes.superFlashSaleScreen,
       routes: AppRoutes.routes,
     );
   }

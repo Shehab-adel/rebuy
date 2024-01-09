@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/core/utils/value_manager.dart';
 import 'package:rebuy/widgets/custom_outlined_button.dart';
 
 class SocialAuthWidget extends StatelessWidget {
@@ -12,20 +11,20 @@ class SocialAuthWidget extends StatelessWidget {
       CustomOutlinedButton(
           text: AppStrings.loginWithGoogle,
           leftIcon: Container(
-              margin: EdgeInsets.only(right: AppMargin.m30.h),
+              margin: EdgeInsets.only(right: 30.h),
               child: CustomImageView(
                   imagePath: AppImageConstants.imgGoogleIcon,
-                  height: AppSize.s24.adaptSize,
-                  width: AppSize.s24.adaptSize))),
-      SizedBox(height: AppSize.s8.v),
+                  height: 24.adaptSize,
+                  width: 24.adaptSize))),
+      SizedBox(height: 8.v),
       CustomOutlinedButton(
           text: AppStrings.loginWithFacebook,
           leftIcon: Container(
-              margin: EdgeInsets.only(right: AppMargin.m30.h),
+              margin: EdgeInsets.only(right: 30.h),
               child: CustomImageView(
                   imagePath: AppImageConstants.imgFacebookIcon,
-                  height: AppSize.s24.adaptSize,
-                  width: AppSize.s24.adaptSize)))
+                  height: 24.adaptSize,
+                  width: 24.adaptSize)))
     ]);
   }
 }

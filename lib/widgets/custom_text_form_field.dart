@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/core/utils/value_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField(
@@ -105,47 +104,43 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: hintStyle ?? theme.textTheme.bodySmall,
         prefixIcon: prefix ??
             Container(
-                margin: EdgeInsets.fromLTRB(AppMargin.m16.h, AppMargin.m12.v,
-                    AppMargin.m10.h, AppMargin.m12.v),
+                margin: EdgeInsets.fromLTRB(16.h, 12.v, 10.h, 12.v),
                 child: CustomImageView(
                     imagePath: imagePath,
-                    height: AppSize.s24.adaptSize,
-                    width: AppSize.s24.adaptSize)),
+                    height: 24.adaptSize,
+                    width: 24.adaptSize)),
         prefixIconConstraints:
-            prefixConstraints ?? BoxConstraints(maxHeight: AppSize.s48.v),
+            prefixConstraints ?? BoxConstraints(maxHeight: 48.v),
         suffixIcon: suffix,
         suffixIconConstraints: suffixConstraints,
         isDense: true,
         contentPadding: contentPadding ??
-            EdgeInsets.only(
-                top: AppPadding.p15.v,
-                right: AppPadding.p30.h,
-                bottom: AppPadding.p15.v),
+            EdgeInsets.only(top: 15.v, right: 30.h, bottom: 15.v),
         fillColor:
             fillColor ?? theme.colorScheme.onPrimaryContainer.withOpacity(1),
         filled: filled,
         border: borderDecoration ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSize.s5.h),
+              borderRadius: BorderRadius.circular(5.h),
               borderSide: BorderSide(
                 color: appTheme.blue50,
-                width: AppSize.s1,
+                width: 1,
               ),
             ),
         enabledBorder: borderDecoration ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSize.s5.h),
+              borderRadius: BorderRadius.circular(5.h),
               borderSide: BorderSide(
                 color: appTheme.blue50,
-                width: AppSize.s1,
+                width: 1,
               ),
             ),
         focusedBorder: borderDecoration ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSize.s5.h),
+              borderRadius: BorderRadius.circular(5.h),
               borderSide: BorderSide(
                 color: theme.colorScheme.primary.withOpacity(1),
-                width: AppSize.s5,
+                width: 5,
               ),
             ),
       );

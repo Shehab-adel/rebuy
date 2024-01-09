@@ -1,10 +1,8 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 
 // This functions are responsible to make UI responsive across all the mobile devices.
-
-MediaQueryData mediaQueryData = MediaQueryData.fromWindow(ui.window);
+final view = WidgetsBinding.instance.platformDispatcher.views.first;
+MediaQueryData mediaQueryData = MediaQueryData.fromView(view);
 
 // These are the Viewport values of your Figma Design.
 // These are used in the code as a reference to create your UI Responsively.
