@@ -16,8 +16,7 @@ class DashboardContainerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DashCubit, DashSatates>(builder: (context, sate) {
       DashCubit dashCubit = DashCubit.get(context);
-      return SafeArea(
-          child: Scaffold(
+      return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           showSelectedLabels: false,
@@ -32,86 +31,73 @@ class DashboardContainerScreen extends StatelessWidget {
             dashCubit.getCurrentScreenIndex(index);
           },
           items: [
-            BottomNavigationBarItem(
-              icon: CustomImageView(
-                imagePath: AppImageConstants.imgNavHome,
-                height: 23.v,
-                width: 24.h,
-                color: appTheme.blueGray300,
-              ),
-              label: 'Home',
-              activeIcon: CustomImageView(
-                imagePath: AppImageConstants.imgNavHome,
-                height: 23.v,
-                width: 24.h,
-                color: theme.colorScheme.primary.withOpacity(1),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: CustomImageView(
+            _bottomNavBareItem(
+                imagePath: AppImageConstants.imgNavHome, text: AppStrings.home),
+            _bottomNavBareItem(
                 imagePath: AppImageConstants.imgNavExplore,
-                height: 23.v,
-                width: 24.h,
-                color: appTheme.blueGray300,
-              ),
-              label: 'Explore',
-              activeIcon: CustomImageView(
-                imagePath: AppImageConstants.imgNavExplore,
-                height: 23.v,
-                width: 24.h,
-                color: theme.colorScheme.primary.withOpacity(1),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: CustomImageView(
-                imagePath: AppImageConstants.imgNavCart,
-                height: 23.v,
-                width: 24.h,
-                color: appTheme.blueGray300,
-              ),
-              label: 'Cart',
-              activeIcon: CustomImageView(
-                imagePath: AppImageConstants.imgNavCart,
-                height: 23.v,
-                width: 24.h,
-                color: theme.colorScheme.primary.withOpacity(1),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: CustomImageView(
+                text: AppStrings.explore),
+            _bottomNavBareItem(
+                imagePath: AppImageConstants.imgNavCart, text: AppStrings.cart),
+            _bottomNavBareItem(
                 imagePath: AppImageConstants.imgNavOffer,
-                height: 23.v,
-                width: 24.h,
-                color: appTheme.blueGray300,
-              ),
-              label: 'Offer',
-              activeIcon: CustomImageView(
-                imagePath: AppImageConstants.imgNavOffer,
-                height: 23.v,
-                width: 24.h,
-                color: theme.colorScheme.primary.withOpacity(1),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: CustomImageView(
+                text: AppStrings.offer),
+            _bottomNavBareItem(
                 imagePath: AppImageConstants.imgNavAccount,
-                height: 23.v,
-                width: 24.h,
-                color: appTheme.blueGray300,
-              ),
-              label: 'Account',
-              activeIcon: CustomImageView(
-                imagePath: AppImageConstants.imgNavAccount,
-                height: 23.v,
-                width: 24.h,
-                color: theme.colorScheme.primary.withOpacity(1),
-              ),
-            ),
+                text: AppStrings.account),
           ],
         ),
         body: dashCubit.screenList[dashCubit.currentIndex],
-      ));
+      );
     });
+  }
+
+  BottomNavigationBarItem _bottomNavBareItem(
+      {required String imagePath, required String text}) {
+    return BottomNavigationBarItem(
+      icon: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomImageView(
+            imagePath: imagePath,
+            height: 23.v,
+            width: 24.h,
+            color: appTheme.blueGray300,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5.v),
+            child: Text(
+              text,
+              style: CustomTextStyles.bodySmall10.copyWith(
+                color: appTheme.blueGray300,
+              ),
+            ),
+          ),
+        ],
+      ),
+      label: '',
+      activeIcon: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomImageView(
+            imagePath: imagePath,
+            height: 23.v,
+            width: 24.h,
+            color: theme.colorScheme.primary.withOpacity(1),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 4.v),
+            child: Text(
+              text,
+              style: CustomTextStyles.labelMediumPrimary.copyWith(
+                color: theme.colorScheme.primary.withOpacity(1),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

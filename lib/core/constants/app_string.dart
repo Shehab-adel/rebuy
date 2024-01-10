@@ -34,4 +34,13 @@ class AppStrings {
   static const String importCharges = "Import charges";
   static const String totalPrice = "Total Price";
   static const String checkOut = "Check Out";
+  static const String offer = "Offer";
+  static const String account = "Account";
+  static const String profile = "Profile";
+  static const String order = "Order";
+  static const String address = "Address";
+  static const String payment = "Payment";
+  static const String home = "Home";
+  static const String explore = "Explore";
+  static const String cart = "Cart";
 }
