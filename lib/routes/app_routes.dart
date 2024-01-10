@@ -123,7 +123,7 @@ class AppRoutes {
     loginScreen: (context) => LoginScreen(),
     registerScreen: (context) => RegisterScreen(),
     dashboardContainerScreen: (context) => DashboardContainerScreen(),
-    dashboardPage: (context) => DashboardPage(),
+    dashboardPage: (context) => DashboardScreen(),
     superFlashSaleScreen: (context) => SuperFlashSaleScreen(),
     favoriteProductScreen: (context) => FavoriteProductScreen(),
     productDetailScreen: (context) => ProductDetailScreen(),

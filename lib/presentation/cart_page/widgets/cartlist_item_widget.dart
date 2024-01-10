@@ -40,7 +40,7 @@ class CartlistItemWidget extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.labelLarge!.copyWith(
-                        height: 1.50,
+                        height: 1.50.v,
                       ),
                     ),
                   ),
@@ -48,6 +48,7 @@ class CartlistItemWidget extends StatelessWidget {
                     imagePath: AppImageConstants.imgLoveIcon,
                     height: 24.adaptSize,
                     width: 24.adaptSize,
+                    color: appTheme.pink300,
                     margin: EdgeInsets.only(
                       left: 20.h,
                       bottom: 10.v,
@@ -57,6 +58,7 @@ class CartlistItemWidget extends StatelessWidget {
                     imagePath: AppImageConstants.imgTrashIcon,
                     height: 24.adaptSize,
                     width: 24.adaptSize,
+                    color: appTheme.blueGray300,
                     margin: EdgeInsets.only(
                       left: 8.h,
                       bottom: 10.v,
@@ -76,51 +78,31 @@ class CartlistItemWidget extends StatelessWidget {
                     ),
                     Spacer(),
                     CustomImageView(
-                      imagePath: AppImageConstants.imgFolder,
+                      imagePath: AppImageConstants.imgminus,
                       height: 20.v,
                       width: 33.h,
+                      color: appTheme.blueGray300,
                     ),
-                    SizedBox(
+                    Container(
                       height: 20.v,
-                      width: 41.h,
-                      child: Stack(
-                        alignment: Alignment.topRight,
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              height: 20.v,
-                              width: 41.h,
-                              decoration: BoxDecoration(
-                                color: appTheme.blue50,
-                                border: Border.all(
-                                  color: appTheme.blue50,
-                                  width: 1.h,
-                                  strokeAlign: strokeAlignCenter,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Opacity(
-                              opacity: 0.5,
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 17.h),
-                                child: Text(
-                                  "1",
-                                  style: CustomTextStyles.bodySmallOnPrimary_2,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      width: 36.h,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: appTheme.blue50,
+                        border: Border.all(
+                          color: appTheme.blue50,
+                          width: 1.h,
+                          strokeAlign: strokeAlignCenter,
+                        ),
                       ),
+                      child: Text('1',
+                          style: CustomTextStyles.bodySmallOnPrimary_2),
                     ),
                     CustomImageView(
                       imagePath: AppImageConstants.imgPlus,
                       height: 20.v,
                       width: 33.h,
+                      color: appTheme.blueGray300,
                     ),
                   ],
                 ),

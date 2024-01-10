@@ -31,6 +31,7 @@ class AppbarLeadingImage extends StatelessWidget {
           height: 24.adaptSize,
           width: 24.adaptSize,
           fit: BoxFit.contain,
+          color: appTheme.blueGray300,
         ),
       ),
     );

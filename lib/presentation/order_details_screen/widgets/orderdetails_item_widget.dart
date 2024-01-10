@@ -76,7 +76,7 @@ class OrderdetailsItemWidget extends StatelessWidget {
                     ),
                     Spacer(),
                     CustomImageView(
-                      imagePath: AppImageConstants.imgFolder,
+                      imagePath: AppImageConstants.imgminus,
                       height: 20.v,
                       width: 33.h,
                     ),

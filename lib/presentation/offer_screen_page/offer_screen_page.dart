@@ -6,8 +6,8 @@ import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 
 import '../offer_screen_page/widgets/offerscreen_item_widget.dart';
 
-class OfferScreenPage extends StatelessWidget {
-  const OfferScreenPage({Key? key}) : super(key: key);
+class OfferScreen extends StatelessWidget {
+  const OfferScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

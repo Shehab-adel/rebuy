@@ -26,4 +26,12 @@ class AppStrings {
   static const String manFashion = "Man Fashion";
   static const String officeBag = "Office Bag";
   static const String womenFashion = "Woman Fashion";
+  static const String yourCart = "Your Cart";
+  static const String enterCuponCode = "Enter Cupon Code";
+  static const String apply = "Apply";
+  static const String items = "Items";
+  static const String shipping = "Shipping";
+  static const String importCharges = "Import charges";
+  static const String totalPrice = "Total Price";
+  static const String checkOut = "Check Out";
 }

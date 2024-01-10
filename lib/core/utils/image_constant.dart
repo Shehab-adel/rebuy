@@ -202,7 +202,7 @@ class AppImageConstants {
 
   static String imgLoveIcon = '$imagePath/img_love_icon.svg';
 
-  static String imgFolder = '$imagePath/img_folder.svg';
+  static String imgminus = '$imagePath/img_folder.svg';
 
   static String imgPlus = '$imagePath/img_plus.svg';
 

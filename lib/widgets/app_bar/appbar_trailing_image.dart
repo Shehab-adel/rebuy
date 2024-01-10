@@ -3,12 +3,9 @@ import 'package:rebuy/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarTrailingImage extends StatelessWidget {
-  AppbarTrailingImage({
-    Key? key,
-    this.imagePath,
-    this.margin,
-    this.onTap,
-  }) : super(
+  AppbarTrailingImage(
+      {Key? key, this.imagePath, this.margin, this.onTap, this.color})
+      : super(
           key: key,
         );
 
@@ -17,6 +14,7 @@ class AppbarTrailingImage extends StatelessWidget {
   EdgeInsetsGeometry? margin;
 
   Function? onTap;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +29,7 @@ class AppbarTrailingImage extends StatelessWidget {
           height: 24.adaptSize,
           width: 24.adaptSize,
           fit: BoxFit.contain,
+          color: color,
         ),
       ),
     );
