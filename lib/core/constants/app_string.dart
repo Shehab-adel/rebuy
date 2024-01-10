@@ -3,6 +3,7 @@ class AppStrings {
   static const String welcomeToEcom = "Welcome to E-com";
   static const String signInToContinue = "Sign in to continue";
   static const String yourEmail = "Your Email";
+  static const String email = "Email";
   static const String password = "Password";
   static const String signIn = "Sign In";
   static const String or = "OR";
@@ -43,4 +44,9 @@ class AppStrings {
   static const String home = "Home";
   static const String explore = "Explore";
   static const String cart = "Cart";
+  static const String gender = "Gender";
+  static const String birthday = "Birthday";
+  static const String phoneNumber = "Phone Number";
+  static const String changePassword = "Change Password";
+  static const String favoriteProduct = "Favorite Product";
 }

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.dashboardContainerScreen,
+        initialRoute: AppRoutes.favoriteProductScreen,
         routes: AppRoutes.routes,
       ),
     );

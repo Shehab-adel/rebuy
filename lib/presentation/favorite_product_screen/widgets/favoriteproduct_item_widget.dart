@@ -86,6 +86,7 @@ class FavoriteproductItemWidget extends StatelessWidget {
                 ),
                 CustomImageView(
                   imagePath: AppImageConstants.imgTrashIcon,
+                  color: appTheme.blueGray300,
                   height: 24.adaptSize,
                   width: 24.adaptSize,
                   margin: EdgeInsets.only(

@@ -11,26 +11,24 @@ class FavoriteProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            appBar: _buildAppBar(context),
-            body: Padding(
-                padding: EdgeInsets.only(left: 16.h, top: 8.v, right: 16.h),
-                child: GridView.builder(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 283.v,
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 13.h,
-                        crossAxisSpacing: 13.h),
-                    physics: BouncingScrollPhysics(),
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return FavoriteproductItemWidget(onTapProductItem: () {
-                        onTapProductItem(context);
-                      });
-                    }))));
+    return Scaffold(
+        appBar: _buildAppBar(context),
+        body: Padding(
+            padding: EdgeInsets.only(left: 16.h, top: 8.v, right: 16.h),
+            child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 283.v,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 13.h,
+                    crossAxisSpacing: 13.h),
+                physics: BouncingScrollPhysics(),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return FavoriteproductItemWidget(onTapProductItem: () {
+                    Navigator.pushNamed(context, AppRoutes.productDetailScreen);
+                  });
+                })));
   }
 
   /// Section Widget
@@ -41,19 +39,12 @@ class FavoriteProductScreen extends StatelessWidget {
             imagePath: AppImageConstants.imgArrowLeftBlueGray300,
             margin: EdgeInsets.only(left: 16.h, top: 16.v, bottom: 15.v),
             onTap: () {
-              onTapArrowLeft(context);
+              Navigator.pop(context);
             }),
         title: AppbarSubtitle(
-            text: "Favorite Product", margin: EdgeInsets.only(left: 12.h)));
+            text: AppStrings.favoriteProduct,
+            margin: EdgeInsets.only(left: 12.h)));
   }
 
-  /// Navigates to the productDetailScreen when the action is triggered.
-  onTapProductItem(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.productDetailScreen);
-  }
-
-  /// Navigates back to the previous screen.
-  onTapArrowLeft(BuildContext context) {
-    Navigator.pop(context);
-  }
+  /// Navigates back to the previous screen
 }

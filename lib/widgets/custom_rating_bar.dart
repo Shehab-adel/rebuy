@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:rebuy/core/app_export.dart';
 
+// ignore: must_be_immutable
 class CustomRatingBar extends StatelessWidget {
   CustomRatingBar({
     Key? key,
@@ -53,10 +54,7 @@ class CustomRatingBar extends StatelessWidget {
         unratedColor: unselectedColor ?? appTheme.blue50,
         itemCount: itemCount ?? 5,
         updateOnDrag: true,
-        itemBuilder: (
-          context,
-          _,
-        ) {
+    itemBuilder: (context, _) {
           return Icon(
             Icons.star,
             color: color ?? appTheme.yellow700,
