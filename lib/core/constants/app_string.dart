@@ -49,4 +49,9 @@ class AppStrings {
   static const String phoneNumber = "Phone Number";
   static const String changePassword = "Change Password";
   static const String favoriteProduct = "Favorite Product";
+  static const String writeReview = "Write Review";
+  static const String writeYourReview = "Write Your Review";
+  static const String plzWriteAllSatisfaction =
+      "Please write Overall level of satisfaction with your shipping / Delivery Service";
+  static const String addReview = "Add Review";
 }
