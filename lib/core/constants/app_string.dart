@@ -54,4 +54,15 @@ class AppStrings {
   static const String plzWriteAllSatisfaction =
       "Please write Overall level of satisfaction with your shipping / Delivery Service";
   static const String addReview = "Add Review";
+  static const String notification = "Notification";
+  static const String feed = "Feed";
+  static const String acivity = "Acivity";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
+  // static const String notification="Notification";
 }

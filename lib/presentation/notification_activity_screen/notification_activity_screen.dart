@@ -10,32 +10,31 @@ class NotificationActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(vertical: 11.v),
-                child: Column(children: [
-                  _buildActivityDetails(context,
-                      transactionText: "Transaction Nike Air Zoom Product",
-                      descriptionText:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      timeText: "April 30, 2014 1:01 PM", onTapArrowLeft: () {
-                    onTapArrowLeft1(context);
-                  }),
-                  _buildActivityDetails(context,
-                      transactionText: "Transaction Nike Air Max",
-                      descriptionText:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      timeText: "April 30, 2014 1:01 PM"),
-                  SizedBox(height: 5.v),
-                  _buildActivityDetails(context,
-                      transactionText: "Transaction Nike Air Max 2",
-                      descriptionText:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      timeText: "April 30, 2014 1:01 PM")
-                ]))));
+    return Scaffold(
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 11.v),
+            child: Column(children: [
+              _buildActivityDetails(context,
+                  transactionText: "Transaction Nike Air Zoom Product",
+                  descriptionText:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  timeText: "April 30, 2014 1:01 PM", onTapArrowLeft: () {
+                onTapArrowLeft1(context);
+              }),
+              _buildActivityDetails(context,
+                  transactionText: "Transaction Nike Air Max",
+                  descriptionText:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  timeText: "April 30, 2014 1:01 PM"),
+              SizedBox(height: 5.v),
+              _buildActivityDetails(context,
+                  transactionText: "Transaction Nike Air Max 2",
+                  descriptionText:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  timeText: "April 30, 2014 1:01 PM")
+            ])));
   }
 
   /// Section Widget

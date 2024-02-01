@@ -10,30 +10,29 @@ class NotificationOfferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(vertical: 12.v),
-                child: Column(children: [
-                  _buildOfferItem2(context,
-                      offerTitle: "The Best Title",
-                      offerDescription:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      offerTime: "April 30, 2014 1:01 PM"),
-                  _buildOfferItem2(context,
-                      offerTitle: "SUMMER OFFER 98% Cashback",
-                      offerDescription:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      offerTime: "April 30, 2014 1:01 PM"),
-                  SizedBox(height: 5.v),
-                  _buildOfferItem2(context,
-                      offerTitle: "Special Offer 25% OFF",
-                      offerDescription:
-                          "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
-                      offerTime: "April 30, 2014 1:01 PM")
-                ]))));
+    return Scaffold(
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 12.v),
+            child: Column(children: [
+              _buildOfferItem2(context,
+                  offerTitle: "The Best Title",
+                  offerDescription:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  offerTime: "April 30, 2014 1:01 PM"),
+              _buildOfferItem2(context,
+                  offerTitle: "SUMMER OFFER 98% Cashback",
+                  offerDescription:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  offerTime: "April 30, 2014 1:01 PM"),
+              SizedBox(height: 5.v),
+              _buildOfferItem2(context,
+                  offerTitle: "Special Offer 25% OFF",
+                  offerDescription:
+                      "Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo",
+                  offerTime: "April 30, 2014 1:01 PM")
+            ])));
   }
 
   /// Section Widget

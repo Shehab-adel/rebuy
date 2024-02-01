@@ -12,21 +12,20 @@ class NotificationFeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            appBar: _buildAppBar(context),
-            body: Padding(
-                padding: EdgeInsets.only(top: 11.v),
-                child: ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 1.v);
-                    },
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return NotificationfeedItemWidget();
-                    }))));
+    return Scaffold(
+        appBar: _buildAppBar(context),
+        body: Padding(
+            padding: EdgeInsets.only(top: 11.v),
+            child: ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 1.v);
+                },
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return NotificationfeedItemWidget();
+                })));
   }
 
   /// Section Widget

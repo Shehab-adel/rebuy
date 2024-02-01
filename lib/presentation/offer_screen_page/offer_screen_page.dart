@@ -13,27 +13,26 @@ class OfferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 28.v),
-                child: Column(children: [
-                  CuponPromotionWidget(),
-                  SizedBox(height: 16.v),
-                  Expanded(
-                      child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return SizedBox(height: 16.v);
-                          },
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return OfferscreenItemWidget();
-                          }))
-                ]))));
+    return Scaffold(
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 28.v),
+            child: Column(children: [
+              CuponPromotionWidget(),
+              SizedBox(height: 16.v),
+              Expanded(
+                  child: ListView.separated(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 16.v);
+                      },
+                      itemCount: 2,
+                      itemBuilder: (context, index) {
+                        return OfferscreenItemWidget();
+                      }))
+            ])));
   }
 
   /// Section Widget
