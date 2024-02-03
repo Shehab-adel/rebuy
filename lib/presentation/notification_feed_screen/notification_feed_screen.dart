@@ -13,37 +13,26 @@ class NotificationFeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     return Scaffold(
-        appBar: _buildAppBar(context),
-        body: Padding(
+        appBar: CustomAppBar(
+            leadingWidth: 40.h,
+            leading: AppbarLeadingImage(
+                imagePath: AppImageConstants.imgArrowLeftBlueGray300,
+                margin: EdgeInsets.only(left: 16.h, top: 15.v, bottom: 16.v),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+            title: AppbarSubtitle(
+                text: AppStrings.feed, margin: EdgeInsets.only(left: 12.h))),
+        body: ListView.separated(
+            physics: BouncingScrollPhysics(),
             padding: EdgeInsets.only(top: 11.v),
-            child: ListView.separated(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                separatorBuilder: (context, index) {
-                  return SizedBox(height: 1.v);
-                },
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return NotificationfeedItemWidget();
-                })));
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
-        leadingWidth: 40.h,
-        leading: AppbarLeadingImage(
-            imagePath: AppImageConstants.imgArrowLeftBlueGray300,
-            margin: EdgeInsets.only(left: 16.h, top: 15.v, bottom: 16.v),
-            onTap: () {
-              onTapArrowLeft(context);
-            }),
-        title:
-            AppbarSubtitle(text: "Feed", margin: EdgeInsets.only(left: 12.h)));
-  }
-
-  /// Navigates back to the previous screen.
-  onTapArrowLeft(BuildContext context) {
-    Navigator.pop(context);
+            shrinkWrap: true,
+            separatorBuilder: (context, index) {
+              return SizedBox(height: 1.v);
+            },
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return NotificationfeedItemWidget();
+            }));
   }
 }
