@@ -1,58 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
+import 'package:rebuy/presentation/login_screen/cubit/login_states.dart';
 import 'package:rebuy/presentation/login_screen/widgets/build_or_line_widget.dart';
 import 'package:rebuy/presentation/login_screen/widgets/social_auth_widget.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 import 'package:rebuy/widgets/custom_page_header_widget.dart';
 import 'package:rebuy/widgets/custom_text_form_field.dart';
 
-// ignore_for_file: must_be_immutable
 class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Form(
-                key: _formKey,
-                child: Container(
-                    width: double.maxFinite,
-                    padding:
-                        EdgeInsets.only(left: 16.h, top: 68.v, right: 16.h),
-                    child: Column(children: [
+    LoginCubit loginCubit = LoginCubit.get(context);
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Form(
+            key: loginCubit.formKey,
+            child: Container(
+                width: double.maxFinite,
+                padding: EdgeInsets.only(left: 16.h, top: 68.v, right: 16.h),
+                child: BlocBuilder<LoginCubit, LoginState>(
+                  builder: (context, LoginState) {
+                    return Column(children: [
                       CustomPageHeaderWidget(
                           text1: AppStrings.welcomeToEcom,
                           text2: AppStrings.signInToContinue),
                       SizedBox(height: 28.v),
                       CustomTextFormField(
-                        controller: emailController,
+                        controller: loginCubit.emailController,
                         hintText: AppStrings.yourEmail,
-                        textInputType: TextInputType.emailAddress,
                         imagePath: AppImageConstants.imgMail,
+                        validator: (value) {
+                          return loginCubit.validateEmail(value);
+                        },
                       ),
                       SizedBox(height: 10.v),
                       CustomTextFormField(
-                        controller: passwordController,
+                        controller: loginCubit.passwordController,
                         hintText: AppStrings.password,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.visiblePassword,
                         imagePath: AppImageConstants.imgLock,
                         obscureText: true,
+                        validator: (value) {
+                          return loginCubit.validatePassword(value);
+                        },
                       ),
                       SizedBox(height: 16.v),
                       CustomElevatedButton(
                           text: AppStrings.signIn,
                           onPressed: () {
-                            onTapSignIn(context);
+                            if (!loginCubit.formKey.currentState!.validate()) {
+                              loginCubit.loginWithFirebaseAuth();
+                            }
                           }),
                       SizedBox(height: 18.v),
                       OrLineWidget(),
@@ -64,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 7.v),
                       GestureDetector(
                           onTap: () {
-                            onTapTxtDonthaveanaccount(context);
+                            // onTapTxtDonthaveanaccount(context);
                           },
                           child: RichText(
                               text: TextSpan(children: [
@@ -78,16 +79,18 @@ class LoginScreen extends StatelessWidget {
                               ]),
                               textAlign: TextAlign.left)),
                       SizedBox(height: 5.v)
-                    ])))));
+                    ]);
+                  },
+                ))));
   }
 
-  /// Navigates to the dashboardContainerScreen when the action is triggered.
-  onTapSignIn(BuildContext context) {
-    Navigator.pushReplacementNamed(context, AppRoutes.dashboardContainerScreen);
-  }
+// /// Navigates to the dashboardContainerScreen when the action is triggered.
+// onTapSignIn(BuildContext context) {
+//   Navigator.pushReplacementNamed(context, AppRoutes.dashboardContainerScreen);
+// }
 
-  /// Navigates to the registerScreen when the action is triggered.
-  onTapTxtDonthaveanaccount(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.registerScreen);
-  }
+// /// Navigates to the registerScreen when the action is triggered.
+// onTapTxtDonthaveanaccount(BuildContext context) {
+//   Navigator.pushNamed(context, AppRoutes.registerScreen);
+// }
 }

@@ -210,6 +210,7 @@ class AddAddressScreen extends StatelessWidget {
   Widget _buildAddAddress(BuildContext context) {
     return CustomElevatedButton(
         text: "Add Address",
+        onPressed: () {},
         margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
   }
 

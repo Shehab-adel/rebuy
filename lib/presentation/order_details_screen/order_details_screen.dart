@@ -224,6 +224,7 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget _buildNotifyMe(BuildContext context) {
     return CustomElevatedButton(
         text: "Notify Me",
+        onPressed: () {},
         margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
   }
 

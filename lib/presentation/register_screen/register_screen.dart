@@ -1,72 +1,110 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
+import 'package:rebuy/presentation/register_screen/cubit/register_state.dart';
+import 'package:rebuy/presentation/verify_email/verify_email_screen.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 import 'package:rebuy/widgets/custom_page_header_widget.dart';
 import 'package:rebuy/widgets/custom_text_form_field.dart';
 
-// ignore_for_file: must_be_immutable
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-
-  TextEditingController fullNameController = TextEditingController();
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  TextEditingController passwordController1 = TextEditingController();
-
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Form(
-                key: _formKey,
-                child: Container(
-                    width: double.maxFinite.v,
-                    padding: EdgeInsets.symmetric(horizontal: 16.h),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomPageHeaderWidget(
-                              text1: AppStrings.letsGetStarted,
-                              text2: AppStrings.createAnNewAccount),
-                          SizedBox(height: 30.v),
-                          CustomTextFormField(
-                            controller: fullNameController,
-                            hintText: AppStrings.fullName,
-                            imagePath: AppImageConstants.imgUser,
-                          ),
-                          SizedBox(height: 8.v),
-                          CustomTextFormField(
-                            controller: emailController,
-                            hintText: AppStrings.yourEmail,
-                            textInputType: TextInputType.emailAddress,
-                            imagePath: AppImageConstants.imgMail,
-                          ),
-                          SizedBox(height: 8.v),
-                          CustomTextFormField(
-                            controller: passwordController,
-                            hintText: AppStrings.password,
-                            textInputType: TextInputType.visiblePassword,
-                            imagePath: AppImageConstants.imgLock,
-                          ),
-                          SizedBox(height: 8.v),
-                          CustomTextFormField(
-                            controller: passwordController1,
-                            hintText: AppStrings.passwordAgain,
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.visiblePassword,
-                            imagePath: AppImageConstants.imgLock,
-                          ),
-                          SizedBox(height: 20.v),
-                          _buildSignUp(context),
-                          SizedBox(height: 20.v),
-                          RichText(
+    RegisterCubit registerCubit = RegisterCubit.get(context);
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Form(
+            key: registerCubit.formKey,
+            child: Container(
+                width: double.maxFinite.v,
+                padding: EdgeInsets.symmetric(horizontal: 16.h),
+                child: BlocBuilder<RegisterCubit, RegisterState>(
+                    builder: (context, state) {
+                  return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomPageHeaderWidget(
+                            text1: AppStrings.letsGetStarted,
+                            text2: AppStrings.createAnNewAccount),
+                        SizedBox(height: 30.v),
+                        CustomTextFormField(
+                          controller: registerCubit.usernameController,
+                          hintText: AppStrings.fullName,
+                          imagePath: AppImageConstants.imgUser,
+                          validator: (value) {
+                            return registerCubit.isValidUsername(value);
+                          },
+                        ),
+                        SizedBox(height: 8.v),
+                        CustomTextFormField(
+                          controller: registerCubit.emailController,
+                          hintText: AppStrings.yourEmail,
+                          imagePath: AppImageConstants.imgMail,
+                          validator: (value) {
+                            return registerCubit.validateEmail(value);
+                          },
+                        ),
+                        SizedBox(height: 8.v),
+                        CustomTextFormField(
+                          controller: registerCubit.passwordController,
+                          hintText: AppStrings.password,
+                          imagePath: AppImageConstants.imgLock,
+                          validator: (value) {
+                            return registerCubit.validatePassword(value);
+                          },
+                        ),
+                        SizedBox(height: 8.v),
+                        CustomTextFormField(
+                          controller: registerCubit.confirmPasswordController,
+                          hintText: AppStrings.passwordAgain,
+                          imagePath: AppImageConstants.imgLock,
+                          validator: (value) {
+                            return registerCubit.confirmPassword(value);
+                          },
+                        ),
+                        SizedBox(height: 20.v),
+                        state is LoadingRegisterProcess
+                            ? Center(child: CircularProgressIndicator())
+                            : CustomElevatedButton(
+                                text: AppStrings.signUp,
+                                onPressed: () async {
+                                  if (registerCubit.formKey.currentState!
+                                          .validate() ==
+                                      true) {
+                                    registerCubit
+                                        .registerWithFirebaseAuth(context);
+                                    await registerCubit
+                                        .sendEmailVerification(context);
+                                  }
+                                }),
+                        SizedBox(height: 20.v),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      VerifyEmailScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Go to Check Email',
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                  color: appTheme.blueA200,
+                                  decoration: TextDecoration.underline),
+                            )),
+                        SizedBox(height: 20.v),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                AppRoutes.loginScreen, (route) => false);
+                          },
+                          child: RichText(
                               text: TextSpan(children: [
                                 TextSpan(
                                     text: AppStrings.haveanAccount,
@@ -77,21 +115,8 @@ class RegisterScreen extends StatelessWidget {
                                     style: CustomTextStyles.labelLargePrimary_1)
                               ]),
                               textAlign: TextAlign.left),
-                          SizedBox(height: 5.v)
-                        ])))));
-  }
-
-  /// Section Widget
-  Widget _buildSignUp(BuildContext context) {
-    return CustomElevatedButton(
-        text: AppStrings.signUp,
-        onPressed: () {
-          onTapSignUp(context);
-        });
-  }
-
-  /// Navigates to the dashboardContainerScreen when the action is triggered.
-  onTapSignUp(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.dashboardContainerScreen);
+                        ),
+                      ]);
+                }))));
   }
 }

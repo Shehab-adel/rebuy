@@ -36,6 +36,7 @@ class SearchResultNoDataFoundScreen extends StatelessWidget {
               SizedBox(height: 16.v),
               CustomElevatedButton(
                 text: "Back to Home",
+                onPressed: () {},
                 margin: EdgeInsets.symmetric(horizontal: 16.h),
               ),
               Spacer(

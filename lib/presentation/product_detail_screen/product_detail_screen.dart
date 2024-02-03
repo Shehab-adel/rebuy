@@ -305,6 +305,7 @@ class ProductDetailScreen extends StatelessWidget {
   Widget _buildAddToCart(BuildContext context) {
     return CustomElevatedButton(
         text: "Add To Cart",
+        onPressed: () {},
         margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
   }
 

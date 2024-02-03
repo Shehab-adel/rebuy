@@ -22,8 +22,9 @@ class CouponCodeRowWidget extends StatelessWidget {
       CustomElevatedButton(
           width: 87.h,
           text: AppStrings.apply,
-          buttonStyle: CustomButtonStyles.fillPrimary,
-          buttonTextStyle: CustomTextStyles.labelLargeOnPrimaryContainer)
+          onPressed: () {},
+          style: CustomButtonStyles.fillPrimary,
+          buttonStyle: CustomTextStyles.labelLargeOnPrimaryContainer)
     ]);
   }
 }

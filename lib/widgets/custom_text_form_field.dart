@@ -76,12 +76,7 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return alignment != null
-        ? Align(
-            alignment: alignment ?? Alignment.center,
-            child: textFormFieldWidget,
-          )
-        : textFormFieldWidget;
+    return textFormFieldWidget;
   }
 
   Widget get textFormFieldWidget => SizedBox(
@@ -116,6 +111,7 @@ class CustomTextFormField extends StatelessWidget {
         isDense: true,
         contentPadding: contentPadding ??
             EdgeInsets.only(top: 15.v, right: 30.h, bottom: 15.v),
+        errorMaxLines: 3,
         fillColor:
             fillColor ?? theme.colorScheme.onPrimaryContainer.withOpacity(1),
         filled: filled,

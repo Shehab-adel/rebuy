@@ -4,9 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
+import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
+import 'firebase_options.dart'; // Replace with your generated configuration
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -18,6 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => DashCubit()),
         BlocProvider(create: (context) => ExploreCubit())
       ],
@@ -25,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.notificationScreen,
+        initialRoute: AppRoutes.registerScreen,
         routes: AppRoutes.routes,
       ),
     );

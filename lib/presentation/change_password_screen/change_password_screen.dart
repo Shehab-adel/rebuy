@@ -133,6 +133,7 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget _buildSave(BuildContext context) {
     return CustomElevatedButton(
         text: "Save",
+        onPressed: () {},
         margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
   }
 

@@ -61,6 +61,7 @@ class WriteReviewFillScreen extends StatelessWidget {
             ])),
         bottomNavigationBar: CustomElevatedButton(
             text: AppStrings.writeReview,
+            onPressed: () {},
             margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 34.v)));
   }
 }
