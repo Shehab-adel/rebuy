@@ -34,6 +34,16 @@ class LoginScreen extends StatelessWidget {
                       loginCubit.loginshowDialog(
                           context, 'Sign in fail!', loginCubit.bodyMessage);
                     }
+                    if (state is SuccessfulGoogleLoginProcess) {
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.dashboardContainerScreen);
+                      loginCubit.loginshowDialog(context, 'Sign in successful!',
+                          loginCubit.bodyMessage);
+                    }
+                    if (state is FailGoogleLoginProcess) {
+                      loginCubit.loginshowDialog(
+                          context, 'Sign in fail!', loginCubit.bodyMessage);
+                    }
                   },
                   builder: (context, state) {
                     return Column(children: [

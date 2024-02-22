@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,5 +56,20 @@ class LoginCubit extends Cubit<LoginState> {
         );
       },
     );
+  }
+
+  Future<void> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+    await FirebaseAuth.instance.signInWithCredential(credential).then((value) {
+      bodyMessage = 'You signed in successfully with Google';
+      emit(SuccessfulGoogleLoginProcess());
+    }).onError((error, stackTrace) {
+      bodyMessage = '${error.toString()}';
+      emit(FailGoogleLoginProcess());
+    });
   }
 }
