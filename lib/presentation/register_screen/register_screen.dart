@@ -21,8 +21,16 @@ class RegisterScreen extends StatelessWidget {
             child: Container(
                 width: double.maxFinite.v,
                 padding: EdgeInsets.symmetric(horizontal: 16.h),
-                child: BlocBuilder<RegisterCubit, RegisterState>(
-                    builder: (context, state) {
+                child: BlocConsumer<RegisterCubit, RegisterState>(
+                    listener: (context, state) {
+                  if (state is SuccessfulRegisterProcess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        registerCubit.snackBar(registerCubit.message));
+                  } else if (state is FailRegisterProcess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        registerCubit.snackBar(registerCubit.message));
+                  }
+                }, builder: (context, state) {
                   return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -76,8 +84,6 @@ class RegisterScreen extends StatelessWidget {
                                       true) {
                                     registerCubit
                                         .registerWithFirebaseAuth(context);
-                                    await registerCubit
-                                        .sendEmailVerification(context);
                                   }
                                 }),
                         SizedBox(height: 20.v),

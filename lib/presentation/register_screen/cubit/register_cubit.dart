@@ -14,28 +14,36 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String message = '';
 
   registerWithFirebaseAuth(BuildContext context) async {
-    String message;
     try {
       emit(LoadingRegisterProcess());
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
-      );
-      message='Check your email to verify';
-      ScaffoldMessenger.of(context).showSnackBar(snackBar(message));
-      emit(SuccessfulRegisterProcess());
+      )
+          .then((value) async {
+        message = 'Check your email to verify fisrt';
+        emit(SuccessfulRegisterProcess());
+        await sendEmailVerification(context);
+      }).onError((error, stackTrace) {
+        message = 'Check your email to verify first';
+        emit(FailRegisterProcess());
+      });
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        message = 'The account already exists for that email.';
-        ScaffoldMessenger.of(context).showSnackBar(snackBar(message));
+      if (e.code == 'email-already-in-use' &&
+          isEmailVerified(context) == false) {
+        message = 'Please Check your email to verify first';
+        emit(FailRegisterProcess());
+      } else if (e.code == 'email-already-in-use' &&
+          isEmailVerified(context) == true) {
+        message = 'The email address is already exists.try sign in';
         emit(FailRegisterProcess());
       }
     } catch (e) {
-      message = e.toString();
-      ScaffoldMessenger.of(context).showSnackBar(snackBar(message));
+      message = "Somthing is wrong.Please Try again";
       emit(FailRegisterProcess());
     }
   }

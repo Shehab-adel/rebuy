@@ -69,7 +69,8 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 7.v),
                       GestureDetector(
                           onTap: () {
-                            // onTapTxtDonthaveanaccount(context);
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                AppRoutes.registerScreen, (route) => false);
                           },
                           child: RichText(
                               text: TextSpan(children: [
@@ -82,19 +83,8 @@ class LoginScreen extends StatelessWidget {
                                     style: CustomTextStyles.labelLargePrimary_1)
                               ]),
                               textAlign: TextAlign.left)),
-                      SizedBox(height: 5.v)
                     ]);
                   },
                 ))));
   }
-
-// /// Navigates to the dashboardContainerScreen when the action is triggered.
-// onTapSignIn(BuildContext context) {
-//   Navigator.pushReplacementNamed(context, AppRoutes.dashboardContainerScreen);
-// }
-
-// /// Navigates to the registerScreen when the action is triggered.
-// onTapTxtDonthaveanaccount(BuildContext context) {
-//   Navigator.pushNamed(context, AppRoutes.registerScreen);
-// }
 }
