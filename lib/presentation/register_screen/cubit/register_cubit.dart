@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rebuy/core/app_export.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -25,6 +24,8 @@ class RegisterCubit extends Cubit<RegisterState> {
         email: emailController.text,
         password: passwordController.text,
       );
+      message='Check your email to verify';
+      ScaffoldMessenger.of(context).showSnackBar(snackBar(message));
       emit(SuccessfulRegisterProcess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -51,12 +52,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     await user?.reload();
     user = FirebaseAuth.instance.currentUser;
     if (user != null && user.emailVerified == true) {
-      // emit(SucessfulVerificationProcess());
-      print("${user.emailVerified} ************");
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar('You registered successfully,Wecome to rebuy'));
       return true;
     } else {
-      // emit(FailVerificationProcess());
       return false;
     }
   }

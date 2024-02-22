@@ -22,8 +22,20 @@ class LoginScreen extends StatelessWidget {
             child: Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.only(left: 16.h, top: 68.v, right: 16.h),
-                child: BlocBuilder<LoginCubit, LoginState>(
-                  builder: (context, LoginState) {
+                child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if (state is SuccessfulLoginProcess) {
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.dashboardContainerScreen);
+                      loginCubit.loginshowDialog(context, 'Sign in successful!',
+                          loginCubit.bodyMessage);
+                    }
+                    if (state is FailLoginProcess) {
+                      loginCubit.loginshowDialog(
+                          context, 'Sign in fail!', loginCubit.bodyMessage);
+                    }
+                  },
+                  builder: (context, state) {
                     return Column(children: [
                       CustomPageHeaderWidget(
                           text1: AppStrings.welcomeToEcom,
@@ -33,9 +45,6 @@ class LoginScreen extends StatelessWidget {
                         controller: loginCubit.emailController,
                         hintText: AppStrings.yourEmail,
                         imagePath: AppImageConstants.imgMail,
-                        validator: (value) {
-                          return loginCubit.validateEmail(value);
-                        },
                       ),
                       SizedBox(height: 10.v),
                       CustomTextFormField(
@@ -43,17 +52,12 @@ class LoginScreen extends StatelessWidget {
                         hintText: AppStrings.password,
                         imagePath: AppImageConstants.imgLock,
                         obscureText: true,
-                        validator: (value) {
-                          return loginCubit.validatePassword(value);
-                        },
                       ),
                       SizedBox(height: 16.v),
                       CustomElevatedButton(
                           text: AppStrings.signIn,
                           onPressed: () {
-                            if (!loginCubit.formKey.currentState!.validate()) {
-                              loginCubit.loginWithFirebaseAuth();
-                            }
+                            loginCubit.loginWithFirebaseAuth(context);
                           }),
                       SizedBox(height: 18.v),
                       OrLineWidget(),
