@@ -11,6 +11,7 @@ import 'package:rebuy/presentation/dashboard_container_screen/dashboard_containe
 import 'package:rebuy/presentation/dashboard_page/dashboard_page.dart';
 import 'package:rebuy/presentation/favorite_product_screen/favorite_product_screen.dart';
 import 'package:rebuy/presentation/filter_screen/filter_screen.dart';
+import 'package:rebuy/presentation/forget_password/forget_pasword_screen.dart';
 import 'package:rebuy/presentation/lailyfa_febrina_card_screen/lailyfa_febrina_card_screen.dart';
 import 'package:rebuy/presentation/list_category_screen/list_category_screen.dart';
 import 'package:rebuy/presentation/login_screen/login_screen.dart';
@@ -99,6 +100,8 @@ class AppRoutes {
 
   static const String changePasswordScreen = '/change_password_screen';
 
+  static const String forgetPasswordScreen = '/forget_password_screen';
+
   static const String orderScreen = '/order_screen';
 
   static const String orderDetailsScreen = '/order_details_screen';
@@ -145,6 +148,7 @@ class AppRoutes {
     successScreen: (context) => SuccessScreen(),
     profileScreen: (context) => ProfileScreen(),
     changePasswordScreen: (context) => ChangePasswordScreen(),
+    forgetPasswordScreen: (context) => ForgetPasswordScreen(),
     orderScreen: (context) => OrderScreen(),
     orderDetailsScreen: (context) => OrderDetailsScreen(),
     addAddressScreen: (context) => AddAddressScreen(),

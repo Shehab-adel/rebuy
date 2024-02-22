@@ -23,13 +23,14 @@ class SocialAuthWidget extends StatelessWidget {
       ),
       SizedBox(height: 8.v),
       CustomOutlinedButton(
-          text: AppStrings.loginWithFacebook,
-          leftIcon: Container(
-              margin: EdgeInsets.only(right: 30.h),
-              child: CustomImageView(
-                  imagePath: AppImageConstants.imgFacebookIcon,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize)))
+        text: AppStrings.loginWithFacebook,
+        leftIcon: Container(
+            margin: EdgeInsets.only(right: 30.h),
+            child: CustomImageView(
+                imagePath: AppImageConstants.imgFacebookIcon,
+                height: 24.adaptSize,
+                width: 24.adaptSize)),
+      )
     ]);
   }
 }

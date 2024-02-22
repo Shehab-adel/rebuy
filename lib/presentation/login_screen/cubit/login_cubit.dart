@@ -17,6 +17,9 @@ class LoginCubit extends Cubit<LoginState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String bodyMessage = 'ensure your email or password again.';
 
+  TextEditingController forgetPasswordEmailController = TextEditingController();
+  GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
+
   loginWithFirebaseAuth(BuildContext context) async {
     try {
       await FirebaseAuth.instance
@@ -71,5 +74,32 @@ class LoginCubit extends Cubit<LoginState> {
       bodyMessage = '${error.toString()}';
       emit(FailGoogleLoginProcess());
     });
+  }
+
+  String? returnMessage;
+  Future<void> resetPassword(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: forgetPasswordEmailController.text)
+          .then((value) {
+        returnMessage = 'Check your email to reset password then go resign in.';
+        emit(SuccessfulForgetProcess());
+      }).onError((error, stackTrace) {
+        returnMessage = '${error.toString()}';
+        emit(FailForgetProcess());
+      });
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'user-not-found') {
+        returnMessage =
+            'No user found for that ${forgetPasswordEmailController.text}...create your account by signing up..';
+        emit(FailForgetProcess());
+      } else {
+        returnMessage = error.message.toString();
+        emit(FailForgetProcess());
+      }
+    } catch (error) {
+      returnMessage = '${error.toString()}';
+      emit(FailForgetProcess());
+    }
   }
 }

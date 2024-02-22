@@ -11,3 +11,7 @@ class FailLoginProcess extends LoginState {}
 class SuccessfulGoogleLoginProcess extends LoginState {}
 
 class FailGoogleLoginProcess extends LoginState {}
+
+class SuccessfulForgetProcess extends LoginState {}
+
+class FailForgetProcess extends LoginState {}
