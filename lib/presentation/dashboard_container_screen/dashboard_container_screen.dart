@@ -14,7 +14,7 @@ class DashboardContainerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashCubit, DashSatates>(builder: (context, sate) {
+    return BlocBuilder<DashCubit, DashState>(builder: (context, sate) {
       DashCubit dashCubit = DashCubit.get(context);
       return Scaffold(
         bottomNavigationBar: BottomNavigationBar(

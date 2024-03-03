@@ -4,11 +4,10 @@ import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/widgets/custom_icon_button.dart';
 
 class DashCategoryWidget extends StatelessWidget {
-  const DashCategoryWidget({Key? key}) : super(key: key);
-
+  const DashCategoryWidget({required this.dashCubit});
+  final DashCubit dashCubit;
   @override
   Widget build(BuildContext context) {
-    DashCubit dashCubit = DashCubit.get(context);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(right: 16),

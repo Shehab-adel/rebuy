@@ -25,7 +25,11 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
-        BlocProvider(create: (context) => DashCubit()),
+        BlocProvider(create: (context) {
+          final dashCubit = DashCubit();
+          dashCubit.fetchDataFromFirestore();
+          return dashCubit;
+        }),
         BlocProvider(create: (context) => ExploreCubit())
       ],
       child: MaterialApp(

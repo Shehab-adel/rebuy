@@ -1,7 +1,13 @@
-abstract class DashSatates {}
+abstract class DashState {}
 
-class DashInitState extends DashSatates {}
+class DashInitState extends DashState {}
 
-class ChangeAnimatedSmoothIdex extends DashSatates {}
+class ChangeAnimatedSmoothIndex extends DashState {}
 
-class GetCurrentScreenIndex extends DashSatates {}
+class GetCurrentScreenIndex extends DashState {}
+
+class LoadingFetchCollection extends DashState{}
+
+class SuccessfulFetchCollection extends DashState{}
+
+class FailFetchCollection extends DashState{}

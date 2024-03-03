@@ -8,6 +8,7 @@ import 'package:rebuy/presentation/change_password_screen/change_password_screen
 import 'package:rebuy/presentation/choose_credit_or_debit_card_screen/choose_credit_or_debit_card_screen.dart';
 import 'package:rebuy/presentation/credit_card_and_debit_screen/credit_card_and_debit_screen.dart';
 import 'package:rebuy/presentation/dashboard_container_screen/dashboard_container_screen.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/dashboard_page.dart';
 import 'package:rebuy/presentation/favorite_product_screen/favorite_product_screen.dart';
 import 'package:rebuy/presentation/filter_screen/filter_screen.dart';
@@ -125,7 +126,9 @@ class AppRoutes {
     loginScreen: (context) => LoginScreen(),
     registerScreen: (context) => RegisterScreen(),
     dashboardContainerScreen: (context) => DashboardContainerScreen(),
-    dashboardPage: (context) => DashboardScreen(),
+    dashboardPage: (context) => DashboardScreen(
+          dashCubit: DashCubit.get(context),
+        ),
     superFlashSaleScreen: (context) => SuperFlashSaleScreen(),
     favoriteProductScreen: (context) => FavoriteProductScreen(),
     productDetailScreen: (context) => ProductDetailScreen(),

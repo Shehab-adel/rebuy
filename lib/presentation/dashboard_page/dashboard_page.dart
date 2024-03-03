@@ -8,18 +8,16 @@ import 'package:rebuy/presentation/dashboard_page/widgets/bottom_common_category
 import 'package:rebuy/presentation/dashboard_page/widgets/category_widget.dart';
 import 'package:rebuy/presentation/dashboard_page/widgets/dash_slider_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import 'widgets/fsnikeairmax_item_widget.dart';
 import 'widgets/msnikeairmax_item_widget.dart';
 
 // ignore_for_file: must_be_immutable
 class DashboardScreen extends StatelessWidget {
-  DashboardScreen({Key? key}) : super(key: key);
-
+  DashboardScreen({required this.dashCubit});
+  DashCubit dashCubit;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashCubit, DashSatates>(builder: (context, state) {
-      DashCubit dashCubit = BlocProvider.of(context);
+    return BlocBuilder<DashCubit, DashState>(builder: (context, state) {
       return Scaffold(
         appBar: buildAppBar(context),
         body: SizedBox(
@@ -30,7 +28,7 @@ class DashboardScreen extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DashSliderWidget(),
+                      DashSliderWidget(dashCubit: dashCubit),
                       SizedBox(height: 16.v),
                       //Three animated smooth
                       Container(
@@ -38,7 +36,7 @@ class DashboardScreen extends StatelessWidget {
                           margin: EdgeInsets.only(left: 135.h),
                           child: AnimatedSmoothIndicator(
                               activeIndex: dashCubit.sliderIndex,
-                              count: 4,
+                              count: 6,
                               axisDirection: Axis.horizontal,
                               effect: ScrollingDotsEffect(
                                   spacing: 10,
@@ -49,7 +47,7 @@ class DashboardScreen extends StatelessWidget {
                                   dotWidth: 8.h))),
                       SizedBox(height: 25.v),
                       //Categories
-                      DashCategoryWidget(),
+                      DashCategoryWidget(dashCubit: dashCubit),
                       SizedBox(height: 23.v),
                       //Flash Sale
                       Padding(
