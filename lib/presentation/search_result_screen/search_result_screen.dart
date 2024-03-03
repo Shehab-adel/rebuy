@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/widgets/app_bar/appbar_title_edittext_one.dart';
+import 'package:rebuy/presentation/search_result_screen/widgets/appbar_title_edittext_one.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
-
 import '../search_result_screen/widgets/searchresult_item_widget.dart';
 
 // ignore_for_file: must_be_immutable

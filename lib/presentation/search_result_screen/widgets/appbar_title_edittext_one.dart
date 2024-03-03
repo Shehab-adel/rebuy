@@ -10,8 +10,8 @@ class AppbarTitleEdittextOne extends StatelessWidget {
     this.controller,
     this.margin,
   }) : super(
-          key: key,
-        );
+    key: key,
+  );
 
   String? hintText;
 

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.loginScreen,
+        initialRoute: AppRoutes.dashboardContainerScreen,
         routes: AppRoutes.routes,
       ),
     );

@@ -19,7 +19,6 @@ import 'package:rebuy/presentation/notification_activity_screen/notification_act
 import 'package:rebuy/presentation/notification_feed_screen/notification_feed_screen.dart';
 import 'package:rebuy/presentation/notification_offer_screen/notification_offer_screen.dart';
 import 'package:rebuy/presentation/notification_screen/notification_screen.dart';
-import 'package:rebuy/presentation/order_details_screen/order_details_screen.dart';
 import 'package:rebuy/presentation/order_screen/order_screen.dart';
 import 'package:rebuy/presentation/payment_method_screen/payment_method_screen.dart';
 import 'package:rebuy/presentation/product_detail_screen/product_detail_screen.dart';
@@ -150,7 +149,7 @@ class AppRoutes {
     changePasswordScreen: (context) => ChangePasswordScreen(),
     forgetPasswordScreen: (context) => ForgetPasswordScreen(),
     orderScreen: (context) => OrderScreen(),
-    orderDetailsScreen: (context) => OrderDetailsScreen(),
+    orderDetailsScreen: (context) => OrderScreen(),
     addAddressScreen: (context) => AddAddressScreen(),
     addressScreen: (context) => AddressScreen(),
     addPaymentScreen: (context) => AddPaymentScreen(),
