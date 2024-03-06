@@ -6,8 +6,10 @@ class ChangeAnimatedSmoothIndex extends DashState {}
 
 class GetCurrentScreenIndex extends DashState {}
 
-class LoadingFetchCollection extends DashState{}
+class LoadingFetchCollection extends DashState {}
 
-class SuccessfulFetchCollection extends DashState{}
+class SuccessfulFetchCollection extends DashState {}
 
-class FailFetchCollection extends DashState{}
+class FailFetchCollection extends DashState {}
+
+class ChangeCategoryIndex extends DashState {}

@@ -30,6 +30,7 @@ import 'package:rebuy/presentation/search_result_no_data_found_screen/search_res
 import 'package:rebuy/presentation/search_result_screen/search_result_screen.dart';
 import 'package:rebuy/presentation/search_screen/search_screen.dart';
 import 'package:rebuy/presentation/ship_to_screen/ship_to_screen.dart';
+import 'package:rebuy/presentation/show_category_products/show_category_products_screen.dart';
 import 'package:rebuy/presentation/sort_by_screen/sort_by_screen.dart';
 import 'package:rebuy/presentation/splash_screen/splash_screen.dart';
 import 'package:rebuy/presentation/success_screen/success_screen.dart';
@@ -120,6 +121,7 @@ class AppRoutes {
   static const String lailyfaFebrinaCardScreen = '/lailyfa_febrina_card_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
+  static const String showCategoryProductsScreen = '/show_category_p';
 
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
@@ -151,6 +153,8 @@ class AppRoutes {
     profileScreen: (context) => ProfileScreen(),
     changePasswordScreen: (context) => ChangePasswordScreen(),
     forgetPasswordScreen: (context) => ForgetPasswordScreen(),
+    showCategoryProductsScreen: (context) =>
+        ShowCategoryProductsScreen(dashCubit: DashCubit.get(context)),
     orderScreen: (context) => OrderScreen(),
     orderDetailsScreen: (context) => OrderScreen(),
     addAddressScreen: (context) => AddAddressScreen(),

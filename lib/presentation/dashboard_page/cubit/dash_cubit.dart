@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
@@ -11,7 +9,6 @@ import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/presentation/dashboard_page/dashboard_page.dart';
 import 'package:rebuy/presentation/explore_page/explore_page.dart';
 import 'package:rebuy/presentation/offer_screen_page/offer_screen_page.dart';
-
 import '../models/data_model.dart';
 
 class DashCubit extends Cubit<DashState> {
@@ -27,55 +24,42 @@ class DashCubit extends Cubit<DashState> {
   }
 
   Map<String, String> categoryMap = {
-    'Man Shirt': AppImageConstants.imgManTShirtIcon,
-    'Office Bag': AppImageConstants.imgBagIcon,
-    'Dress': AppImageConstants.imgDressIcon,
-    'Woman Bag': AppImageConstants.imgWomanBagIcon,
-    'Pants': AppImageConstants.imgWomanPantsIcon,
-    'Skirt': AppImageConstants.imgSkirtIcon,
-    'Bag': AppImageConstants.imgWomanBagIcon,
-    'Heels': AppImageConstants.imgHighHeelsIcon,
-    'Bikini': AppImageConstants.imgBikiniIcon,
+    AppStrings.menShirt: AppImageConstants.imgManTShirtIcon,
+    AppStrings.officeBage: AppImageConstants.imgBagIcon,
+    AppStrings.dress: AppImageConstants.imgDressIcon,
+    AppStrings.womenBag: AppImageConstants.imgWomanBagIcon,
+    AppStrings.pants: AppImageConstants.imgWomanPantsIcon,
+    AppStrings.skirt: AppImageConstants.imgSkirtIcon,
+    AppStrings.bag: AppImageConstants.imgBagIcon,
+    AppStrings.heels: AppImageConstants.imgHighHeelsIcon,
+    AppStrings.bikini: AppImageConstants.imgBikiniIcon,
   };
 
-  List<Widget> screenList = [
-    DashboardScreen(
-      dashCubit: DashCubit.get(context),
-    ),
-    ExploreScreen(),
-    CartScreen(),
-    OfferScreen(),
-    AccountScreen()
-  ];
+  List<Widget> screenList(context) => [
+        DashboardScreen(
+          dashCubit: DashCubit.get(context),
+        ),
+        ExploreScreen(),
+        CartScreen(),
+        OfferScreen(),
+        AccountScreen()
+      ];
 
-  List<String> categoryList = [
-    AppStrings.menShirt,
-    AppStrings.officeBage,
-    AppStrings.dress,
-    AppStrings.womenBag,
-    AppStrings.pants,
-    AppStrings.skirt,
-    AppStrings.bag,
-    AppStrings.heels,
-    AppStrings.bikini,
-    AppStrings.flashSale,
-    AppStrings.megaSale
-  ];
-
-  int currentIndex = 0;
+  int currentScreenIndex = 0;
 
   void getCurrentScreenIndex(int index) {
-    currentIndex = index;
+    currentScreenIndex = index;
     emit(GetCurrentScreenIndex());
   }
 
+  int index = 0;
   String? message;
   List<DataModel>? dataList;
   Future<void> fetchDataFromFirestore() async {
     try {
       emit(LoadingFetchCollection());
       final querySnapshot = await FirebaseFirestore.instance
-          .collection(AppStrings.menShirt)
+          .collection(categoryMap.keys.elementAt(categoryIndex))
           .get();
 
       dataList = await Future.wait(querySnapshot.docs.map((doc) async {
@@ -89,6 +73,7 @@ class DashCubit extends Cubit<DashState> {
           description: data['description'],
           price: data['price'],
           oldPrice: data['old_price'],
+          disccountPrecentage: data['disccountPrecentage']
         );
       }).toList());
       emit(SuccessfulFetchCollection());
@@ -102,5 +87,11 @@ class DashCubit extends Cubit<DashState> {
       print('${message}  Fail ---------------******');
       emit(FailFetchCollection());
     }
+  }
+
+  int categoryIndex = 0;
+  changeCategoryName(int index) {
+    categoryIndex = index;
+    emit(ChangeCategoryIndex());
   }
 }

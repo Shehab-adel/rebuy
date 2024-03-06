@@ -18,12 +18,12 @@ class DashboardContainerScreen extends StatelessWidget {
       DashCubit dashCubit = DashCubit.get(context);
       return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color.fromARGB(0, 59, 55, 55),
           showSelectedLabels: false,
           showUnselectedLabels: false,
           selectedFontSize: 0,
           elevation: 0,
-          currentIndex: dashCubit.currentIndex,
+          currentIndex: dashCubit.currentScreenIndex,
           fixedColor: Colors.transparent,
           type: BottomNavigationBarType.fixed,
           landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
@@ -46,7 +46,7 @@ class DashboardContainerScreen extends StatelessWidget {
                 text: AppStrings.account),
           ],
         ),
-        body: dashCubit.screenList[dashCubit.currentIndex],
+        body: dashCubit.screenList(context)[dashCubit.currentScreenIndex],
       );
     });
   }

@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1098117801309',
     projectId: 'rebuy-3702d',
     storageBucket: 'rebuy-3702d.appspot.com',
-    iosBundleId: 'com.rebuy.app',
+    iosBundleId: 'com.example.rebuy',
   );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/widgets/custom_icon_button.dart';
 
 class DashCategoryWidget extends StatelessWidget {
@@ -28,29 +30,42 @@ class DashCategoryWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => SizedBox(width: 12.h),
                 itemCount: dashCubit.categoryMap.length,
                 itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: 70.h,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 15.v),
-                      child: Column(
-                        children: [
-                          CustomIconButton(
-                            height: 70.adaptSize,
-                            width: 70.adaptSize,
-                            padding: EdgeInsets.all(23.h),
-                            child: CustomImageView(
-                              imagePath:
-                                  dashCubit.categoryMap.values.elementAt(index),
+                  return BlocConsumer<DashCubit, DashState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () {
+                          dashCubit.changeCategoryName(index);
+                          Navigator.pushNamed(
+                              context, AppRoutes.showCategoryProductsScreen);
+                          dashCubit.fetchDataFromFirestore();
+                        },
+                        child: SizedBox(
+                          width: 70.h,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 15.v),
+                            child: Column(
+                              children: [
+                                CustomIconButton(
+                                  height: 70.adaptSize,
+                                  width: 70.adaptSize,
+                                  padding: EdgeInsets.all(23.h),
+                                  child: CustomImageView(
+                                    imagePath: dashCubit.categoryMap.values
+                                        .elementAt(index),
+                                  ),
+                                ),
+                                SizedBox(height: 7.v),
+                                Text(
+                                  dashCubit.categoryMap.keys.elementAt(index),
+                                  style: CustomTextStyles.bodySmall10,
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 7.v),
-                          Text(
-                            dashCubit.categoryMap.keys.elementAt(index),
-                            style: CustomTextStyles.bodySmall10,
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 }))
       ]),
