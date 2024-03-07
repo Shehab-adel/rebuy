@@ -49,13 +49,11 @@ class CustomTextStyles {
         color: appTheme.indigoA200,
       );
 
-  static get labelLargeIndigoA200_1 =>
-      theme.textTheme.labelLarge!.copyWith(
+  static get labelLargeIndigoA200_1 => theme.textTheme.labelLarge!.copyWith(
         color: appTheme.indigoA200,
       );
 
-  static get labelLargeOnPrimary =>
-      theme.textTheme.labelLarge!.copyWith(
+  static get labelLargeOnPrimary => theme.textTheme.labelLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
       );
 
@@ -64,17 +62,14 @@ class CustomTextStyles {
         color: theme.colorScheme.onPrimaryContainer.withOpacity(1),
       );
 
-  static get labelLargePrimary =>
-      theme.textTheme.labelLarge!
-          .copyWith(color: theme.colorScheme.primary.withOpacity(1));
+  static get labelLargePrimary => theme.textTheme.labelLarge!
+      .copyWith(color: theme.colorScheme.primary.withOpacity(1));
 
-  static get labelLargePrimary_1 =>
-      theme.textTheme.labelLarge!.copyWith(
+  static get labelLargePrimary_1 => theme.textTheme.labelLarge!.copyWith(
         color: theme.colorScheme.primary.withOpacity(1),
       );
 
-  static get labelMediumBluegray300 =>
-      theme.textTheme.labelMedium!.copyWith(
+  static get labelMediumBluegray300 => theme.textTheme.labelMedium!.copyWith(
         color: appTheme.blueGray300,
       );
 
@@ -115,6 +110,11 @@ class CustomTextStyles {
         color: theme.colorScheme.primary.withOpacity(1),
       );
   static get titleSmall_1 => theme.textTheme.titleSmall!;
+
+  static TextStyle get textStyle16 => const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      );
 }
 
 extension on TextStyle {

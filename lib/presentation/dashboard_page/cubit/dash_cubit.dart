@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/presentation/account_page/account_page.dart';
@@ -68,16 +68,16 @@ class DashCubit extends Cubit<DashState> {
         final ref = FirebaseStorage.instance.ref().child(file);
         final url = await ref.getDownloadURL();
         return DataModel(
-          image: url.toString(),
-          title: data['title'],
-          description: data['description'],
-          price: data['price'],
-          oldPrice: data['old_price'],
-          disccountPrecentage: data['disccountPrecentage']
-        );
+            image: url.toString(),
+            title: data['title'],
+            description: data['description'],
+            price: data['price'],
+            oldPrice: data['old_price'],
+            disccountPrecentage: data['disccountPrecentage']);
       }).toList());
       emit(SuccessfulFetchCollection());
-      print('Sucessful ---------------******');
+
+      // print('Sucessful ---------------******');
     } on FirebaseException catch (error) {
       message = error.toString();
       print('${message}  Fail ---------------******');
@@ -93,5 +93,28 @@ class DashCubit extends Cubit<DashState> {
   changeCategoryName(int index) {
     categoryIndex = index;
     emit(ChangeCategoryIndex());
+  }
+
+  void loginshowDialog(BuildContext context, String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title,
+              style: theme.textTheme.titleSmall!
+                  .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1))),
+          content: Text(content, style: CustomTextStyles.textStyle16),
+          actions: <Widget>[
+            TextButton(
+                child: Text('Close',
+                    style: CustomTextStyles.titleSmallPrimary.copyWith(
+                        color: theme.colorScheme.primary.withOpacity(1))),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
   }
 }
