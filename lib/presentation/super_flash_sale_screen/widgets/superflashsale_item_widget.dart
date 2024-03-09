@@ -52,6 +52,7 @@ class SuperflashsaleItemWidget extends StatelessWidget {
             CustomRatingBar(
               ignoreGestures: true,
               initialRating: 5,
+              onRatingUpdate: (n) {},
             ),
             SizedBox(height: 18.v),
             Text(

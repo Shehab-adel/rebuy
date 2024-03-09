@@ -140,7 +140,11 @@ class ProductDetailScreen extends StatelessWidget {
       SizedBox(height: 9.v),
       Padding(
           padding: EdgeInsets.only(left: 16.h),
-          child: CustomRatingBar(initialRating: 4, itemSize: 16)),
+          child: CustomRatingBar(
+            initialRating: 4,
+            itemSize: 16,
+            onRatingUpdate: (n) {},
+          )),
       SizedBox(height: 16.v),
       Padding(
           padding: EdgeInsets.only(left: 16.h),
@@ -224,7 +228,11 @@ class ProductDetailScreen extends StatelessWidget {
           }),
           SizedBox(height: 8.v),
           Row(children: [
-            CustomRatingBar(initialRating: 4, itemSize: 16),
+            CustomRatingBar(
+              initialRating: 4,
+              itemSize: 16,
+              onRatingUpdate: (n) {},
+            ),
             Padding(
                 padding: EdgeInsets.only(left: 8.h),
                 child: Text("4.5",
@@ -247,7 +255,11 @@ class ProductDetailScreen extends StatelessWidget {
                     children: [
                       Text("James Lawson", style: theme.textTheme.titleSmall),
                       SizedBox(height: 4.v),
-                      CustomRatingBar(initialRating: 4, itemSize: 16)
+                      CustomRatingBar(
+                        initialRating: 4,
+                        itemSize: 16,
+                        onRatingUpdate: (n) {},
+                      )
                     ]))
           ]),
           SizedBox(height: 18.v),

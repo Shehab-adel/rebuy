@@ -4,7 +4,6 @@ import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/presentation/dashboard_container_screen/dashboard_container_screen.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
-import 'package:rebuy/presentation/dashboard_page/widgets/bottom_common_category.dart';
 import 'package:rebuy/presentation/dashboard_page/widgets/category_widget.dart';
 import 'package:rebuy/presentation/dashboard_page/widgets/dash_slider_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -46,11 +45,18 @@ class DashboardScreen extends StatelessWidget {
                     DashCategoryWidget(dashCubit: dashCubit),
                     SizedBox(height: 16.v),
                     //Flash Sale
-                    CustomFlashAndMegaSale(categoryText: AppStrings.flashSale),
+                    CustomFlashAndMegaSale(
+                      categoryText: AppStrings.flashSale,
+                      dashCubit: dashCubit,
+                      list: dashCubit.flashSaleList ?? [],
+                    ),
                     SizedBox(height: 23.v),
-                    CustomFlashAndMegaSale(categoryText: AppStrings.megaSale),
-                    SizedBox(height: 16.v),
-                    BottomCommonCategory()
+                    CustomFlashAndMegaSale(
+                      categoryText: AppStrings.megaSale,
+                      dashCubit: dashCubit,
+                      list: dashCubit.megaSaleList ?? [],
+                    ),
+                    SizedBox(height: 36.v),
                   ]),
             )),
       );

@@ -41,7 +41,11 @@ class WriteReviewFillScreen extends StatelessWidget {
                         style: theme.textTheme.titleSmall!
                             .copyWith(height: 1.50))),
                 SizedBox(height: 13.v),
-                CustomRatingBar(initialRating: 5, itemSize: 32)
+                CustomRatingBar(
+                  initialRating: 5,
+                  itemSize: 32,
+                  onRatingUpdate: (n) {},
+                )
               ]),
               SizedBox(height: 22.v),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

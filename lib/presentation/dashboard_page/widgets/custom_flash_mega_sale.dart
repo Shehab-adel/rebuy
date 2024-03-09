@@ -1,92 +1,115 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
+import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
+import '../cubit/dash_cubit.dart';
 
-// ignore: must_be_immutable
 class CustomFlashAndMegaSale extends StatelessWidget {
-  CustomFlashAndMegaSale({required this.categoryText});
+  const CustomFlashAndMegaSale(
+      {required this.categoryText,
+      required this.dashCubit,
+      required this.list});
   final String categoryText;
+  final DashCubit dashCubit;
+  final List<DataModel>? list;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-            padding: EdgeInsets.only(right: 16.h),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(categoryText,
-                      style: theme.textTheme.titleSmall!.copyWith(
-                          color: theme.colorScheme.onPrimary.withOpacity(1))),
-                  Text(AppStrings.seeMore,
-                      style: CustomTextStyles.titleSmallPrimary.copyWith(
-                          color: theme.colorScheme.primary.withOpacity(1)))
-                ])),
-        SizedBox(height: 16.v),
-        SizedBox(
-            height: 250.v,
-            child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => SizedBox(width: 16.h),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(15.h),
-                    decoration: AppDecoration.outlineBlue.copyWith(
-                      borderRadius: BorderRadiusStyle.roundedBorder5,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomImageView(
-                          imagePath: AppImageConstants.imgProductImage,
-                          height: 109.adaptSize,
-                          width: 109.adaptSize,
-                          radius: BorderRadius.circular(
-                            5.h,
-                          ),
+    return BlocProvider(
+      create: (context) => DashCubit()
+        ..fetchFlashSaleCollection()
+        ..fetchMegaSaleCollection(),
+      child: BlocBuilder<DashCubit, DashState>(builder: (context, sate) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+                padding: EdgeInsets.only(right: 16.h),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(categoryText,
+                          style: theme.textTheme.titleSmall!.copyWith(
+                              color:
+                                  theme.colorScheme.onPrimary.withOpacity(1))),
+                      Text(AppStrings.seeMore,
+                          style: CustomTextStyles.titleSmallPrimary.copyWith(
+                              color: theme.colorScheme.primary.withOpacity(1)))
+                    ])),
+            SizedBox(height: 16.v),
+            SizedBox(
+                height: 270.v,
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (context, index) => SizedBox(width: 16.h),
+                    itemCount: list?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.all(15.h),
+                        decoration: AppDecoration.outlineBlue50.copyWith(
+                          borderRadius: BorderRadiusStyle.roundedBorder5,
                         ),
-                        SizedBox(height: 7.v),
-                        SizedBox(
-                          width: 105.h,
-                          child: Text(
-                            "FS - Nike Air Max 270 React...",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelLarge!.copyWith(
-                              height: 1.50,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 11.v),
-                        Text(
-                          "299,43",
-                          style: CustomTextStyles.labelLargePrimary,
-                        ),
-                        SizedBox(height: 9.v),
-                        Row(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "534,33",
-                              style: CustomTextStyles.bodySmall10.copyWith(
-                                decoration: TextDecoration.lineThrough,
-                              ),
+                            CustomImageView(
+                              imagePath: list?[index].image,
+                              height: 133.v,
+                              width: 133.h,
+                              radius: BorderRadius.circular(5),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.h),
+                            SizedBox(height: 10.v),
+                            SizedBox(
+                              width: 107.h,
                               child: Text(
-                                "24% Off",
-                                style: theme.textTheme.labelMedium,
+                                list?[index].title ?? '',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.labelLarge!.copyWith(
+                                  height: 1.50,
+                                ),
                               ),
                             ),
+                            SizedBox(height: 10.v),
+                            Text(
+                              "${list?[index].price ?? 0.0}",
+                              style: CustomTextStyles.labelLargePrimary,
+                            ),
+                            SizedBox(height: 10.v),
+                            list?[index].price == list?[index].oldPrice
+                                ? Text(
+                                    "No Disccount",
+                                    style: CustomTextStyles.bodySmall10
+                                        .copyWith(
+                                            fontSize: 15.fSize,
+                                            color: Colors.red),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        "${list?[index].oldPrice ?? 0.0}",
+                                        style: CustomTextStyles.bodySmall10
+                                            .copyWith(
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 8.h),
+                                        child: Text(
+                                          "${list?[index].disccountPrecentage ?? 0.0} %",
+                                          style: theme.textTheme.labelMedium,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                           ],
                         ),
-                      ],
-                    ),
-                  );
-                })),
-      ],
+                      );
+                    })),
+          ],
+        );
+      }),
     );
   }
 }

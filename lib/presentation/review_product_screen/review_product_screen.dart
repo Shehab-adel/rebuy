@@ -45,7 +45,11 @@ class ReviewProductScreen extends StatelessWidget {
                                 Text("James Lawson",
                                     style: theme.textTheme.titleSmall),
                                 SizedBox(height: 4.v),
-                                CustomRatingBar(initialRating: 5, itemSize: 16)
+                                CustomRatingBar(
+                                  initialRating: 5,
+                                  itemSize: 16,
+                                  onRatingUpdate: (n) {},
+                                )
                               ]))
                     ]),
                     SizedBox(height: 18.v),

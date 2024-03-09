@@ -12,7 +12,7 @@ class ShowCategoryProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          dashCubit.categoryMap.keys.elementAt(dashCubit.categoryIndex),
+          dashCubit.categoryName,
           style: theme.textTheme.titleSmall!
               .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
         ),
@@ -46,12 +46,11 @@ class ShowCategoryProductsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
+                    CustomImageView(
+                      imagePath: dashCubit.dataList?[index].image ?? '',
                       height: 260.v,
                       width: 130.h,
-                      child: Image.network(
-                        dashCubit.dataList?[index].image ?? '',
-                      ),
+                      radius: BorderRadius.circular(15),
                     ),
                     SizedBox(height: 25.h),
                     Padding(

@@ -28,14 +28,15 @@ class DashCategoryWidget extends StatelessWidget {
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (context, index) => SizedBox(width: 12.h),
-                itemCount: dashCubit.categoryMap.length,
+                itemCount: dashCubit.categoryList.length,
                 itemBuilder: (context, index) {
                   return BlocConsumer<DashCubit, DashState>(
                     listener: (context, state) {},
                     builder: (context, state) {
                       return GestureDetector(
                         onTap: () {
-                          dashCubit.changeCategoryName(index);
+                          dashCubit.changeCategoryName(
+                              dashCubit.categoryList[index]);
                           Navigator.pushNamed(
                               context, AppRoutes.showCategoryProductsScreen);
                           dashCubit.fetchDataFromFirestore();
@@ -51,13 +52,13 @@ class DashCategoryWidget extends StatelessWidget {
                                   width: 70.adaptSize,
                                   padding: EdgeInsets.all(23.h),
                                   child: CustomImageView(
-                                    imagePath: dashCubit.categoryMap.values
-                                        .elementAt(index),
+                                    imagePath:
+                                        dashCubit.categoryImageList[index],
                                   ),
                                 ),
                                 SizedBox(height: 7.v),
                                 Text(
-                                  dashCubit.categoryMap.keys.elementAt(index),
+                                  dashCubit.categoryList[index],
                                   style: CustomTextStyles.bodySmall10,
                                 ),
                               ],

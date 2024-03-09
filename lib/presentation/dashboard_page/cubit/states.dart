@@ -13,3 +13,5 @@ class SuccessfulFetchCollection extends DashState {}
 class FailFetchCollection extends DashState {}
 
 class ChangeCategoryIndex extends DashState {}
+
+class UpdateRateNum extends DashState {}

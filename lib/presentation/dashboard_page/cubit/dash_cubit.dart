@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +25,29 @@ class DashCubit extends Cubit<DashState> {
     emit(ChangeAnimatedSmoothIndex());
   }
 
-  Map<String, String> categoryMap = {
-    AppStrings.menShirt: AppImageConstants.imgManTShirtIcon,
-    AppStrings.officeBage: AppImageConstants.imgBagIcon,
-    AppStrings.dress: AppImageConstants.imgDressIcon,
-    AppStrings.womenBag: AppImageConstants.imgWomanBagIcon,
-    AppStrings.pants: AppImageConstants.imgWomanPantsIcon,
-    AppStrings.skirt: AppImageConstants.imgSkirtIcon,
-    AppStrings.bag: AppImageConstants.imgBagIcon,
-    AppStrings.heels: AppImageConstants.imgHighHeelsIcon,
-    AppStrings.bikini: AppImageConstants.imgBikiniIcon,
-  };
+  List<String> categoryImageList = [
+    AppImageConstants.imgManTShirtIcon,
+    AppImageConstants.imgBagIcon,
+    AppImageConstants.imgDressIcon,
+    AppImageConstants.imgWomanBagIcon,
+    AppImageConstants.imgWomanPantsIcon,
+    AppImageConstants.imgSkirtIcon,
+    AppImageConstants.imgBagIcon,
+    AppImageConstants.imgHighHeelsIcon,
+    AppImageConstants.imgBikiniIcon,
+  ];
+
+  List<String> categoryList = [
+    AppStrings.menShirt,
+    AppStrings.officeBage,
+    AppStrings.dress,
+    AppStrings.womenBag,
+    AppStrings.pants,
+    AppStrings.skirt,
+    AppStrings.bag,
+    AppStrings.heels,
+    AppStrings.bikini
+  ];
 
   List<Widget> screenList(context) => [
         DashboardScreen(
@@ -55,12 +69,13 @@ class DashCubit extends Cubit<DashState> {
   int index = 0;
   String? message;
   List<DataModel>? dataList;
+  List<DataModel>? flashSaleList;
+  List<DataModel>? megaSaleList;
   Future<void> fetchDataFromFirestore() async {
     try {
       emit(LoadingFetchCollection());
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection(categoryMap.keys.elementAt(categoryIndex))
-          .get();
+      final querySnapshot =
+          await FirebaseFirestore.instance.collection(categoryName).get();
 
       dataList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
@@ -76,8 +91,7 @@ class DashCubit extends Cubit<DashState> {
             disccountPrecentage: data['disccountPrecentage']);
       }).toList());
       emit(SuccessfulFetchCollection());
-
-      // print('Sucessful ---------------******');
+      print('Sucessful ---------------******');
     } on FirebaseException catch (error) {
       message = error.toString();
       print('${message}  Fail ---------------******');
@@ -89,9 +103,75 @@ class DashCubit extends Cubit<DashState> {
     }
   }
 
-  int categoryIndex = 0;
-  changeCategoryName(int index) {
-    categoryIndex = index;
+  Future<void> fetchFlashSaleCollection() async {
+    try {
+      emit(LoadingFetchCollection());
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection(AppStrings.flashSale)
+          .get();
+
+      flashSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
+        final data = doc.data();
+        final file = data['image'];
+        final ref = FirebaseStorage.instance.ref().child(file);
+        final url = await ref.getDownloadURL();
+        return DataModel(
+            image: url.toString(),
+            title: data['title'],
+            description: data['description'],
+            price: data['price'],
+            oldPrice: data['old_price'],
+            disccountPrecentage: data['disccountPrecentage']);
+      }).toList());
+      emit(SuccessfulFetchCollection());
+      print('Sucessful ---------------******');
+    } on FirebaseException catch (error) {
+      message = error.toString();
+      print('${message}  Fail ---------------******');
+      emit(FailFetchCollection());
+    } catch (error) {
+      message = error.toString();
+      print('${message}  Fail ---------------******');
+      emit(FailFetchCollection());
+    }
+  }
+
+  Future<void> fetchMegaSaleCollection() async {
+    try {
+      emit(LoadingFetchCollection());
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection(AppStrings.megaSale)
+          .get();
+
+      megaSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
+        final data = doc.data();
+        final file = data['image'];
+        final ref = FirebaseStorage.instance.ref().child(file);
+        final url = await ref.getDownloadURL();
+        return DataModel(
+            image: url.toString(),
+            title: data['title'],
+            description: data['description'],
+            price: data['price'],
+            oldPrice: data['old_price'],
+            disccountPrecentage: data['disccountPrecentage']);
+      }).toList());
+      emit(SuccessfulFetchCollection());
+      print('Sucessful ---------------******');
+    } on FirebaseException catch (error) {
+      message = error.toString();
+      print('${message}  Fail ---------------******');
+      emit(FailFetchCollection());
+    } catch (error) {
+      message = error.toString();
+      print('${message}  Fail ---------------******');
+      emit(FailFetchCollection());
+    }
+  }
+
+  String categoryName = AppStrings.menShirt;
+  changeCategoryName(String categoryName) {
+    this.categoryName = categoryName;
     emit(ChangeCategoryIndex());
   }
 

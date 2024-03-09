@@ -13,7 +13,7 @@ class CustomRatingBar extends StatelessWidget {
     this.itemCount,
     this.color,
     this.unselectedColor,
-    this.onRatingUpdate,
+    required this.onRatingUpdate,
   }) : super(
           key: key,
         );
@@ -32,7 +32,7 @@ class CustomRatingBar extends StatelessWidget {
 
   final Color? unselectedColor;
 
-  Function(double)? onRatingUpdate;
+  void Function(double) onRatingUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -45,23 +45,20 @@ class CustomRatingBar extends StatelessWidget {
   }
 
   Widget get ratingBarWidget => RatingBar.builder(
-        ignoreGestures: ignoreGestures ?? false,
-        initialRating: initialRating ?? 0,
-        minRating: 0,
-        direction: Axis.horizontal,
-        allowHalfRating: false,
-        itemSize: itemSize ?? 12.v,
-        unratedColor: unselectedColor ?? appTheme.blue50,
-        itemCount: itemCount ?? 5,
-        updateOnDrag: true,
-    itemBuilder: (context, _) {
-          return Icon(
-            Icons.star,
-            color: color ?? appTheme.yellow700,
-          );
-        },
-        onRatingUpdate: (rating) {
-          onRatingUpdate!.call(rating);
-        },
-      );
+      ignoreGestures: ignoreGestures ?? false,
+      initialRating: initialRating ?? 0,
+      minRating: 0,
+      direction: Axis.horizontal,
+      allowHalfRating: false,
+      itemSize: itemSize ?? 12.v,
+      unratedColor: unselectedColor ?? appTheme.blue50,
+      itemCount: itemCount ?? 5,
+      updateOnDrag: true,
+      itemBuilder: (context, _) {
+        return Icon(
+          Icons.star,
+          color: color ?? appTheme.yellow700,
+        );
+      },
+      onRatingUpdate: onRatingUpdate);
 }

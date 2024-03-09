@@ -52,6 +52,7 @@ class FavoriteproductItemWidget extends StatelessWidget {
             CustomRatingBar(
               ignoreGestures: true,
               initialRating: 4,
+              onRatingUpdate: (n) {},
             ),
             SizedBox(height: 18.v),
             Row(
