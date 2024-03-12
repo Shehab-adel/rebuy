@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/product_overview_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/review_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/select_size_widget.dart';
@@ -10,28 +11,44 @@ import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
-import '../product_detail_screen/widgets/recomended_item_widget.dart';
 
-// ignore_for_file: must_be_immutable
 class ProductDetailScreen extends StatelessWidget {
-  ProductDetailScreen({Key? key}) : super(key: key);
-
-  int sliderIndex = 1;
-
+  const ProductDetailScreen({required this.dashCubit});
+  final DashCubit dashCubit;
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
     return Scaffold(
-        appBar: _buildAppBar(context),
+        appBar: CustomAppBar(
+            leadingWidth: 40.h,
+            leading: AppbarLeadingImage(
+                imagePath: AppImageConstants.imgArrowLeftBlueGray300,
+                margin: EdgeInsets.only(left: 16.h, top: 16.v, bottom: 15.v),
+                onTap: () {}),
+            title: AppbarSubtitle(
+                text:
+                    dashCubit.dataList?[dashCubit.selectedProductIndex].title ??
+                        '',
+                margin: EdgeInsets.only(left: 12.h)),
+            actions: [
+              AppbarTrailingImage(
+                  imagePath: AppImageConstants.imgNavExplore,
+                  margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 15.h),
+                  onTap: () {}),
+              AppbarTrailingImage(
+                  imagePath: AppImageConstants.imgMoreIcon,
+                  margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 31.h))
+            ]),
         body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.symmetric(vertical: 14.v),
               child: Column(children: [
                 SizedBox(height: 12.v),
                 Column(children: [
-                  ProductOverviewWidget(),
+                  ProductOverviewWidget(dashCubit: dashCubit),
                   SizedBox(height: 42.v),
-                  SelectSizeWidget(),
+                  SelectSizeWidget(
+                    dashCubit: dashCubit,
+                  ),
                   SizedBox(height: 53.v),
                   SpecificationsWidget(),
                   SizedBox(height: 53.v),
@@ -42,33 +59,10 @@ class ProductDetailScreen extends StatelessWidget {
                 ])
               ])),
         ),
-        bottomNavigationBar: _buildAddToCart(context));
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
-        leadingWidth: 40.h,
-        leading: AppbarLeadingImage(
-            imagePath: AppImageConstants.imgArrowLeftBlueGray300,
-            margin: EdgeInsets.only(left: 16.h, top: 16.v, bottom: 15.v),
-            onTap: () {
-              onTapArrowLeft(context);
-            }),
-        title: AppbarSubtitle(
-            text: "Nike Air Max 270 Rea...",
-            margin: EdgeInsets.only(left: 12.h)),
-        actions: [
-          AppbarTrailingImage(
-              imagePath: AppImageConstants.imgNavExplore,
-              margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 15.h),
-              onTap: () {
-                onTapSearchIcon(context);
-              }),
-          AppbarTrailingImage(
-              imagePath: AppImageConstants.imgMoreIcon,
-              margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 31.h))
-        ]);
+        bottomNavigationBar: CustomElevatedButton(
+            text: "Add To Cart",
+            onPressed: () {},
+            margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v)));
   }
 
   // /// Section Widget
@@ -87,27 +81,4 @@ class ProductDetailScreen extends StatelessWidget {
   //             margin: EdgeInsets.only(left: 7.h))
   //       ]));
   // }
-
-  /// Section Widget
-  Widget _buildAddToCart(BuildContext context) {
-    return CustomElevatedButton(
-        text: "Add To Cart",
-        onPressed: () {},
-        margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
-  }
-
-  /// Navigates back to the previous screen.
-  onTapArrowLeft(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  /// Navigates to the searchScreen when the action is triggered.
-  onTapSearchIcon(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.searchScreen);
-  }
-
-  /// Navigates to the reviewProductScreen when the action is triggered.
-  onTapTxtSeeMoreLink(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.reviewProductScreen);
-  }
 }

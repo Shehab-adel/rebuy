@@ -39,6 +39,7 @@ class ShowCategoryProductsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
+                  dashCubit.changeSelectedProductIndex(index);
                   Navigator.pushNamed(context, AppRoutes.productDetailScreen);
                 },
                 child: Container(

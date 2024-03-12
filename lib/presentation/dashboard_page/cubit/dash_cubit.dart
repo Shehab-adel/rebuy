@@ -64,7 +64,6 @@ class DashCubit extends Cubit<DashState> {
     emit(GetCurrentScreenIndex());
   }
 
-  int index = 0;
   String? message;
   List<DataModel>? dataList;
   List<DataModel>? flashSaleList;
@@ -86,7 +85,8 @@ class DashCubit extends Cubit<DashState> {
             description: data['description'],
             price: data['price'],
             oldPrice: data['old_price'],
-            disccountPrecentage: data['disccountPrecentage']);
+            disccountPrecentage: data['disccountPrecentage'],
+            sizeList: data['size_list']);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -119,7 +119,8 @@ class DashCubit extends Cubit<DashState> {
             description: data['description'],
             price: data['price'],
             oldPrice: data['old_price'],
-            disccountPrecentage: data['disccountPrecentage']);
+            disccountPrecentage: data['disccountPrecentage'],
+            sizeList: data['size_list']);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -152,7 +153,8 @@ class DashCubit extends Cubit<DashState> {
             description: data['description'],
             price: data['price'],
             oldPrice: data['old_price'],
-            disccountPrecentage: data['disccountPrecentage']);
+            disccountPrecentage: data['disccountPrecentage'],
+            sizeList: data['size_list']);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -194,5 +196,17 @@ class DashCubit extends Cubit<DashState> {
         );
       },
     );
+  }
+
+  int selectedProductIndex = 0;
+  changeSelectedProductIndex(int index) {
+    selectedProductIndex = index;
+    emit(ChangeCategoryIndex());
+  }
+
+  int selectedSizeItem = 0;
+  changeSelectedSizeItem(int index) {
+    selectedSizeItem = index;
+    emit(changeSelectedSizeIndex());
   }
 }

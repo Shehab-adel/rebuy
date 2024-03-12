@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:rebuy/core/app_export.dart';
 import 'package:rebuy/widgets/custom_rating_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../dashboard_page/cubit/dash_cubit.dart';
 
 class ProductOverviewWidget extends StatelessWidget {
-  const ProductOverviewWidget({Key? key}) : super(key: key);
-
+  const ProductOverviewWidget({required this.dashCubit});
+  final DashCubit dashCubit;
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -22,51 +23,54 @@ class ProductOverviewWidget extends StatelessWidget {
           itemCount: 1,
           itemBuilder: (context, index, realIndex) {
             return CustomImageView(
-              imagePath: AppImageConstants.imgProductImage238x375,
+              imagePath:
+                  dashCubit.dataList?[dashCubit.selectedProductIndex].image ??
+                      '',
               height: 238.v,
               width: 375.h,
             );
           }),
       SizedBox(height: 16.v),
-      Align(
+      Container(
+          height: 8.v,
           alignment: Alignment.center,
-          child: SizedBox(
-              height: 8.v,
-              child: AnimatedSmoothIndicator(
-                  activeIndex: 0,
-                  count: 1,
-                  axisDirection: Axis.horizontal,
-                  effect: ScrollingDotsEffect(
-                      spacing: 8,
-                      activeDotColor: theme.colorScheme.primary.withOpacity(1),
-                      dotColor: appTheme.blue50,
-                      dotHeight: 8.v,
-                      dotWidth: 8.h)))),
+          child: AnimatedSmoothIndicator(
+              activeIndex: 0,
+              count: 1,
+              axisDirection: Axis.horizontal,
+              effect: ScrollingDotsEffect(
+                  spacing: 8,
+                  activeDotColor: theme.colorScheme.primary.withOpacity(1),
+                  dotColor: appTheme.blue50,
+                  dotHeight: 8.v,
+                  dotWidth: 8.h))),
       SizedBox(height: 15.v),
-      Align(
-          alignment: Alignment.center,
-          child: Padding(
-              padding: EdgeInsets.only(left: 16.h, right: 25.h),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: SizedBox(
-                            width: 275.h,
-                            child: Text("Nike Air Zoom Pegasus 36 Miami",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: CustomTextStyles.titleLargeOnPrimary
-                                    .copyWith(height: 1.50)))),
-                    CustomImageView(
-                        imagePath: AppImageConstants.imgDownload,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize,
-                        margin:
-                            EdgeInsets.only(left: 44.h, top: 2.v, bottom: 32.v))
-                  ]))),
+      //Row title
+      Container(
+          padding: EdgeInsets.only(left: 16.h, right: 25.h),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    child: SizedBox(
+                        width: 275.h,
+                        child: Text(
+                            dashCubit.dataList?[dashCubit.selectedProductIndex]
+                                    .title ??
+                                '',
+                            maxLines: 7,
+                            overflow: TextOverflow.ellipsis,
+                            style: CustomTextStyles.titleLargeOnPrimary
+                                .copyWith(height: 1.50)))),
+                CustomImageView(
+                    imagePath: AppImageConstants.imgDownload,
+                    height: 24.adaptSize,
+                    width: 24.adaptSize,
+                    margin: EdgeInsets.only(left: 44.h, top: 2.v, bottom: 32.v))
+              ])),
       SizedBox(height: 9.v),
+      //Rating
       Padding(
           padding: EdgeInsets.only(left: 16.h),
           child: CustomRatingBar(
@@ -75,9 +79,41 @@ class ProductOverviewWidget extends StatelessWidget {
             onRatingUpdate: (n) {},
           )),
       SizedBox(height: 16.v),
+      //Price and old price
       Padding(
-          padding: EdgeInsets.only(left: 16.h),
-          child: Text("299,43", style: theme.textTheme.titleLarge))
+        padding: EdgeInsets.only(left: 16.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${dashCubit.dataList?[dashCubit.selectedProductIndex].price}',
+                style: theme.textTheme.titleLarge),
+            SizedBox(height: 10.v),
+            dashCubit.dataList?[dashCubit.selectedProductIndex].price ==
+                    dashCubit.dataList?[dashCubit.selectedProductIndex].oldPrice
+                ? Text(
+                    "No Disccount",
+                    style: CustomTextStyles.bodySmall10
+                        .copyWith(fontSize: 15.fSize, color: Colors.red),
+                  )
+                : Row(
+                    children: [
+                      Text(
+                        "${dashCubit.dataList?[dashCubit.selectedProductIndex].oldPrice}",
+                        style: CustomTextStyles.bodySmall10.copyWith(
+                          fontSize: 15.fSize,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                      SizedBox(width: 16.h),
+                      Text(
+                        "${dashCubit.dataList?[dashCubit.selectedProductIndex].disccountPrecentage} %",
+                        style: theme.textTheme.labelMedium,
+                      ),
+                    ],
+                  )
+          ],
+        ),
+      ),
     ]);
   }
 }

@@ -15,3 +15,7 @@ class FailFetchCollection extends DashState {}
 class ChangeCategoryIndex extends DashState {}
 
 class UpdateRateNum extends DashState {}
+
+class changeSelectedProductIndex extends DashState {}
+
+class changeSelectedSizeIndex extends DashState {}

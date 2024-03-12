@@ -133,7 +133,9 @@ class AppRoutes {
         ),
     superFlashSaleScreen: (context) => SuperFlashSaleScreen(),
     favoriteProductScreen: (context) => FavoriteProductScreen(),
-    productDetailScreen: (context) => ProductDetailScreen(),
+    productDetailScreen: (context) => ProductDetailScreen(
+          dashCubit: DashCubit.get(context),
+        ),
     reviewProductScreen: (context) => ReviewProductScreen(),
     writeReviewFillScreen: (context) => WriteReviewFillScreen(),
     notificationScreen: (context) => NotificationScreen(),

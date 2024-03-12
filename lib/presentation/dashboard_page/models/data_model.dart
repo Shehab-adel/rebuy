@@ -5,11 +5,16 @@ class DataModel {
   double? price;
   double? oldPrice;
   String? disccountPrecentage;
+  List<dynamic>? sizeList;
 
   DataModel(
-      {this.image, this.description, this.title, this.oldPrice, this.price,
-        this.disccountPrecentage
-      });
+      {this.image,
+      this.description,
+      this.title,
+      this.oldPrice,
+      this.price,
+      this.disccountPrecentage,
+      this.sizeList});
 
   DataModel.fromJson(Map<String, dynamic> json) {
     DataModel(
@@ -18,6 +23,7 @@ class DataModel {
         description: json['description'],
         price: json['price'],
         oldPrice: json['old_price'],
-        disccountPrecentage: json['disccountPrecentage']);
+        disccountPrecentage: json['disccountPrecentage'],
+        sizeList: json['size_list']);
   }
 }
