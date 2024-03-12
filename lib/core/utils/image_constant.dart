@@ -217,4 +217,11 @@ class AppImageConstants {
   static String imgVolume = '$imagePath/img_volume.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  // Lotties folder path
+  static String lottiePath = 'assets/lotties';
+
+  static String lottieEmptyDataBox1 = '$lottiePath/empty_data_1.json';
+
+  static String lottieEmptyDataBox2 = '$lottiePath/empty_data_2.json';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/constants/app_constants.dart';
 import 'package:rebuy/presentation/dashboard_container_screen/dashboard_container_screen.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
@@ -49,12 +50,14 @@ class DashboardScreen extends StatelessWidget {
                       categoryText: AppStrings.flashSale,
                       dashCubit: dashCubit,
                       list: dashCubit.flashSaleList ?? [],
+                      image: AppImageConstants.lottieEmptyDataBox1,
                     ),
                     SizedBox(height: 23.v),
                     CustomFlashAndMegaSale(
                       categoryText: AppStrings.megaSale,
                       dashCubit: dashCubit,
                       list: dashCubit.megaSaleList ?? [],
+                      image: AppImageConstants.lottieEmptyDataBox2,
                     ),
                     SizedBox(height: 36.v),
                   ]),
