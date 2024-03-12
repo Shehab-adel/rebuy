@@ -70,6 +70,7 @@ class AppStrings {
   static const String oldPrice = 'old_price';
   static const String flashSale = 'FlashSale';
   static const String megaSale = 'MegaSale';
+  static const String reviewProdcut = 'Review Product';
   // static const String notification="Notification";
   // static const String notification="Notification";
   // static const String notification="Notification";

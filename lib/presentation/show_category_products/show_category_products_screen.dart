@@ -37,79 +37,88 @@ class ShowCategoryProductsScreen extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 12.v),
             itemCount: dashCubit.dataList?.length ?? 0,
             itemBuilder: (context, index) {
-              return Container(
-                height: 500.v,
-                padding: EdgeInsets.all(10),
-                decoration: AppDecoration.outlineBlue.copyWith(
-                  borderRadius: BorderRadiusStyle.roundedBorder5,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CustomImageView(
-                      imagePath: dashCubit.dataList?[index].image ?? '',
-                      height: 260.v,
-                      width: 130.h,
-                      radius: BorderRadius.circular(15),
-                    ),
-                    SizedBox(height: 25.h),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            dashCubit.dataList?[index].title ?? '',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelLarge!.copyWith(
-                              height: 1.50,
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            dashCubit.dataList?[index].description ?? '0',
-                            style: theme.textTheme.labelLarge!.copyWith(
-                                height: 1.50, color: Colors.grey.shade400),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                          ),
-                          SizedBox(height: 25.v),
-                          Text(
-                            "${dashCubit.dataList?[index].price ?? ''}",
-                            style: CustomTextStyles.labelLargePrimary.copyWith(
-                              fontSize: 16.fSize,
-                            ),
-                          ),
-                          SizedBox(height: 20.v),
-                          dashCubit.dataList?[index].price ==
-                                  dashCubit.dataList?[index].oldPrice
-                              ? Text(
-                                  "No Disccount",
-                                  style: CustomTextStyles.bodySmall10.copyWith(
-                                      fontSize: 15.fSize, color: Colors.red),
-                                )
-                              : Row(
-                                  children: [
-                                    Text(
-                                      "${dashCubit.dataList?[index].oldPrice}",
-                                      style:
-                                          CustomTextStyles.bodySmall10.copyWith(
-                                        fontSize: 15.fSize,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                    SizedBox(width: 16.h),
-                                    Text(
-                                      "${dashCubit.dataList?[index].disccountPrecentage} %",
-                                      style: theme.textTheme.labelMedium,
-                                    ),
-                                  ],
-                                )
-                        ],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.productDetailScreen);
+                },
+                child: Container(
+                  height: 500.v,
+                  padding: EdgeInsets.all(10),
+                  decoration: AppDecoration.outlineBlue.copyWith(
+                    borderRadius: BorderRadiusStyle.roundedBorder5,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CustomImageView(
+                        imagePath: dashCubit.dataList?[index].image ?? '',
+                        height: 260.v,
+                        width: 130.h,
+                        radius: BorderRadius.circular(15),
                       ),
-                    )
-                  ],
+                      SizedBox(height: 25.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              dashCubit.dataList?[index].title ?? '',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelLarge!.copyWith(
+                                height: 1.50,
+                              ),
+                            ),
+                            SizedBox(height: 10.h),
+                            Text(
+                              dashCubit.dataList?[index].description ?? '0',
+                              style: theme.textTheme.labelLarge!.copyWith(
+                                  height: 1.50, color: Colors.grey.shade400),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                            ),
+                            SizedBox(height: 25.v),
+                            Text(
+                              "${dashCubit.dataList?[index].price ?? ''}",
+                              style:
+                                  CustomTextStyles.labelLargePrimary.copyWith(
+                                fontSize: 16.fSize,
+                              ),
+                            ),
+                            SizedBox(height: 20.v),
+                            dashCubit.dataList?[index].price ==
+                                    dashCubit.dataList?[index].oldPrice
+                                ? Text(
+                                    "No Disccount",
+                                    style: CustomTextStyles.bodySmall10
+                                        .copyWith(
+                                            fontSize: 15.fSize,
+                                            color: Colors.red),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        "${dashCubit.dataList?[index].oldPrice}",
+                                        style: CustomTextStyles.bodySmall10
+                                            .copyWith(
+                                          fontSize: 15.fSize,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                        ),
+                                      ),
+                                      SizedBox(width: 16.h),
+                                      Text(
+                                        "${dashCubit.dataList?[index].disccountPrecentage} %",
+                                        style: theme.textTheme.labelMedium,
+                                      ),
+                                    ],
+                                  )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },
