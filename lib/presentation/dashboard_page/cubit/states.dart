@@ -19,3 +19,11 @@ class UpdateRateNum extends DashState {}
 class changeSelectedProductIndex extends DashState {}
 
 class changeSelectedSizeIndex extends DashState {}
+
+class LoadingProductReviewToCollection extends DashState {}
+
+class SuccessfulProductReviewToCollection extends DashState {}
+
+class FailProductReviewToCollection extends DashState {}
+
+class ChangeReviewRating extends DashState {}

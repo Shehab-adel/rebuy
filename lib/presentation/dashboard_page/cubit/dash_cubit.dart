@@ -86,7 +86,8 @@ class DashCubit extends Cubit<DashState> {
             price: data['price'],
             oldPrice: data['old_price'],
             disccountPrecentage: data['disccountPrecentage'],
-            sizeList: data['size_list']);
+            sizeList: data['size_list'],
+            docId: doc.id);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -120,7 +121,8 @@ class DashCubit extends Cubit<DashState> {
             price: data['price'],
             oldPrice: data['old_price'],
             disccountPrecentage: data['disccountPrecentage'],
-            sizeList: data['size_list']);
+            sizeList: data['size_list'],
+            docId: doc.id);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -147,6 +149,7 @@ class DashCubit extends Cubit<DashState> {
         final file = data['image'];
         final ref = FirebaseStorage.instance.ref().child(file);
         final url = await ref.getDownloadURL();
+
         return DataModel(
             image: url.toString(),
             title: data['title'],
@@ -154,7 +157,8 @@ class DashCubit extends Cubit<DashState> {
             price: data['price'],
             oldPrice: data['old_price'],
             disccountPrecentage: data['disccountPrecentage'],
-            sizeList: data['size_list']);
+            sizeList: data['size_list'],
+            docId: doc.id);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -208,5 +212,38 @@ class DashCubit extends Cubit<DashState> {
   changeSelectedSizeItem(int index) {
     selectedSizeItem = index;
     emit(changeSelectedSizeIndex());
+  }
+
+  TextEditingController writeReviewController = TextEditingController();
+  String failCollectionMessage =
+      'Failed to add the product review, please try later';
+  Future<void> writeProductReviewToFirestore(String id) async {
+    emit(LoadingProductReviewToCollection());
+
+    await FirebaseFirestore.instance.collection(categoryName).doc(id).set({
+      AppStrings.image: dataList?[selectedProductIndex].image,
+      AppStrings.title: dataList?[selectedProductIndex].title,
+      AppStrings.description: dataList?[selectedProductIndex].description,
+      AppStrings.price: dataList?[selectedProductIndex].price,
+      AppStrings.oldPrice: dataList?[selectedProductIndex].oldPrice,
+      AppStrings.disccountPrecentage:
+          dataList?[selectedProductIndex].disccountPrecentage,
+      AppStrings.sizeList: dataList?[selectedProductIndex].sizeList,
+      AppStrings.rating: this.reviewRating,
+      AppStrings.review: writeReviewController.text
+    }).then((value) {
+      emit(SuccessfulProductReviewToCollection());
+      print('SuccessfulProductReviewToCollection --------');
+    }).onError((error, stackTrace) {
+      failCollectionMessage = error.toString();
+      emit(FailProductReviewToCollection());
+      print('FailProductReviewToCollection --------');
+    });
+  }
+
+  double reviewRating = 0.0;
+  void changeReviewRating(double reviewRating) {
+    this.reviewRating = reviewRating;
+    emit(ChangeReviewRating());
   }
 }

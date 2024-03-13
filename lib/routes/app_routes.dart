@@ -137,7 +137,9 @@ class AppRoutes {
           dashCubit: DashCubit.get(context),
         ),
     reviewProductScreen: (context) => ReviewProductScreen(),
-    writeReviewFillScreen: (context) => WriteReviewFillScreen(),
+    writeReviewFillScreen: (context) => WriteReviewFillScreen(
+          dashCubit: DashCubit.get(context),
+        ),
     notificationScreen: (context) => NotificationScreen(),
     notificationOfferScreen: (context) => NotificationOfferScreen(),
     notificationFeedScreen: (context) => NotificationFeedScreen(),

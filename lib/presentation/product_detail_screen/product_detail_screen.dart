@@ -6,10 +6,8 @@ import 'package:rebuy/presentation/product_detail_screen/widgets/review_widget.d
 import 'package:rebuy/presentation/product_detail_screen/widgets/select_size_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/specifications_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/you_might_also_like_widget.dart';
-import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
 import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
-import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -18,17 +16,20 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-            leadingWidth: 40.h,
-            leading: AppbarLeadingImage(
-                imagePath: AppImageConstants.imgArrowLeftBlueGray300,
-                margin: EdgeInsets.only(left: 16.h, top: 16.v, bottom: 15.v),
-                onTap: () {}),
-            title: AppbarSubtitle(
-                text:
-                    dashCubit.dataList?[dashCubit.selectedProductIndex].title ??
-                        '',
-                margin: EdgeInsets.only(left: 12.h)),
+        appBar: AppBar(
+            leadingWidth: 20.h,
+            leading: Container(
+              margin: EdgeInsets.only(left: 8.h),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: appTheme.blueGray300,
+                  ),
+                  iconSize: 20),
+            ),
             actions: [
               AppbarTrailingImage(
                   imagePath: AppImageConstants.imgNavExplore,
@@ -61,7 +62,9 @@ class ProductDetailScreen extends StatelessWidget {
         ),
         bottomNavigationBar: CustomElevatedButton(
             text: "Add To Cart",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.writeReviewFillScreen);
+            },
             margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v)));
   }
 

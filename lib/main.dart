@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             create: (context) => DashCubit()
               ..fetchFlashSaleCollection()
               ..fetchMegaSaleCollection()),
-        BlocProvider(create: (context) => ExploreCubit())
+        BlocProvider(create: (context) => ExploreCubit()),
       ],
       child: MaterialApp(
         theme: theme,

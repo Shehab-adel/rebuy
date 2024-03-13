@@ -71,10 +71,10 @@ class AppStrings {
   static const String flashSale = 'FlashSale';
   static const String megaSale = 'MegaSale';
   static const String reviewProdcut = 'Review Product';
-  // static const String notification="Notification";
-  // static const String notification="Notification";
-  // static const String notification="Notification";
-  // static const String notification="Notification";
+  static const String rating = "rating";
+  static const String review = "review";
+  static const String disccountPrecentage = "disccountPrecentage";
+  static const String sizeList = "sizeList";
   // static const String notification="Notification";
   // static const String notification="Notification";
   // static const String notification="Notification";
