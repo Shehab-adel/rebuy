@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/notification_screen/widgets/notification_option_row.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
 import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';

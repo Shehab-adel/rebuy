@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/account_page/account_page.dart';
 import 'package:rebuy/presentation/cart_page/cart_page.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
@@ -214,6 +214,7 @@ class DashCubit extends Cubit<DashState> {
     emit(changeSelectedSizeIndex());
   }
 
+  //Write review
   TextEditingController writeReviewController = TextEditingController();
   String failCollectionMessage =
       'Failed to add the product review, please try later';
@@ -233,11 +234,9 @@ class DashCubit extends Cubit<DashState> {
       AppStrings.review: writeReviewController.text
     }).then((value) {
       emit(SuccessfulProductReviewToCollection());
-      print('SuccessfulProductReviewToCollection --------');
     }).onError((error, stackTrace) {
       failCollectionMessage = error.toString();
       emit(FailProductReviewToCollection());
-      print('FailProductReviewToCollection --------');
     });
   }
 

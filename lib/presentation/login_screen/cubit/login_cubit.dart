@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,16 +19,18 @@ class LoginCubit extends Cubit<LoginState> {
 
   TextEditingController forgetPasswordEmailController = TextEditingController();
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
-
+  //Firebase Auth
+  FirebaseAuth auth = FirebaseAuth.instance;
   loginWithFirebaseAuth(BuildContext context) async {
     try {
-      await FirebaseAuth.instance
+      await auth
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text)
-          .then((value) {
+          .then((value) async {
         bodyMessage = 'You signed in successfully';
         emit(SuccessfulLoginProcess());
       }).onError((error, stackTrace) {
+        bodyMessage = error.toString();
         emit(FailLoginProcess());
       });
     } on FirebaseAuthException catch (e) {
@@ -37,6 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
       }
       emit(FailLoginProcess());
     } catch (e) {
+      bodyMessage = e.toString();
       emit(FailLoginProcess());
     }
   }

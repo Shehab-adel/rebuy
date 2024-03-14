@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:rebuy/network/local/cache%20helper.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -9,17 +10,16 @@ class RegisterCubit extends Cubit<RegisterState> {
   static RegisterCubit get(BuildContext context) => BlocProvider.of(context);
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String message = '';
-
+  FirebaseAuth auth = FirebaseAuth.instance;
   registerWithFirebaseAuth(BuildContext context) async {
     try {
       emit(LoadingRegisterProcess());
-      await FirebaseAuth.instance
+      await auth
           .createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
@@ -28,6 +28,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         message = 'Check your email to verify fisrt';
         emit(SuccessfulRegisterProcess());
         await sendEmailVerification(context);
+        // CachHelper.sharedPreferences
+        //     .setString('display_name', usernameController.text);
+        // await value.user?.updateDisplayName(CachHelper.getDisplayName());
       }).onError((error, stackTrace) {
         message = 'Check your email to verify first';
         emit(FailRegisterProcess());
@@ -49,14 +52,14 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<void> sendEmailVerification(BuildContext context) async {
-    User? user = FirebaseAuth.instance.currentUser;
+    User? user = auth.currentUser;
     if (user != null && !user.emailVerified) {
       await user.sendEmailVerification();
     }
   }
 
   Future<bool> isEmailVerified(BuildContext context) async {
-    User? user = FirebaseAuth.instance.currentUser;
+    User? user = auth.currentUser;
     await user?.reload();
     user = FirebaseAuth.instance.currentUser;
     if (user != null && user.emailVerified == true) {

@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/widgets/custom_rating_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../dashboard_page/cubit/dash_cubit.dart';
@@ -74,7 +74,9 @@ class ProductOverviewWidget extends StatelessWidget {
       Padding(
           padding: EdgeInsets.only(left: 16.h),
           child: CustomRatingBar(
-            initialRating: 4,
+            initialRating:
+                dashCubit.dataList?[dashCubit.selectedProductIndex].rating,
+            ignoreGestures: true,
             itemSize: 16,
             onRatingUpdate: (n) {},
           )),

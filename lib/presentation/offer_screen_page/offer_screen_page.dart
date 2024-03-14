@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/offer_screen_page/widgets/cupon_prom_widget.dart';
 import 'package:rebuy/widgets/app_bar/appbar_title.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';

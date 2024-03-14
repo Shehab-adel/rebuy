@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
-import 'package:rebuy/core/utils/theme/theme_helper.dart';
+import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 
 class SpecificationsWidget extends StatelessWidget {
-  const SpecificationsWidget({Key? key}) : super(key: key);
-
+  const SpecificationsWidget({required this.dashCubit});
+  final DashCubit dashCubit;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,8 +16,10 @@ class SpecificationsWidget extends StatelessWidget {
               width: 320.h,
               margin: EdgeInsets.only(right: 31.h),
               child: Text(
-                  "The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.",
-                  maxLines: 4,
+                  dashCubit.dataList?[dashCubit.selectedProductIndex]
+                          .description ??
+                      '',
+                  maxLines: 30,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall!.copyWith(height: 1.80)))
         ]));

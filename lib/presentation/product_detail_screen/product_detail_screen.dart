@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/product_overview_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/review_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/select_size_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/specifications_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/you_might_also_like_widget.dart';
-import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 
@@ -51,9 +50,13 @@ class ProductDetailScreen extends StatelessWidget {
                     dashCubit: dashCubit,
                   ),
                   SizedBox(height: 53.v),
-                  SpecificationsWidget(),
+                  SpecificationsWidget(
+                    dashCubit: dashCubit,
+                  ),
                   SizedBox(height: 53.v),
-                  ReviewWidget(),
+                  ReviewWidget(
+                    dashCubit: dashCubit,
+                  ),
                   SizedBox(height: 53.v),
                   YouMightAlsoLike(),
                   SizedBox(height: 30.v),

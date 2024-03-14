@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_state.dart';
 import 'package:rebuy/presentation/verify_email/verify_email_screen.dart';

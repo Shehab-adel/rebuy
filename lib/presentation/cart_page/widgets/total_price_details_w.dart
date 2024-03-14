@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 
 class TotalPriceDetailsWidget extends StatelessWidget {
   const TotalPriceDetailsWidget({Key? key}) : super(key: key);

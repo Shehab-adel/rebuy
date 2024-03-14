@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../app_export.dart';
+import 'package:rebuy/core/utils/size_utils.dart';
+import 'package:rebuy/core/utils/theme/theme_helper.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,
 /// categorized by different font families and weights.

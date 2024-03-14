@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebuy/core/app_export.dart';
+import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/cart_page/widgets/coupon_code_row_widget.dart';
 import 'package:rebuy/presentation/cart_page/widgets/total_price_details_w.dart';
 import 'package:rebuy/widgets/app_bar/appbar_title.dart';

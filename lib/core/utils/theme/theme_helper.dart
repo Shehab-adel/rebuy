@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/constants/font_manager.dart';
 
-import '../../../../core/app_export.dart';
+import '../app_export.dart';
 
 String _appTheme = "primary";
 
