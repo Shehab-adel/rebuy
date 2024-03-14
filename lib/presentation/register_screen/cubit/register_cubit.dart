@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rebuy/core/constants/app_string.dart';
+import 'package:rebuy/network/local/cache%20helper.dart';
 // import 'package:rebuy/network/local/cache%20helper.dart';
 import 'register_state.dart';
 
@@ -27,10 +29,10 @@ class RegisterCubit extends Cubit<RegisterState> {
           .then((value) async {
         message = 'Check your email to verify fisrt';
         emit(SuccessfulRegisterProcess());
+        CacheHelper.sharedPreferences
+            .setString(AppStrings.displayName, usernameController.text);
+        await value.user?.updateDisplayName(CacheHelper.getDisplayName());
         await sendEmailVerification(context);
-        // CachHelper.sharedPreferences
-        //     .setString('display_name', usernameController.text);
-        // await value.user?.updateDisplayName(CachHelper.getDisplayName());
       }).onError((error, stackTrace) {
         message = 'Check your email to verify first';
         emit(FailRegisterProcess());

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
-import 'package:rebuy/core/utils/theme/theme_helper.dart';
-// import 'package:rebuy/network/local/cache%20helper.dart';
+import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
-import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
-import 'package:rebuy/presentation/login_screen/cubit/login_states.dart';
 import '../../../widgets/custom_rating_bar.dart';
 
 class ReviewWidget extends StatelessWidget {
@@ -53,7 +49,7 @@ class ReviewWidget extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('CachHelper.getDisplayName().toString()',
+                      Text(CacheHelper.getDisplayName().toString(),
                           style: theme.textTheme.titleSmall),
                       SizedBox(height: 4.v),
                       CustomRatingBar(
@@ -69,7 +65,7 @@ class ReviewWidget extends StatelessWidget {
           SizedBox(
               width: 339.h,
               child: Text(
-                  "air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites.",
+                  '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall!.copyWith(height: 1.80))),

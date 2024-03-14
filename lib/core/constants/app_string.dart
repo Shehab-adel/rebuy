@@ -75,7 +75,7 @@ class AppStrings {
   static const String review = "review";
   static const String disccountPrecentage = "disccountPrecentage";
   static const String sizeList = "sizeList";
-  // static const String notification="Notification";
+  static const String displayName = "display_name";
   // static const String notification="Notification";
   // static const String notification="Notification";
   // static const String notification="Notification";
