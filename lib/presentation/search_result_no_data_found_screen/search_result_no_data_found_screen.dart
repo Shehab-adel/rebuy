@@ -6,6 +6,7 @@ import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 import 'package:rebuy/widgets/custom_icon_button.dart';
 
+// ignore: must_be_immutable
 class SearchResultNoDataFoundScreen extends StatelessWidget {
   SearchResultNoDataFoundScreen({Key? key})
       : super(

@@ -16,7 +16,13 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            leadingWidth: 20.h,
+            leadingWidth: 25.h,
+            title: Text(
+              dashCubit.dataList?[dashCubit.selectedProductIndex].title ?? '',
+              style: theme.textTheme.titleSmall!
+                  .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
+            ),
+            centerTitle: true,
             leading: Container(
               margin: EdgeInsets.only(left: 8.h),
               child: IconButton(
@@ -54,6 +60,10 @@ class ProductDetailScreen extends StatelessWidget {
                     dashCubit: dashCubit,
                   ),
                   SizedBox(height: 53.v),
+                  // dashCubit.dataList?[dashCubit.selectedProductIndex].review ==
+                  //         null
+                  //     ? Container()
+                  //     :
                   ReviewWidget(
                     dashCubit: dashCubit,
                   ),

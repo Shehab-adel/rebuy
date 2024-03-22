@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rebuy/core/constants/app_string.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
@@ -78,7 +78,38 @@ class WriteReviewFillScreen extends StatelessWidget {
           ]),
         ),
         bottomNavigationBar:
-            BlocBuilder<DashCubit, DashState>(builder: (context, state) {
+            BlocConsumer<DashCubit, DashState>(listener: (context, state) {
+          if (state is LoadingProductReviewToCollection) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Center(
+                      child: Lottie.asset(AppImageConstants.lottieLoading,
+                          backgroundLoading: true));
+                });
+          } else if (state is SuccessfulProductReviewToCollection) {
+            Navigator.pop(context);
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Center(
+                      child: Lottie.asset(AppImageConstants.lottieSuccessful));
+                });
+            Future.delayed(Duration(seconds: 3), () {
+              Navigator.pop(context);
+            });
+          } else if (state is FailProductReviewToCollection) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Center(
+                      child: Lottie.asset(AppImageConstants.lottieFail));
+                });
+            Future.delayed(Duration(seconds: 3), () {
+              Navigator.pop(context);
+            });
+          }
+        }, builder: (context, state) {
           return CustomElevatedButton(
               text: AppStrings.writeReview,
               onPressed: () {

@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,20 +43,39 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDDr5llB0JIWXYE-2VIsjEuX2mrQD6T0p0',
+    appId: '1:389306761187:web:04056ba43419fc8ca7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    authDomain: 'rebuy-675c7.firebaseapp.com',
+    storageBucket: 'rebuy-675c7.appspot.com',
+    measurementId: 'G-EJFEN9MB3G',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCfGi3G1XXPan1zoZIP3UrYX1v01zlXvT4',
-    appId: '1:1098117801309:android:33c3f3a45aa789271034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    storageBucket: 'rebuy-3702d.appspot.com',
+    apiKey: 'AIzaSyAMyTZJAlwf38FC06_g-CVmpAh_Fq9zPRc',
+    appId: '1:389306761187:android:cf376c34a89bc699a7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBtN5K50LlrEgOwCgO1sIwAF6e0HQfOp98',
-    appId: '1:1098117801309:ios:9d73300dbe4af9e41034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    storageBucket: 'rebuy-3702d.appspot.com',
-    iosBundleId: 'com.example.rebuy',
+    apiKey: 'AIzaSyCRSrNz3OLMWjAcZJp_NlJTi-nE_9wbjRw',
+    appId: '1:389306761187:ios:12b9eb007f9ce9eda7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
+    iosBundleId: 'com.rebuy.app',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCRSrNz3OLMWjAcZJp_NlJTi-nE_9wbjRw',
+    appId: '1:389306761187:ios:e407a914fbdbe96aa7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
+    iosBundleId: 'com.example.rebuy.RunnerTests',
   );
 }

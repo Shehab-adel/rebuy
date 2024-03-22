@@ -31,7 +31,8 @@ class ReviewWidget extends StatelessWidget {
             ),
             Padding(
                 padding: EdgeInsets.only(left: 8.h),
-                child: Text("4.5",
+                child: Text(
+                    "${dashCubit.dataList?[dashCubit.selectedProductIndex].rating}",
                     style: CustomTextStyles.labelMediumBluegray300)),
             Padding(
                 padding: EdgeInsets.only(left: 3.h),

@@ -30,8 +30,7 @@ class DashCategoryWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => SizedBox(width: 12.h),
                 itemCount: dashCubit.categoryList.length,
                 itemBuilder: (context, index) {
-                  return BlocConsumer<DashCubit, DashState>(
-                    listener: (context, state) {},
+                  return BlocBuilder<DashCubit, DashState>(
                     builder: (context, state) {
                       return GestureDetector(
                         onTap: () {

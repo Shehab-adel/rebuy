@@ -9,16 +9,15 @@ import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
 import 'package:rebuy/routes/app_routes.dart';
 import 'core/constants/app_string.dart';
-import 'firebase_options.dart';
 import 'presentation/register_screen/cubit/register_cubit.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await CacheHelper.init();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  await CacheHelper.init();
   runApp(MyApp());
 }
 
@@ -39,7 +38,9 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.dashboardContainerScreen,
+        initialRoute: CacheHelper.getDisplayName() == null
+            ? AppRoutes.loginScreen
+            : AppRoutes.dashboardContainerScreen,
         routes: AppRoutes.routes,
       ),
     );

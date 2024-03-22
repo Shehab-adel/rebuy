@@ -14,12 +14,12 @@ class ShowCategoryProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           dashCubit.categoryName,
-          style: theme.textTheme.titleSmall!
-              .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
+          style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
         ),
         centerTitle: true,
       ),
-      body: BlocBuilder<DashCubit, DashState>(builder: (context, state) {
+      body: BlocBuilder<DashCubit, DashState>(
+          builder: (context, state) {
         if (state is LoadingFetchCollection || state is FailFetchCollection) {
           return const Center(
             child: CircularProgressIndicator(
@@ -52,9 +52,8 @@ class ShowCategoryProductsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             CustomImageView(
-                              imagePath: dashCubit.dataList?[index].image ?? '',
+                              imagePath: dashCubit.dataList![index].image ?? '',
                               height: 260.v,
-                              width: 130.h,
                               radius: BorderRadius.circular(15),
                             ),
                             SizedBox(height: 25.h),

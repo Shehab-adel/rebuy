@@ -1,96 +1,26 @@
 {
   "project_info": {
-    "project_number": "1098117801309",
-    "firebase_url": "https://rebuy-3702d-default-rtdb.firebaseio.com",
-    "project_id": "rebuy-3702d",
-    "storage_bucket": "rebuy-3702d.appspot.com"
+    "project_number": "389306761187",
+    "project_id": "rebuy-675c7",
+    "storage_bucket": "rebuy-675c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1098117801309:android:0776255450cc65ff1034b4",
-        "android_client_info": {
-          "package_name": "com.example.admin_rebuy_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1098117801309-a1hn047ud7urlh1hiobg0d0vjjm99n07.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.admin_rebuy_app",
-            "certificate_hash": "9a7dae4d34c926751d561cffa6b2665a25638c1f"
-          }
-        },
-        {
-          "client_id": "1098117801309-br7lkcd11e904udn6mi7l4rkp3qp670v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCfGi3G1XXPan1zoZIP3UrYX1v01zlXvT4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1098117801309-br7lkcd11e904udn6mi7l4rkp3qp670v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1098117801309-02apq8go901aol7mvbgtq8b88ic72hrb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.rebuy.app"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1098117801309:android:09a3db681dbcdb391034b4",
+        "mobilesdk_app_id": "1:389306761187:android:cf376c34a89bc699a7aad6",
         "android_client_info": {
           "package_name": "com.example.rebuy"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1098117801309-7msbrf5f2v4tjdcbr092jnfotv4gjpt0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.rebuy",
-            "certificate_hash": "9a7dae4d34c926751d561cffa6b2665a25638c1f"
-          }
-        },
-        {
-          "client_id": "1098117801309-br7lkcd11e904udn6mi7l4rkp3qp670v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCfGi3G1XXPan1zoZIP3UrYX1v01zlXvT4"
+          "current_key": "AIzaSyAMyTZJAlwf38FC06_g-CVmpAh_Fq9zPRc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1098117801309-br7lkcd11e904udn6mi7l4rkp3qp670v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1098117801309-02apq8go901aol7mvbgtq8b88ic72hrb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.rebuy.app"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

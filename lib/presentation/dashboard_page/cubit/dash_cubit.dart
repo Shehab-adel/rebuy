@@ -47,6 +47,8 @@ class DashCubit extends Cubit<DashState> {
     AppStrings.bikini
   ];
 
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   List<Widget> screenList(context) => [
         DashboardScreen(
           dashCubit: DashCubit.get(context),
@@ -72,7 +74,7 @@ class DashCubit extends Cubit<DashState> {
     try {
       emit(LoadingFetchCollection());
       final querySnapshot =
-          await FirebaseFirestore.instance.collection(categoryName).get();
+          await firebaseFirestore.collection(categoryName).get();
 
       dataList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
@@ -80,7 +82,7 @@ class DashCubit extends Cubit<DashState> {
         final ref = FirebaseStorage.instance.ref().child(file);
         final url = await ref.getDownloadURL();
         return DataModel(
-            image: url.toString(),
+            image: url,
             title: data['title'],
             description: data['description'],
             price: data['price'],
@@ -105,9 +107,8 @@ class DashCubit extends Cubit<DashState> {
   Future<void> fetchFlashSaleCollection() async {
     try {
       emit(LoadingFetchCollection());
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection(AppStrings.flashSale)
-          .get();
+      final querySnapshot =
+          await firebaseFirestore.collection(AppStrings.flashSale).get();
 
       flashSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
@@ -221,15 +222,7 @@ class DashCubit extends Cubit<DashState> {
   Future<void> writeProductReviewToFirestore(String id) async {
     emit(LoadingProductReviewToCollection());
 
-    await FirebaseFirestore.instance.collection(categoryName).doc(id).set({
-      AppStrings.image: dataList?[selectedProductIndex].image,
-      AppStrings.title: dataList?[selectedProductIndex].title,
-      AppStrings.description: dataList?[selectedProductIndex].description,
-      AppStrings.price: dataList?[selectedProductIndex].price,
-      AppStrings.oldPrice: dataList?[selectedProductIndex].oldPrice,
-      AppStrings.disccountPrecentage:
-          dataList?[selectedProductIndex].disccountPrecentage,
-      AppStrings.sizeList: dataList?[selectedProductIndex].sizeList,
+    await firebaseFirestore.collection(categoryName).doc(id).update({
       AppStrings.rating: this.reviewRating,
       AppStrings.review: writeReviewController.text
     }).then((value) {

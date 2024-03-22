@@ -224,4 +224,10 @@ class AppImageConstants {
   static String lottieEmptyDataBox1 = '$lottiePath/empty_data_1.json';
 
   static String lottieEmptyDataBox2 = '$lottiePath/empty_data_2.json';
+
+  static String lottieSuccessful = '$lottiePath/successful.json';
+
+  static String lottieLoading = '$lottiePath/loading.json';
+
+  static String lottieFail = '$lottiePath/fail.json';
 }
