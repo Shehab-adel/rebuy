@@ -14,12 +14,12 @@ class ShowCategoryProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           dashCubit.categoryName,
-          style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
+          style: theme.textTheme.titleSmall!
+              .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
         ),
         centerTitle: true,
       ),
-      body: BlocBuilder<DashCubit, DashState>(
-          builder: (context, state) {
+      body: BlocBuilder<DashCubit, DashState>(builder: (context, state) {
         if (state is LoadingFetchCollection || state is FailFetchCollection) {
           return const Center(
             child: CircularProgressIndicator(
@@ -42,87 +42,77 @@ class ShowCategoryProductsScreen extends StatelessWidget {
                         Navigator.pushNamed(
                             context, AppRoutes.productDetailScreen);
                       },
-                      child: Container(
-                        height: 500.v,
-                        padding: EdgeInsets.all(10),
-                        decoration: AppDecoration.outlineBlue.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder5,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            CustomImageView(
-                              imagePath: dashCubit.dataList![index].image ?? '',
-                              height: 260.v,
-                              radius: BorderRadius.circular(15),
-                            ),
-                            SizedBox(height: 25.h),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    dashCubit.dataList?[index].title ?? '',
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: theme.textTheme.labelLarge!.copyWith(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          CustomImageView(
+                            imagePath: dashCubit.dataList![index].image ?? '',
+                            height: 280.v,
+                            fit: BoxFit.contain,
+                          ),
+                          SizedBox(height: 25.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  dashCubit.dataList?[index].title ?? '',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.labelLarge!.copyWith(
+                                    height: 1.50,
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                Text(
+                                  dashCubit.dataList?[index].description ?? '0',
+                                  style: theme.textTheme.labelLarge!.copyWith(
                                       height: 1.50,
-                                    ),
+                                      color: Colors.grey.shade400),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
+                                ),
+                                SizedBox(height: 25.v),
+                                Text(
+                                  "${dashCubit.dataList?[index].price ?? ''}",
+                                  style: CustomTextStyles.labelLargePrimary
+                                      .copyWith(
+                                    fontSize: 16.fSize,
                                   ),
-                                  SizedBox(height: 10.h),
-                                  Text(
-                                    dashCubit.dataList?[index].description ??
-                                        '0',
-                                    style: theme.textTheme.labelLarge!.copyWith(
-                                        height: 1.50,
-                                        color: Colors.grey.shade400),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 3,
-                                  ),
-                                  SizedBox(height: 25.v),
-                                  Text(
-                                    "${dashCubit.dataList?[index].price ?? ''}",
-                                    style: CustomTextStyles.labelLargePrimary
-                                        .copyWith(
-                                      fontSize: 16.fSize,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20.v),
-                                  dashCubit.dataList?[index].price ==
-                                          dashCubit.dataList?[index].oldPrice
-                                      ? Text(
-                                          "No Disccount",
-                                          style: CustomTextStyles.bodySmall10
-                                              .copyWith(
-                                                  fontSize: 15.fSize,
-                                                  color: Colors.red),
-                                        )
-                                      : Row(
-                                          children: [
-                                            Text(
-                                              "${dashCubit.dataList?[index].oldPrice}",
-                                              style: CustomTextStyles
-                                                  .bodySmall10
-                                                  .copyWith(
+                                ),
+                                SizedBox(height: 20.v),
+                                dashCubit.dataList?[index].price ==
+                                        dashCubit.dataList?[index].oldPrice
+                                    ? Text(
+                                        "No Disccount",
+                                        style: CustomTextStyles.bodySmall10
+                                            .copyWith(
                                                 fontSize: 15.fSize,
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                              ),
+                                                color: Colors.red),
+                                      )
+                                    : Row(
+                                        children: [
+                                          Text(
+                                            "${dashCubit.dataList?[index].oldPrice}",
+                                            style: CustomTextStyles.bodySmall10
+                                                .copyWith(
+                                              fontSize: 15.fSize,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
                                             ),
-                                            SizedBox(width: 16.h),
-                                            Text(
-                                              "${dashCubit.dataList?[index].disccountPrecentage} %",
-                                              style:
-                                                  theme.textTheme.labelMedium,
-                                            ),
-                                          ],
-                                        )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                          ),
+                                          SizedBox(width: 16.h),
+                                          Text(
+                                            "${dashCubit.dataList?[index].disccountPrecentage} %",
+                                            style: theme.textTheme.labelMedium,
+                                          ),
+                                        ],
+                                      )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     );
                   },

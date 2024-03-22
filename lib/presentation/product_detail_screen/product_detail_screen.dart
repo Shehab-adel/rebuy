@@ -45,33 +45,29 @@ class ProductDetailScreen extends StatelessWidget {
                   margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 31.h))
             ]),
         body: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.symmetric(vertical: 14.v),
-              child: Column(children: [
-                SizedBox(height: 12.v),
-                Column(children: [
-                  ProductOverviewWidget(dashCubit: dashCubit),
-                  SizedBox(height: 42.v),
-                  SelectSizeWidget(
-                    dashCubit: dashCubit,
-                  ),
-                  SizedBox(height: 53.v),
-                  SpecificationsWidget(
-                    dashCubit: dashCubit,
-                  ),
-                  SizedBox(height: 53.v),
-                  // dashCubit.dataList?[dashCubit.selectedProductIndex].review ==
-                  //         null
-                  //     ? Container()
-                  //     :
-                  ReviewWidget(
-                    dashCubit: dashCubit,
-                  ),
-                  SizedBox(height: 53.v),
-                  YouMightAlsoLike(),
-                  SizedBox(height: 30.v),
-                ])
-              ])),
+          child: Column(children: [
+            SizedBox(height: 12.v),
+            ProductOverviewWidget(dashCubit: dashCubit),
+            SizedBox(height: 42.v),
+            SelectSizeWidget(
+              dashCubit: dashCubit,
+            ),
+            SizedBox(height: 53.v),
+            SpecificationsWidget(
+              dashCubit: dashCubit,
+            ),
+            SizedBox(height: 53.v),
+            // dashCubit.dataList?[dashCubit.selectedProductIndex].review ==
+            //         null
+            //     ? Container()
+            //     :
+            ReviewWidget(
+              dashCubit: dashCubit,
+            ),
+            SizedBox(height: 53.v),
+            YouMightAlsoLike(),
+            SizedBox(height: 30.v)
+          ]),
         ),
         bottomNavigationBar: CustomElevatedButton(
             text: "Add To Cart",
