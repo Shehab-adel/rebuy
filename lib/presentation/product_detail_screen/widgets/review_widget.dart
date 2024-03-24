@@ -23,11 +23,10 @@ class ReviewWidget extends StatelessWidget {
                     .copyWith(color: theme.colorScheme.primary.withOpacity(1)))
           ]),
           SizedBox(height: 8.v),
-          //People review
+          //People rating
           Row(children: [
             CustomRatingBar(
-              initialRating:
-                  0,
+              initialRating: 0,
               ignoreGestures: true,
               itemSize: 16,
               onRatingUpdate: (n) {},
@@ -42,7 +41,7 @@ class ReviewWidget extends StatelessWidget {
                 child: Text("(5 Review)", style: CustomTextStyles.bodySmall10))
           ]),
           SizedBox(height: 16.v),
-          //User review
+          //User rating
           Row(children: [
             CustomImageView(
                 imagePath: AppImageConstants.imgProfilePicture,
@@ -57,8 +56,9 @@ class ReviewWidget extends StatelessWidget {
                       Text(CacheHelper.getDisplayName().toString(),
                           style: theme.textTheme.titleSmall),
                       SizedBox(height: 4.v),
-                      BlocBuilder<DashCubit,DashState>(builder: (context,state){
-                        return   CustomRatingBar(
+                      BlocBuilder<DashCubit, DashState>(
+                          builder: (context, state) {
+                        return CustomRatingBar(
                           initialRating: dashCubit
                               .dataList?[dashCubit.selectedProductIndex].rating,
                           ignoreGestures: true,
@@ -69,31 +69,33 @@ class ReviewWidget extends StatelessWidget {
                     ])),
           ]),
           SizedBox(height: 18.v),
-          BlocBuilder<DashCubit,DashState>(builder: (context,state){
-           return RichText(
-             maxLines: 11,
-             overflow: TextOverflow.ellipsis,
-              text:  TextSpan(children: [
+          //User review
+          BlocBuilder<DashCubit, DashState>(builder: (context, state) {
+            return RichText(
+              maxLines: 11,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(children: [
                 TextSpan(
-                    text: '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
-                    style: theme.textTheme.bodySmall!.copyWith(height: 1.80.v)
-                ),
+                    text:
+                        '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
+                    style: theme.textTheme.bodySmall!.copyWith(height: 1.80.v)),
                 WidgetSpan(
                     child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, AppRoutes.writeReviewFillScreen);
-                      },
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, AppRoutes.writeReviewFillScreen);
+                  },
                   child: Text('  edit',
-                    style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.purple,height: 1.v
-                    )
-                ),))
-
+                      style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          color: Colors.purple,
+                          height: 1.v)),
+                ))
               ]),
             );
           }),
           SizedBox(height: 16.v),
+          //Similar List
           SizedBox(
               height: 72.v,
               child: ListView.separated(
@@ -102,12 +104,12 @@ class ReviewWidget extends StatelessWidget {
                   separatorBuilder: (context, index) {
                     return SizedBox(width: 12.h);
                   },
-                  itemCount: 3,
+                  itemCount: dashCubit.dataList?.length ?? 0,
                   itemBuilder: (context, index) {
                     return SizedBox(
                       width: 72.h,
                       child: CustomImageView(
-                        imagePath: AppImageConstants.imgProductPicture02,
+                        imagePath: dashCubit.dataList?[index].image,
                         height: 72.v,
                         width: 72.h,
                         radius: BorderRadius.circular(
@@ -116,8 +118,6 @@ class ReviewWidget extends StatelessWidget {
                       ),
                     );
                   })),
-          SizedBox(height: 16.v),
-          Text("December 10, 2016", style: CustomTextStyles.bodySmall10)
-         ]));
+        ]));
   }
 }

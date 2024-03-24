@@ -49,19 +49,13 @@ class ProductDetailScreen extends StatelessWidget {
             SizedBox(height: 12.v),
             ProductOverviewWidget(dashCubit: dashCubit),
             SizedBox(height: 42.v),
-            SelectSizeWidget(
-              dashCubit: dashCubit,
-            ),
+            SelectSizeWidget(dashCubit: dashCubit),
             SizedBox(height: 53.v),
-            SpecificationsWidget(
-              dashCubit: dashCubit,
-            ),
+            SpecificationsWidget(dashCubit: dashCubit),
             SizedBox(height: 53.v),
-            ReviewWidget(
-              dashCubit: dashCubit,
-            ),
+            ReviewWidget(dashCubit: dashCubit),
             SizedBox(height: 53.v),
-            YouMightAlsoLike(),
+            YouMightAlsoLike(dashCubit: dashCubit),
             SizedBox(height: 30.v)
           ]),
         ),
