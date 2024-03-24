@@ -57,10 +57,6 @@ class ProductDetailScreen extends StatelessWidget {
               dashCubit: dashCubit,
             ),
             SizedBox(height: 53.v),
-            // dashCubit.dataList?[dashCubit.selectedProductIndex].review ==
-            //         null
-            //     ? Container()
-            //     :
             ReviewWidget(
               dashCubit: dashCubit,
             ),
@@ -76,21 +72,4 @@ class ProductDetailScreen extends StatelessWidget {
             },
             margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v)));
   }
-
-  // /// Section Widget
-  // Widget _buildSelectColor(BuildContext context) {
-  //   return Container(
-  //       padding: EdgeInsets.symmetric(horizontal: 9.h),
-  //       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //         Padding(
-  //             padding: EdgeInsets.only(left: 7.h),
-  //             child: Text("Select Color", style: theme.textTheme.titleSmall)),
-  //         SizedBox(height: 12.v),
-  //         CustomImageView(
-  //             imagePath: AppImageConstants.imgColors,
-  //             height: 48.v,
-  //             width: 359.h,
-  //             margin: EdgeInsets.only(left: 7.h))
-  //       ]));
-  // }
 }

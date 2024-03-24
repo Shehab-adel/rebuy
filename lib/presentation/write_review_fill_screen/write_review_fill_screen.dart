@@ -30,9 +30,7 @@ class WriteReviewFillScreen extends StatelessWidget {
                   ),
                   iconSize: 20),
             ),
-            title: GestureDetector(
-              onTap: () {},
-              child: Padding(
+            title: Padding(
                 padding: EdgeInsets.only(left: 12.h),
                 child: Text(
                   AppStrings.writeReview,
@@ -40,7 +38,6 @@ class WriteReviewFillScreen extends StatelessWidget {
                     color: theme.colorScheme.onPrimary.withOpacity(1),
                   ),
                 ),
-              ),
             )),
         body: Container(
           width: double.maxFinite,
@@ -116,6 +113,8 @@ class WriteReviewFillScreen extends StatelessWidget {
                 dashCubit.writeProductReviewToFirestore(
                     dashCubit.dataList?[dashCubit.selectedProductIndex].docId ??
                         '');
+                dashCubit.getReviewAndRatingAfterUserUpdate(dashCubit.dataList?[dashCubit.selectedProductIndex].docId ??
+                    '');
               },
               margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 34.v));
         }));

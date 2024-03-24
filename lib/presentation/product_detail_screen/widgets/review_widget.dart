@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import '../../../widgets/custom_rating_bar.dart';
+import '../../dashboard_page/cubit/states.dart';
 
 class ReviewWidget extends StatelessWidget {
   const ReviewWidget({required this.dashCubit});
@@ -21,10 +23,11 @@ class ReviewWidget extends StatelessWidget {
                     .copyWith(color: theme.colorScheme.primary.withOpacity(1)))
           ]),
           SizedBox(height: 8.v),
+          //People review
           Row(children: [
             CustomRatingBar(
               initialRating:
-                  dashCubit.dataList?[dashCubit.selectedProductIndex].rating,
+                  0,
               ignoreGestures: true,
               itemSize: 16,
               onRatingUpdate: (n) {},
@@ -39,11 +42,12 @@ class ReviewWidget extends StatelessWidget {
                 child: Text("(5 Review)", style: CustomTextStyles.bodySmall10))
           ]),
           SizedBox(height: 16.v),
+          //User review
           Row(children: [
             CustomImageView(
                 imagePath: AppImageConstants.imgProfilePicture,
-                height: 48.adaptSize,
-                width: 48.adaptSize,
+                height: 48.v,
+                width: 48.h,
                 radius: BorderRadius.circular(24.h)),
             Padding(
                 padding: EdgeInsets.only(left: 16.h, top: 2.v, bottom: 4.v),
@@ -53,23 +57,42 @@ class ReviewWidget extends StatelessWidget {
                       Text(CacheHelper.getDisplayName().toString(),
                           style: theme.textTheme.titleSmall),
                       SizedBox(height: 4.v),
-                      CustomRatingBar(
-                        initialRating: dashCubit
-                            .dataList?[dashCubit.selectedProductIndex].rating,
-                        ignoreGestures: true,
-                        itemSize: 16,
-                        onRatingUpdate: (n) {},
-                      )
-                    ]))
+                      BlocBuilder<DashCubit,DashState>(builder: (context,state){
+                        return   CustomRatingBar(
+                          initialRating: dashCubit
+                              .dataList?[dashCubit.selectedProductIndex].rating,
+                          ignoreGestures: true,
+                          itemSize: 16,
+                          onRatingUpdate: (n) {},
+                        );
+                      }),
+                    ])),
           ]),
           SizedBox(height: 18.v),
-          SizedBox(
-              width: 339.h,
-              child: Text(
-                  '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall!.copyWith(height: 1.80))),
+          BlocBuilder<DashCubit,DashState>(builder: (context,state){
+           return RichText(
+             maxLines: 11,
+             overflow: TextOverflow.ellipsis,
+              text:  TextSpan(children: [
+                TextSpan(
+                    text: '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
+                    style: theme.textTheme.bodySmall!.copyWith(height: 1.80.v)
+                ),
+                WidgetSpan(
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, AppRoutes.writeReviewFillScreen);
+                      },
+                  child: Text('  edit',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: Colors.purple,height: 1.v
+                    )
+                ),))
+
+              ]),
+            );
+          }),
           SizedBox(height: 16.v),
           SizedBox(
               height: 72.v,
@@ -85,8 +108,8 @@ class ReviewWidget extends StatelessWidget {
                       width: 72.h,
                       child: CustomImageView(
                         imagePath: AppImageConstants.imgProductPicture02,
-                        height: 72.adaptSize,
-                        width: 72.adaptSize,
+                        height: 72.v,
+                        width: 72.h,
                         radius: BorderRadius.circular(
                           8.h,
                         ),
@@ -95,6 +118,6 @@ class ReviewWidget extends StatelessWidget {
                   })),
           SizedBox(height: 16.v),
           Text("December 10, 2016", style: CustomTextStyles.bodySmall10)
-        ]));
+         ]));
   }
 }

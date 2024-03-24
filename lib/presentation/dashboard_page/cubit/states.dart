@@ -27,3 +27,9 @@ class SuccessfulProductReviewToCollection extends DashState {}
 class FailProductReviewToCollection extends DashState {}
 
 class ChangeReviewRating extends DashState {}
+
+class LoadingReviewAndRatingAfterUserUpdate extends DashState{}
+
+class SuccessfulReviewAndRatingAfterUserUpdate extends DashState{}
+
+class FailReviewAndRatingAfterUserUpdate extends DashState{}

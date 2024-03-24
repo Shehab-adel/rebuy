@@ -89,7 +89,10 @@ class DashCubit extends Cubit<DashState> {
             oldPrice: data['old_price'],
             disccountPrecentage: data['disccountPrecentage'],
             sizeList: data['size_list'],
-            docId: doc.id);
+            docId: doc.id,
+            rating:data['rating'],
+            review:data['review']
+        );
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -150,7 +153,6 @@ class DashCubit extends Cubit<DashState> {
         final file = data['image'];
         final ref = FirebaseStorage.instance.ref().child(file);
         final url = await ref.getDownloadURL();
-
         return DataModel(
             image: url.toString(),
             title: data['title'],
@@ -159,7 +161,10 @@ class DashCubit extends Cubit<DashState> {
             oldPrice: data['old_price'],
             disccountPrecentage: data['disccountPrecentage'],
             sizeList: data['size_list'],
-            docId: doc.id);
+            docId: doc.id,
+            rating:data['rating'],
+            review:data['review']
+        );
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -238,4 +243,17 @@ class DashCubit extends Cubit<DashState> {
     this.reviewRating = reviewRating;
     emit(ChangeReviewRating());
   }
+
+  Future<void> getReviewAndRatingAfterUserUpdate(String id)async{
+    emit(LoadingReviewAndRatingAfterUserUpdate());
+    await firebaseFirestore.collection(categoryName).doc(id).get().
+    then((value) {
+      dataList?[selectedProductIndex].rating =value['rating'];
+      dataList?[selectedProductIndex].review =value['review'];
+      emit(SuccessfulReviewAndRatingAfterUserUpdate());
+    }).catchError((error){
+      emit(FailReviewAndRatingAfterUserUpdate());
+    });
+
+}
 }
