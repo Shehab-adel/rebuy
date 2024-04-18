@@ -18,6 +18,8 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   await CacheHelper.init();
+  print(await CacheHelper.init());
+  print(CacheHelper.getDisplayName());
   runApp(MyApp());
 }
 
@@ -38,9 +40,7 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: CacheHelper.getDisplayName() == null
-            ? AppRoutes.loginScreen
-            : AppRoutes.dashboardContainerScreen,
+        initialRoute: AppRoutes.registerScreen,
         routes: AppRoutes.routes,
       ),
     );

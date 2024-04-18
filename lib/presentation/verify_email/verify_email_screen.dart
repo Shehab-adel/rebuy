@@ -29,6 +29,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 if (isVerify == true) {
                   Navigator.pushNamed(
                       context, AppRoutes.dashboardContainerScreen);
+                  RegisterCubit.get(context).createUsersFirestoreCollection();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                       RegisterCubit.get(context)

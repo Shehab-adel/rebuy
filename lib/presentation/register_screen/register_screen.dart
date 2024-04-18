@@ -23,10 +23,12 @@ class RegisterScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.h),
                 child: BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
-                  if (state is SuccessfulRegisterProcess) {
+                  if (state is SuccessfulFireAuthRegisterProcess &&
+                      state is SuccessfulFireStoreRegisterProcess) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         registerCubit.snackBar(registerCubit.message));
-                  } else if (state is FailRegisterProcess) {
+                  } else if (state is FailFireAuthRegisterProcess &&
+                      state is FailFireStoreRegisterProcess) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         registerCubit.snackBar(registerCubit.message));
                   }
@@ -74,11 +76,12 @@ class RegisterScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: 20.v),
-                        state is LoadingRegisterProcess
+                        state is LoadingFireAuthRegisterProcess ||
+                                state is LoadingFireStoreRegisterProcess
                             ? Center(child: CircularProgressIndicator())
                             : CustomElevatedButton(
                                 text: AppStrings.signUp,
-                                onPressed: () async {
+                                onPressed: () {
                                   if (registerCubit.formKey.currentState!
                                           .validate() ==
                                       true) {

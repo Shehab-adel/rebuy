@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +21,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   FirebaseAuth auth = FirebaseAuth.instance;
   registerWithFirebaseAuth(BuildContext context) async {
     try {
-      emit(LoadingRegisterProcess());
+      emit(LoadingFireAuthRegisterProcess());
       await auth
           .createUserWithEmailAndPassword(
         email: emailController.text,
@@ -28,29 +29,44 @@ class RegisterCubit extends Cubit<RegisterState> {
       )
           .then((value) async {
         message = 'Check your email to verify fisrt';
-        emit(SuccessfulRegisterProcess());
+        emit(SuccessfulFireAuthRegisterProcess());
+
         CacheHelper.sharedPreferences
             .setString(AppStrings.displayName, usernameController.text);
         await value.user?.updateDisplayName(CacheHelper.getDisplayName());
         await sendEmailVerification(context);
       }).onError((error, stackTrace) {
         message = 'Check your email to verify first';
-        emit(FailRegisterProcess());
+        emit(FailFireAuthRegisterProcess());
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use' &&
           isEmailVerified(context) == false) {
         message = 'Please Check your email to verify first';
-        emit(FailRegisterProcess());
+        emit(FailFireAuthRegisterProcess());
       } else if (e.code == 'email-already-in-use' &&
           isEmailVerified(context) == true) {
         message = 'The email address is already exists.try sign in';
-        emit(FailRegisterProcess());
+        emit(FailFireAuthRegisterProcess());
       }
     } catch (e) {
       message = "Somthing is wrong.Please Try again";
-      emit(FailRegisterProcess());
+      emit(FailFireAuthRegisterProcess());
     }
+  }
+
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  Future<void> createUsersFirestoreCollection() async {
+    emit(LoadingFireStoreRegisterProcess());
+    await firebaseFirestore.collection(AppStrings.users).add({
+      AppStrings.fullName: usernameController.text,
+      AppStrings.email: emailController.text,
+    }).then((value) {
+      emit(SuccessfulFireStoreRegisterProcess());
+    }).onError((error, stackTrace) {
+      message = error.toString();
+      emit(FailFireStoreRegisterProcess());
+    });
   }
 
   Future<void> sendEmailVerification(BuildContext context) async {

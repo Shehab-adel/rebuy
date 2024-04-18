@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,6 +29,9 @@ class LoginCubit extends Cubit<LoginState> {
               email: emailController.text, password: passwordController.text)
           .then((value) async {
         bodyMessage = 'You signed in successfully';
+        // CacheHelper.sharedPreferences
+        //     .setString(AppStrings.displayName, value.user!.displayName!);
+        // await value.user?.updateDisplayName(CacheHelper.getDisplayName());
         emit(SuccessfulLoginProcess());
       }).onError((error, stackTrace) {
         bodyMessage = error.toString();
