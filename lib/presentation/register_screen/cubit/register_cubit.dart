@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rebuy/core/constants/app_string.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
-// import 'package:rebuy/network/local/cache%20helper.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -30,7 +29,6 @@ class RegisterCubit extends Cubit<RegisterState> {
           .then((value) async {
         message = 'Check your email to verify fisrt';
         emit(SuccessfulFireAuthRegisterProcess());
-
         CacheHelper.sharedPreferences
             .setString(AppStrings.displayName, usernameController.text);
         await value.user?.updateDisplayName(CacheHelper.getDisplayName());

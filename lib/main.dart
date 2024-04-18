@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,7 @@ import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
+import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/routes/app_routes.dart';
 import 'core/constants/app_string.dart';
 import 'presentation/register_screen/cubit/register_cubit.dart';
@@ -18,8 +20,6 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   await CacheHelper.init();
-  print(await CacheHelper.init());
-  print(CacheHelper.getDisplayName());
   runApp(MyApp());
 }
 
@@ -35,12 +35,17 @@ class MyApp extends StatelessWidget {
               ..fetchFlashSaleCollection()
               ..fetchMegaSaleCollection()),
         BlocProvider(create: (context) => ExploreCubit()),
+        BlocProvider(
+            create: (context) =>
+                ProfileCubit()..getFirebaseAuthCurrentUserName()),
       ],
       child: MaterialApp(
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.registerScreen,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? AppRoutes.registerScreen
+            : AppRoutes.dashboardContainerScreen,
         routes: AppRoutes.routes,
       ),
     );
