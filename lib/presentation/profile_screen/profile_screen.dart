@@ -61,22 +61,22 @@ class ProfileScreen extends StatelessWidget {
                                         ]))
                               ])),
                       SizedBox(height: 32.v),
-                      ProfileDetailsOptionWidget(
-                          imagePath: AppImageConstants.imgGenderIcon,
-                          text: AppStrings.gender,
-                          value: "Male"),
-                      ProfileDetailsOptionWidget(
-                          imagePath: AppImageConstants.imgDateIcon,
-                          text: AppStrings.birthday,
-                          value: "12-12-2000"),
+                      // ProfileDetailsOptionWidget(
+                      //     imagePath: AppImageConstants.imgGenderIcon,
+                      //     text: AppStrings.gender,
+                      //     value: "Male"),
+                      // ProfileDetailsOptionWidget(
+                      //     imagePath: AppImageConstants.imgDateIcon,
+                      //     text: AppStrings.birthday,
+                      //     value: "12-12-2000"),
                       ProfileDetailsOptionWidget(
                           imagePath: AppImageConstants.imgMailPrimary,
                           text: AppStrings.email,
-                          value: "rex4dom@gmail.com"),
-                      ProfileDetailsOptionWidget(
-                          imagePath: AppImageConstants.imgCreditCardIcon,
-                          text: AppStrings.phoneNumber,
-                          value: "(307) 555-0133"),
+                          value: profileCubit.userEmail),
+                      // ProfileDetailsOptionWidget(
+                      //     imagePath: AppImageConstants.imgCreditCardIcon,
+                      //     text: AppStrings.phoneNumber,
+                      //     value: "(307) 555-0133"),
                       SizedBox(height: 5.v),
                       ProfileDetailsOptionWidget(
                           imagePath: AppImageConstants.imgLockPrimary,
