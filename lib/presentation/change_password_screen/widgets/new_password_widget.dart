@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/utils/app_export.dart';
-import 'package:rebuy/presentation/change_password_screen/cubit/change_password_cubit.dart';
+import 'package:rebuy/core/utils/functions.dart';
+import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/widgets/custom_text_form_field.dart';
 
 class NewPasswordWidget extends StatelessWidget {
   const NewPasswordWidget({super.key, required this.changePasswordCubit});
-  final ChangePasswordCubit changePasswordCubit;
+  final ProfileCubit changePasswordCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class NewPasswordWidget extends StatelessWidget {
           hintText: "•••••••••••••••••",
           hintStyle: CustomTextStyles.labelLargeBluegray300,
           textInputType: TextInputType.visiblePassword,
+          validator: validatePassword,
           prefix: Container(
               margin: EdgeInsets.fromLTRB(16.h, 12.v, 10.h, 12.v),
               child: CustomImageView(

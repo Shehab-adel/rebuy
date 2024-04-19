@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/core/utils/functions.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_state.dart';
 import 'package:rebuy/presentation/verify_email/verify_email_screen.dart';
@@ -25,12 +26,11 @@ class RegisterScreen extends StatelessWidget {
                     listener: (context, state) {
                   if (state is SuccessfulFireAuthRegisterProcess &&
                       state is SuccessfulFireStoreRegisterProcess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        registerCubit.snackBar(registerCubit.message));
+                    snackBar(registerCubit.message);
                   } else if (state is FailFireAuthRegisterProcess &&
                       state is FailFireStoreRegisterProcess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        registerCubit.snackBar(registerCubit.message));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackBar(registerCubit.message));
                   }
                 }, builder: (context, state) {
                   return Column(
@@ -63,7 +63,7 @@ class RegisterScreen extends StatelessWidget {
                           hintText: AppStrings.password,
                           imagePath: AppImageConstants.imgLock,
                           validator: (value) {
-                            return registerCubit.validatePassword(value);
+                            return validatePassword(value);
                           },
                         ),
                         SizedBox(height: 8.v),

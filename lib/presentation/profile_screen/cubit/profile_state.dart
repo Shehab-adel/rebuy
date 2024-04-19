@@ -8,8 +8,8 @@ class SuccessfulGetFirebaseAuthCurrentUsername extends ProfileState {}
 
 class FailGetFirebaseAuthCurrentUsername extends ProfileState {}
 
-class LoadingChangeGander extends ProfileState {}
+class LoadingChangePassword extends ProfileState {}
 
-class SuccessfulChangeGander extends ProfileState {}
+class SuccessfulChangePassword extends ProfileState {}
 
-class FailChangeGander extends ProfileState {}
+class FailChangePassword extends ProfileState {}

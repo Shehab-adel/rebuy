@@ -85,18 +85,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  SnackBar snackBar(String snackbareMessage) => SnackBar(
-        content: Text(snackbareMessage),
-        backgroundColor: const Color.fromRGBO(33, 150, 243, 1),
-        duration: Duration(seconds: 4),
-        action: SnackBarAction(
-          label: 'Action',
-          onPressed: () {
-            // Some code to do something
-          },
-        ),
-      );
-
   String? validateEmail(String? value) {
     const pattern =
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -105,18 +93,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     return value!.isNotEmpty && !regex.hasMatch(value)
         ? 'Enter a valid email address'
         : null;
-  }
-
-  String? validatePassword(String? value) {
-    // Define a regular expression pattern for strong passwords
-    final pattern =
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
-    final regex = RegExp(pattern);
-
-    if (!regex.hasMatch(value ?? '')) {
-      return 'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.';
-    }
-    return null;
   }
 
   String? confirmPassword(String? value) {

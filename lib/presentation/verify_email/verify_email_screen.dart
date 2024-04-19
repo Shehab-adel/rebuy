@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/core/utils/functions.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../register_screen/cubit/register_cubit.dart';
 
@@ -32,8 +33,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   RegisterCubit.get(context).createUsersFirestoreCollection();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      RegisterCubit.get(context)
-                          .snackBar('Please verify your email first.'));
+                      snackBar('Please verify your email first.'));
                 }
               },
               margin: EdgeInsets.symmetric(horizontal: 30.h),

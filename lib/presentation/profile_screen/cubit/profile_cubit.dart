@@ -37,4 +37,34 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(FailGetFirebaseAuthCurrentUsername());
     }
   }
+
+  TextEditingController newpasswordController = TextEditingController();
+  TextEditingController newpasswordAgainController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  Future<void> changePassword() async {
+    emit(LoadingChangePassword());
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      user.updatePassword(newpasswordController.text).then((value) {
+        emit(SuccessfulChangePassword());
+        print('Success -----------------');
+      }).catchError((error) {
+        emit(FailChangePassword());
+        print('Fail ----------------- ${error.toString()}');
+      });
+    }
+  }
+
+  String? confirmPassword(String? value) {
+    String password = newpasswordController.text;
+    String confirmPassword = newpasswordAgainController.text;
+
+    if (password == confirmPassword) {
+      return null;
+    } else {
+      return 'Password does not match.';
+    }
+  }
 }
