@@ -6,9 +6,8 @@ import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 import 'package:rebuy/widgets/custom_text_form_field.dart';
 
-// ignore_for_file: must_be_immutable
-class LailyfaFebrinaCardScreen extends StatelessWidget {
-  LailyfaFebrinaCardScreen({Key? key}) : super(key: key);
+class DetailsCardScreen extends StatelessWidget {
+  DetailsCardScreen({Key? key}) : super(key: key);
 
   TextEditingController cardNumberController = TextEditingController();
 
@@ -20,34 +19,32 @@ class LailyfaFebrinaCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: _buildAppBar(context),
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(vertical: 18.v),
-                child: Column(children: [
-                  SizedBox(height: 19.v),
-                  Expanded(
-                      child: SingleChildScrollView(
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 15.h, right: 15.h, bottom: 5.v),
-                              child: Column(children: [
-                                _buildCreditCard(context),
-                                SizedBox(height: 23.v),
-                                _buildCardNumber(context),
-                                SizedBox(height: 24.v),
-                                _buildExpirationDate(context),
-                                SizedBox(height: 29.v),
-                                _buildSecurityCode(context),
-                                SizedBox(height: 23.v),
-                                _buildCardHolder(context)
-                              ]))))
-                ])),
-            bottomNavigationBar: _buildSave(context)));
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: _buildAppBar(context),
+        body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 18.v),
+            child: Column(children: [
+              SizedBox(height: 19.v),
+              Expanded(
+                  child: SingleChildScrollView(
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                              left: 15.h, right: 15.h, bottom: 5.v),
+                          child: Column(children: [
+                            _buildCreditCard(context),
+                            SizedBox(height: 23.v),
+                            _buildCardNumber(context),
+                            SizedBox(height: 24.v),
+                            _buildExpirationDate(context),
+                            SizedBox(height: 29.v),
+                            _buildSecurityCode(context),
+                            SizedBox(height: 23.v),
+                            _buildCardHolder(context)
+                          ]))))
+            ])),
+        bottomNavigationBar: _buildSave(context));
   }
 
   /// Section Widget

@@ -13,7 +13,7 @@ import 'package:rebuy/presentation/dashboard_page/dashboard_page.dart';
 import 'package:rebuy/presentation/favorite_product_screen/favorite_product_screen.dart';
 import 'package:rebuy/presentation/filter_screen/filter_screen.dart';
 import 'package:rebuy/presentation/forget_password/forget_pasword_screen.dart';
-import 'package:rebuy/presentation/lailyfa_febrina_card_screen/lailyfa_febrina_card_screen.dart';
+import 'package:rebuy/presentation/details_card_screen/details_card_screen.dart';
 import 'package:rebuy/presentation/list_category_screen/list_category_screen.dart';
 import 'package:rebuy/presentation/login_screen/login_screen.dart';
 import 'package:rebuy/presentation/notification_activity_screen/notification_activity_screen.dart';
@@ -118,7 +118,7 @@ class AppRoutes {
 
   static const String addCardScreen = '/add_card_screen';
 
-  static const String lailyfaFebrinaCardScreen = '/lailyfa_febrina_card_screen';
+  static const String detailsCardScreen = '/details_card_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
   static const String showCategoryProductsScreen = '/show_category_p';
@@ -166,7 +166,7 @@ class AppRoutes {
     addPaymentScreen: (context) => AddPaymentScreen(),
     creditCardAndDebitScreen: (context) => CreditCardAndDebitScreen(),
     addCardScreen: (context) => AddCardScreen(),
-    lailyfaFebrinaCardScreen: (context) => LailyfaFebrinaCardScreen(),
+    detailsCardScreen: (context) => DetailsCardScreen(),
     appNavigationScreen: (context) => AppNavigationScreen()
   };
 }
