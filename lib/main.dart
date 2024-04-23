@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/theme/theme_helper.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
+import 'package:rebuy/presentation/add_card_screen/cubit/add_card_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
@@ -38,16 +39,22 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 ProfileCubit()..getFirebaseAuthCurrentUserName()),
+        BlocProvider(create: (context) => AddCardCubit()),
       ],
       child: MaterialApp(
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? AppRoutes.registerScreen
-            : AppRoutes.dashboardContainerScreen,
+        initialRoute: AppRoutes.addCardScreen,
         routes: AppRoutes.routes,
       ),
     );
   }
 }
+
+/*
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? AppRoutes.registerScreen
+            : AppRoutes.dashboardContainerScreen,
+
+*/

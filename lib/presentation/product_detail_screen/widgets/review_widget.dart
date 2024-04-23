@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
-import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
+import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import '../../../widgets/custom_rating_bar.dart';
 import '../../dashboard_page/cubit/states.dart';
 
@@ -53,7 +53,7 @@ class ReviewWidget extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(CacheHelper.getDisplayName().toString(),
+                      Text(ProfileCubit.get(context).fullName,
                           style: theme.textTheme.titleSmall),
                       SizedBox(height: 4.v),
                       BlocBuilder<DashCubit, DashState>(
