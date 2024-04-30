@@ -62,7 +62,7 @@ class ProductDetailScreen extends StatelessWidget {
         bottomNavigationBar: CustomElevatedButton(
             text: "Add To Cart",
             onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.addCardScreen);
+              dashCubit.addCartItemIndexToList();
             },
             margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v)));
   }

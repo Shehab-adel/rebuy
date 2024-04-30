@@ -90,9 +90,8 @@ class DashCubit extends Cubit<DashState> {
             disccountPrecentage: data['disccountPrecentage'],
             sizeList: data['size_list'],
             docId: doc.id,
-            rating:data['rating'],
-            review:data['review']
-        );
+            rating: data['rating'],
+            review: data['review']);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -162,9 +161,8 @@ class DashCubit extends Cubit<DashState> {
             disccountPrecentage: data['disccountPrecentage'],
             sizeList: data['size_list'],
             docId: doc.id,
-            rating:data['rating'],
-            review:data['review']
-        );
+            rating: data['rating'],
+            review: data['review']);
       }).toList());
       emit(SuccessfulFetchCollection());
       print('Sucessful ---------------******');
@@ -244,16 +242,28 @@ class DashCubit extends Cubit<DashState> {
     emit(ChangeReviewRating());
   }
 
-  Future<void> getReviewAndRatingAfterUserUpdate(String id)async{
+  Future<void> getReviewAndRatingAfterUserUpdate(String id) async {
     emit(LoadingReviewAndRatingAfterUserUpdate());
-    await firebaseFirestore.collection(categoryName).doc(id).get().
-    then((value) {
-      dataList?[selectedProductIndex].rating =value['rating'];
-      dataList?[selectedProductIndex].review =value['review'];
+    await firebaseFirestore
+        .collection(categoryName)
+        .doc(id)
+        .get()
+        .then((value) {
+      dataList?[selectedProductIndex].rating = value['rating'];
+      dataList?[selectedProductIndex].review = value['review'];
       emit(SuccessfulReviewAndRatingAfterUserUpdate());
-    }).catchError((error){
+    }).catchError((error) {
       emit(FailReviewAndRatingAfterUserUpdate());
     });
+  }
 
-}
+  List<int> selectedProductIndexList = [];
+  void addCartItemIndexToList() {
+    if (selectedProductIndexList.contains(selectedProductIndex)) {
+      return;
+    } else {
+      selectedProductIndexList.add(selectedProductIndex);
+    }
+    print('${selectedProductIndexList} ***********');
+  }
 }

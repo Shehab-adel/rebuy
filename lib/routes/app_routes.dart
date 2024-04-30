@@ -4,6 +4,7 @@ import 'package:rebuy/presentation/add_card_screen/add_card_screen.dart';
 import 'package:rebuy/presentation/add_payment_screen/add_payment_screen.dart';
 import 'package:rebuy/presentation/address_screen/address_screen.dart';
 import 'package:rebuy/presentation/app_navigation_screen/app_navigation_screen.dart';
+import 'package:rebuy/presentation/cart_page/cart_page.dart';
 import 'package:rebuy/presentation/change_password_screen/change_password_screen.dart';
 import 'package:rebuy/presentation/choose_credit_or_debit_card_screen/choose_credit_or_debit_card_screen.dart';
 import 'package:rebuy/presentation/credit_card_and_debit_screen/credit_card_and_debit_screen.dart';
@@ -167,6 +168,7 @@ class AppRoutes {
     creditCardAndDebitScreen: (context) => CreditCardAndDebitScreen(),
     addCardScreen: (context) => AddCardScreen(),
     detailsCardScreen: (context) => DetailsCardScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
+    appNavigationScreen: (context) => AppNavigationScreen(),
+    cartPage: (context) => CartScreen(),
   };
 }

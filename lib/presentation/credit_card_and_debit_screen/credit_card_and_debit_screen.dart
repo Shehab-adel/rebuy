@@ -34,7 +34,7 @@ class CreditCardAndDebitScreen extends StatelessWidget {
             text: "Add Card",
             margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v),
             onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.addCardScreen);
+              Navigator.pushReplacementNamed(context, AppRoutes.addCardScreen);
             }));
   }
 }

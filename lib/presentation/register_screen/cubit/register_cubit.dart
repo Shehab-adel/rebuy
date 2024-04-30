@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rebuy/core/constants/app_string.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
+import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -59,6 +60,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     await firebaseFirestore.collection(AppStrings.users).add({
       AppStrings.fullName: usernameController.text,
       AppStrings.email: emailController.text,
+      AppStrings.userCartList: <DataModel>[]
     }).then((value) {
       emit(SuccessfulFireStoreRegisterProcess());
     }).onError((error, stackTrace) {

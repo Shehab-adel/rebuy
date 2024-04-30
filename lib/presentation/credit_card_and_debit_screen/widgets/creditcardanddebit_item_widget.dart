@@ -8,7 +8,7 @@ class CreditcardanddebitItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.detailsCardScreen);
+        Navigator.pushReplacementNamed(context, AppRoutes.detailsCardScreen);
       },
       child: Expanded(
           child: Padding(

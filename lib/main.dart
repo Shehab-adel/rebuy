@@ -45,7 +45,9 @@ class MyApp extends StatelessWidget {
         theme: theme,
         title: AppStrings.rebuy,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.addCardScreen,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? AppRoutes.registerScreen
+            : AppRoutes.dashboardContainerScreen,
         routes: AppRoutes.routes,
       ),
     );
