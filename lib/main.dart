@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/theme/theme_helper.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/add_card_screen/cubit/add_card_cubit.dart';
+import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 ProfileCubit()..getFirebaseAuthCurrentUserName()),
         BlocProvider(create: (context) => AddCardCubit()),
+        BlocProvider(create: (context) => CartCubit()),
       ],
       child: MaterialApp(
         theme: theme,
@@ -53,10 +55,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/*
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? AppRoutes.registerScreen
-            : AppRoutes.dashboardContainerScreen,
-
-*/

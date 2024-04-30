@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/cart_page/widgets/coupon_code_row_widget.dart';
 import 'package:rebuy/presentation/cart_page/widgets/total_price_details_w.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
@@ -34,8 +35,8 @@ class CartScreen extends StatelessWidget {
               child: Column(children: [
                 CartlistItemWidget(
                   dashCubit: DashCubit.get(context),
+                  cartCubit: CartCubit.get(context),
                 ),
-                SizedBox(height: 52.v),
                 CouponCodeRowWidget(),
                 SizedBox(height: 16.v),
                 TotalPriceDetailsWidget(),
