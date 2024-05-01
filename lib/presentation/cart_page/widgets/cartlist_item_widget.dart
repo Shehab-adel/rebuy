@@ -14,7 +14,7 @@ class CartlistItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return dashCubit.selectedProductList.isEmpty
+    return dashCubit.cartDataModelList.isEmpty
         ? LottieBuilder.asset(AppImageConstants.lottieEmptyDataBox1)
         : SizedBox(
             height: 340.h,
@@ -33,7 +33,7 @@ class CartlistItemWidget extends StatelessWidget {
                                 children: [
                                   CustomImageView(
                                     imagePath: dashCubit
-                                        .selectedProductList[index].image,
+                                        .cartDataModelList[index].image,
                                     height: 72.adaptSize,
                                     width: 72.adaptSize,
                                     radius: BorderRadius.circular(
@@ -52,7 +52,7 @@ class CartlistItemWidget extends StatelessWidget {
                                           SizedBox(
                                             width: 150.h,
                                             child: Text(
-                                              "${dashCubit.selectedProductList[index].title}",
+                                              "${dashCubit.cartDataModelList[index].title}",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: theme.textTheme.labelLarge!
@@ -66,7 +66,10 @@ class CartlistItemWidget extends StatelessWidget {
                                                 AppImageConstants.imgLoveIcon,
                                             height: 24.adaptSize,
                                             width: 24.adaptSize,
-                                            color: cartCubit.isFavorite
+                                            color: cartCubit.favoriteList
+                                                    .contains(dashCubit
+                                                            .cartDataModelList[
+                                                        index])
                                                 ? appTheme.pink300
                                                 : appTheme.gray400,
                                             margin: EdgeInsets.only(
@@ -74,7 +77,10 @@ class CartlistItemWidget extends StatelessWidget {
                                               bottom: 10.v,
                                             ),
                                             onTap: () {
-                                              cartCubit.changeIsFavorite();
+                                              cartCubit.addToFavoriteList(
+                                                  dashCubit.cartDataModelList[
+                                                      index]);
+                                              //cartCubit.changeIsFavorite();
                                             },
                                           ),
                                           CustomImageView(
@@ -87,6 +93,13 @@ class CartlistItemWidget extends StatelessWidget {
                                               left: 8.h,
                                               bottom: 10.v,
                                             ),
+                                            onTap: () {
+                                              cartCubit
+                                                  .deleteItemFromFavoriteList(
+                                                      dashCubit.dataList?[
+                                                              index] ??
+                                                          DataModel());
+                                            },
                                           ),
                                         ],
                                       ),
@@ -98,7 +111,7 @@ class CartlistItemWidget extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              "${dashCubit.selectedProductList[index].price}",
+                                              "${dashCubit.cartDataModelList[index].price}",
                                               style: CustomTextStyles
                                                   .labelLargePrimary,
                                             ),
@@ -143,7 +156,7 @@ class CartlistItemWidget extends StatelessWidget {
                               )));
                 },
                 separatorBuilder: (context, index) => SizedBox(height: 16.v),
-                itemCount: dashCubit.selectedProductList.length),
+                itemCount: dashCubit.cartDataModelList.length),
           );
   }
 }
