@@ -5,6 +5,7 @@ import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_state.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
+import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
 
 class CartlistItemWidget extends StatelessWidget {
@@ -14,149 +15,147 @@ class CartlistItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return dashCubit.cartDataModelList.isEmpty
-        ? LottieBuilder.asset(AppImageConstants.lottieEmptyDataBox1)
-        : SizedBox(
-            height: 340.h,
-            child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return Container(
-                      padding: EdgeInsets.symmetric(vertical: 14.v),
-                      decoration: AppDecoration.outlineBlue.copyWith(
-                        borderRadius: BorderRadiusStyle.roundedBorder5,
-                      ),
-                      child: BlocConsumer<CartCubit, CartState>(
-                          listener: (context, state) {},
-                          builder: (context, state) => Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  CustomImageView(
-                                    imagePath: dashCubit
-                                        .cartDataModelList[index].image,
-                                    height: 72.adaptSize,
-                                    width: 72.adaptSize,
-                                    radius: BorderRadius.circular(
-                                      5.h,
-                                    ),
-                                    margin: EdgeInsets.symmetric(vertical: 1.v),
+    return BlocConsumer<CartCubit, CartState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return dashCubit.cartDataModelList.isEmpty
+              ? LottieBuilder.asset(AppImageConstants.lottieEmptyDataBox1)
+              : SizedBox(
+                  height: 340.h,
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return Container(
+                            padding: EdgeInsets.symmetric(vertical: 14.v),
+                            decoration: AppDecoration.outlineBlue.copyWith(
+                              borderRadius: BorderRadiusStyle.roundedBorder5,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CustomImageView(
+                                  imagePath:
+                                      dashCubit.cartDataModelList[index].image,
+                                  height: 72.adaptSize,
+                                  width: 72.adaptSize,
+                                  radius: BorderRadius.circular(
+                                    5.h,
                                   ),
-                                  Column(
-                                    children: [
-                                      Row(
+                                  margin: EdgeInsets.symmetric(vertical: 1.v),
+                                ),
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: 150.h,
+                                          child: Text(
+                                            "${dashCubit.cartDataModelList[index].title}",
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: theme.textTheme.labelLarge!
+                                                .copyWith(
+                                              height: 1.50.v,
+                                            ),
+                                          ),
+                                        ),
+                                        CustomImageView(
+                                          imagePath:
+                                              AppImageConstants.imgLoveIcon,
+                                          height: 24.adaptSize,
+                                          width: 24.adaptSize,
+                                          color: cartCubit.favoriteList
+                                                  .contains(dashCubit
+                                                      .cartDataModelList[index])
+                                              ? appTheme.pink300
+                                              : appTheme.gray400,
+                                          margin: EdgeInsets.only(
+                                            left: 20.h,
+                                            bottom: 10.v,
+                                          ),
+                                          onTap: () {
+                                            cartCubit.addToFavoriteList(
+                                                dashCubit
+                                                    .cartDataModelList[index]);
+                                          },
+                                        ),
+                                        CustomImageView(
+                                          imagePath:
+                                              AppImageConstants.imgTrashIcon,
+                                          height: 24.adaptSize,
+                                          width: 24.adaptSize,
+                                          color: appTheme.blueGray300,
+                                          margin: EdgeInsets.only(
+                                            left: 8.h,
+                                            bottom: 10.v,
+                                          ),
+                                          onTap: () {
+                                            cartCubit.deleteItemFromCartList(
+                                                dashCubit
+                                                    .cartDataModelList[index],
+                                                dashCubit);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 17.v),
+                                    SizedBox(
+                                      width: 227.h,
+                                      child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(
-                                            width: 150.h,
-                                            child: Text(
-                                              "${dashCubit.cartDataModelList[index].title}",
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: theme.textTheme.labelLarge!
-                                                  .copyWith(
-                                                height: 1.50.v,
+                                          Text(
+                                            "${dashCubit.cartDataModelList[index].price}",
+                                            style: CustomTextStyles
+                                                .labelLargePrimary,
+                                          ),
+                                          Spacer(),
+                                          CustomImageView(
+                                            imagePath:
+                                                AppImageConstants.imgminus,
+                                            height: 20.v,
+                                            width: 33.h,
+                                            color: appTheme.blueGray300,
+                                          ),
+                                          Container(
+                                            height: 20.v,
+                                            width: 36.h,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              color: appTheme.blue50,
+                                              border: Border.all(
+                                                color: appTheme.blue50,
+                                                width: 1.h,
+                                                strokeAlign: strokeAlignCenter,
                                               ),
                                             ),
+                                            child: Text('1',
+                                                style: CustomTextStyles
+                                                    .bodySmallOnPrimary_2),
                                           ),
                                           CustomImageView(
                                             imagePath:
-                                                AppImageConstants.imgLoveIcon,
-                                            height: 24.adaptSize,
-                                            width: 24.adaptSize,
-                                            color: cartCubit.favoriteList
-                                                    .contains(dashCubit
-                                                            .cartDataModelList[
-                                                        index])
-                                                ? appTheme.pink300
-                                                : appTheme.gray400,
-                                            margin: EdgeInsets.only(
-                                              left: 20.h,
-                                              bottom: 10.v,
-                                            ),
-                                            onTap: () {
-                                              cartCubit.addToFavoriteList(
-                                                  dashCubit.cartDataModelList[
-                                                      index]);
-                                              //cartCubit.changeIsFavorite();
-                                            },
-                                          ),
-                                          CustomImageView(
-                                            imagePath:
-                                                AppImageConstants.imgTrashIcon,
-                                            height: 24.adaptSize,
-                                            width: 24.adaptSize,
+                                                AppImageConstants.imgPlus,
+                                            height: 20.v,
+                                            width: 33.h,
                                             color: appTheme.blueGray300,
-                                            margin: EdgeInsets.only(
-                                              left: 8.h,
-                                              bottom: 10.v,
-                                            ),
-                                            onTap: () {
-                                              cartCubit
-                                                  .deleteItemFromFavoriteList(
-                                                      dashCubit.dataList?[
-                                                              index] ??
-                                                          DataModel());
-                                            },
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 17.v),
-                                      SizedBox(
-                                        width: 227.h,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "${dashCubit.cartDataModelList[index].price}",
-                                              style: CustomTextStyles
-                                                  .labelLargePrimary,
-                                            ),
-                                            Spacer(),
-                                            CustomImageView(
-                                              imagePath:
-                                                  AppImageConstants.imgminus,
-                                              height: 20.v,
-                                              width: 33.h,
-                                              color: appTheme.blueGray300,
-                                            ),
-                                            Container(
-                                              height: 20.v,
-                                              width: 36.h,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: appTheme.blue50,
-                                                border: Border.all(
-                                                  color: appTheme.blue50,
-                                                  width: 1.h,
-                                                  strokeAlign:
-                                                      strokeAlignCenter,
-                                                ),
-                                              ),
-                                              child: Text('1',
-                                                  style: CustomTextStyles
-                                                      .bodySmallOnPrimary_2),
-                                            ),
-                                            CustomImageView(
-                                              imagePath:
-                                                  AppImageConstants.imgPlus,
-                                              height: 20.v,
-                                              width: 33.h,
-                                              color: appTheme.blueGray300,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )));
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 16.v),
-                itemCount: dashCubit.cartDataModelList.length),
-          );
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ));
+                      },
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 16.v),
+                      itemCount: dashCubit.cartDataModelList.length),
+                );
+        });
   }
 }

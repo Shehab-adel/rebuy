@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_state.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
@@ -23,25 +24,18 @@ class CartCubit extends Cubit<CartState> {
       favoriteList.add(dataModel);
     }
     emit(AddToFavoriteListState());
-
     print("${favoriteList} *********favorite list");
   }
 
-  bool isFavorite = false;
-  void changeIsFavorite() {
-    isFavorite = !isFavorite;
-    emit(ChangeIsFavoredState());
-  }
+  void deleteItemFromCartList(DataModel dataModel, DashCubit dashCubit) {
+    if (dashCubit.cartDataModelList.isNotEmpty) {
+      dashCubit.cartDataModelList
+          .removeWhere((element) => element == dataModel);
+      emit(DeleteItemFromCartListState());
+    } else {
+      emit(ItemDoesNotExistState());
+    }
 
-  int currentIndex = 0;
-  changeSelectedFavoriteIndex(int index) {
-    currentIndex = index;
-    emit(ChangeSelectedFavoriteIndexState());
-  }
-
-  void deleteItemFromFavoriteList(DataModel dataModel) {
-    favoriteList.remove(dataModel);
-    emit(DeleteItemFromFavoriteListState());
-    print("${favoriteList} *********favorite list");
+    print("${dashCubit.cartDataModelList} *********cart list");
   }
 }
