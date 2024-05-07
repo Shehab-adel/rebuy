@@ -9,3 +9,5 @@ class ItemDoesNotExistState extends CartState {}
 class AddToFavoriteListState extends CartState {}
 
 class RemovefromFavoriteListState extends CartState {}
+
+class IncreaseItemToCartListState extends CartState {}

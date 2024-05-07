@@ -67,7 +67,7 @@ class ProductDetailScreen extends StatelessWidget {
             return CustomElevatedButton(
                 text: "Add To Cart",
                 onPressed: () {
-                  dashCubit.addCartItemToList(
+                  dashCubit.addItemToCart(
                       dashCubit.dataList?[dashCubit.selectedProductIndex] ??
                           DataModel());
                 },

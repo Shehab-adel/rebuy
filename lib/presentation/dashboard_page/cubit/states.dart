@@ -36,4 +36,6 @@ class FailReviewAndRatingAfterUserUpdate extends DashState {}
 
 class DataModelAlreadyExistState extends DashState {}
 
-class SuccessfulAddItemToCartState extends DashState {}
+class SuccessfulIncreaseItemToCartState extends DashState {}
+
+class AddItemToCartState extends DashState {}

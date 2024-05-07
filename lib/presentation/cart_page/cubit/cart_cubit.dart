@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_state.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
@@ -9,6 +8,7 @@ class CartCubit extends Cubit<CartState> {
 
   static CartCubit get(context) => BlocProvider.of(context);
 
+  DashCubit? dashCubit;
   List<DataModel> favoriteList = [];
 
   void addToFavoriteList(DataModel dataModel) {
@@ -27,15 +27,30 @@ class CartCubit extends Cubit<CartState> {
     print("${favoriteList} *********favorite list");
   }
 
-  void deleteItemFromCartList(DataModel dataModel, DashCubit dashCubit) {
-    if (dashCubit.cartDataModelList.isNotEmpty) {
-      dashCubit.cartDataModelList
-          .removeWhere((element) => element == dataModel);
+  void deleteItemFromCartList(DataModel dataModel) {
+    if (dashCubit!.cartDataModelMap.isNotEmpty) {
+      dashCubit!.cartDataModelMap.removeWhere((key, value) => key == dataModel);
       emit(DeleteItemFromCartListState());
     } else {
       emit(ItemDoesNotExistState());
     }
 
-    print("${dashCubit.cartDataModelList} *********cart list");
+    print("${dashCubit!.cartDataModelMap} *********cart list");
+  }
+
+  /*
+  [
+    
+  ]
+  */
+
+  var productMap = {};
+
+  void addProductToCart(DataModel dataModel) {
+    if (productMap.containsKey(dataModel)) {
+      productMap[dataModel] += 1;
+    } else {
+      productMap[dataModel] = 1;
+    }
   }
 }
