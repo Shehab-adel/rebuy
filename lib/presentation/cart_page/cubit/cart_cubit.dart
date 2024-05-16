@@ -40,4 +40,9 @@ class CartCubit extends Cubit<CartState> {
       emit(DecreaseItemFromCartListState());
     }
   }
+
+  void deleteItemFromCartList(DataModel dataModel) {
+    dashCubit.cartDataModelMap.remove(dataModel);
+    emit(DeleteItemFromCartListState());
+  }
 }

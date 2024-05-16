@@ -10,6 +10,6 @@ class AddToFavoriteListState extends CartState {}
 
 class RemovefromFavoriteListState extends CartState {}
 
-class DataModelAlreadyExistState extends CartState {}
+class DeleteItemFromCartListState extends CartState {}
 
 class SuccessfulIncreaseItemToCartState extends CartState {}

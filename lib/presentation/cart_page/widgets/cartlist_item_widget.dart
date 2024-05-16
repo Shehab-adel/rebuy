@@ -97,7 +97,7 @@ class CartlistItemWidget extends StatelessWidget {
                                             bottom: 10.v,
                                           ),
                                           onTap: () {
-                                            cartCubit.decreaseItemFromCartList(
+                                            cartCubit.deleteItemFromCartList(
                                               dashCubit.cartDataModelMap.entries
                                                   .elementAt(index)
                                                   .key,
