@@ -1,4 +1,6 @@
-class DataModel {
+import 'package:equatable/equatable.dart';
+
+class DataModel extends Equatable {
   String? image;
   String? title;
   String? description;
@@ -8,7 +10,7 @@ class DataModel {
   List<dynamic>? sizeList;
   String? docId;
   double? rating;
-  int quantity = 0;
+  int quantity = 1;
   String? review;
 
   DataModel(
@@ -38,4 +40,18 @@ class DataModel {
       quantity: json['quantity'],
     );
   }
+
+  @override
+  List<Object?> get props => [
+        image,
+        title,
+        description,
+        price,
+        oldPrice,
+        disccountPrecentage,
+        sizeList,
+        docId,
+        rating,
+        review,
+      ];
 }

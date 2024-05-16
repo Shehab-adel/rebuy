@@ -5,7 +5,6 @@ import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_state.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
-import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
 
 class CartlistItemWidget extends StatelessWidget {
   const CartlistItemWidget({required this.dashCubit, required this.cartCubit});
@@ -98,7 +97,7 @@ class CartlistItemWidget extends StatelessWidget {
                                             bottom: 10.v,
                                           ),
                                           onTap: () {
-                                            cartCubit.deleteItemFromCartList(
+                                            cartCubit.decreaseItemFromCartList(
                                               dashCubit.cartDataModelMap.entries
                                                   .elementAt(index)
                                                   .key,
@@ -126,6 +125,14 @@ class CartlistItemWidget extends StatelessWidget {
                                             height: 20.v,
                                             width: 33.h,
                                             color: appTheme.blueGray300,
+                                            onTap: () {
+                                              cartCubit
+                                                  .decreaseItemFromCartList(
+                                                      dashCubit.cartDataModelMap
+                                                          .entries
+                                                          .elementAt(index)
+                                                          .key);
+                                            },
                                           ),
                                           Container(
                                             height: 20.v,
@@ -151,7 +158,7 @@ class CartlistItemWidget extends StatelessWidget {
                                             width: 33.h,
                                             color: appTheme.blueGray300,
                                             onTap: () {
-                                              dashCubit.increaseItemToCart(
+                                              cartCubit.increaseItemToCart(
                                                   dashCubit
                                                       .cartDataModelMap.entries
                                                       .elementAt(index)

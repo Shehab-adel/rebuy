@@ -257,20 +257,10 @@ class DashCubit extends Cubit<DashState> {
     });
   }
 
-  Map<DataModel, int> cartDataModelMap = {};
-
-  void increaseItemToCart(DataModel dataModel) {
-    if (cartDataModelMap.containsKey(dataModel)) {
-      dataModel.quantity++;
-      emit(DataModelAlreadyExistState());
-    } else {
-      cartDataModelMap.addAll({dataModel: 1});
-      emit(SuccessfulIncreaseItemToCartState());
-    }
-  }
+  Map<DataModel, dynamic> cartDataModelMap = {};
 
   addItemToCart(DataModel dataModel) {
-    if (cartDataModelMap.containsKey(dataModel)) {
+    if (cartDataModelMap.keys.contains(dataModel)) {
       return;
     } else {
       cartDataModelMap.addAll({dataModel: 1});

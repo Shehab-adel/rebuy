@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 ProfileCubit()..getFirebaseAuthCurrentUserName()),
         BlocProvider(create: (context) => AddCardCubit()),
-        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(
+            create: (context) => CartCubit(dashCubit: DashCubit.get(context))),
       ],
       child: MaterialApp(
         theme: theme,
