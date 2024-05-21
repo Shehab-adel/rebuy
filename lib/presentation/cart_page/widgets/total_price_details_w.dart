@@ -4,7 +4,6 @@ import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_state.dart';
 import 'package:rebuy/presentation/cart_page/widgets/shopping_price_row.dart';
-import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 
 class TotalPriceDetailsWidget extends StatelessWidget {
   const TotalPriceDetailsWidget({Key? key, required this.cartCubit})
@@ -24,7 +23,7 @@ class TotalPriceDetailsWidget extends StatelessWidget {
                 ShoppingPriceRow(
                     shippingLabel:
                         "${AppStrings.items} ${cartCubit.dashCubit.cartDataModelMap.length}",
-                    priceLabel: "${DashCubit.get(context).itemsPrice}"),
+                    priceLabel: "${cartCubit.itemsPrice}"),
                 SizedBox(height: 16.v),
                 ShoppingPriceRow(
                     shippingLabel: AppStrings.shipping, priceLabel: "40.00"),

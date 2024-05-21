@@ -46,14 +46,12 @@ class CartCubit extends Cubit<CartState> {
     emit(DeleteItemFromCartListState());
   }
 
-  // double itemsPrice = 0; //50
-  // void sumOfItemsPrice() {
-  //   dashCubit.cartDataModelMap.forEach((key, value) {
-  //     print("${key.price} *********price");
+  double itemsPrice = 0;
 
-  //     itemsPrice += key.price ?? 0; //50+50
-  //     print("${itemsPrice} *********items price");
-  //   });
-  //   emit(SumOfItemsPriceState());
-  // }
+  void sumOfItemsPrice(double price) {
+    print('${price} *********price');
+    itemsPrice += price;
+    print('${itemsPrice} *********items price');
+    emit(SumOfItemsPriceState());
+  }
 }

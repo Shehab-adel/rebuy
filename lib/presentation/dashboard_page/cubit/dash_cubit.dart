@@ -267,13 +267,4 @@ class DashCubit extends Cubit<DashState> {
       emit(AddItemToCartState());
     }
   }
-
-  double itemsPrice = 0;
-
-  void sumOfItemsPrice(double price) {
-    print('${price} *********price');
-    itemsPrice += price;
-    print('${itemsPrice} *********items price');
-    emit(SumOfItemsPriceState());
-  }
 }

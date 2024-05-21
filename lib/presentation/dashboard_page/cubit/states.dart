@@ -37,5 +37,3 @@ class FailReviewAndRatingAfterUserUpdate extends DashState {}
 class AddItemToCartState extends DashState {}
 
 class ItemAlreadyExistInCartState extends DashState {}
-
-class SumOfItemsPriceState extends DashState {}

@@ -77,7 +77,7 @@ class ProductDetailScreen extends StatelessWidget {
                   dashCubit.addItemToCart(
                       dashCubit.dataList?[dashCubit.selectedProductIndex] ??
                           DataModel());
-                  dashCubit.sumOfItemsPrice(dashCubit
+                  CartCubit.get(context).sumOfItemsPrice(dashCubit
                           .dataList?[dashCubit.selectedProductIndex].price ??
                       0);
                 },
