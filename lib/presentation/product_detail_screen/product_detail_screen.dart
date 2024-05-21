@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/core/utils/functions.dart';
+import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
@@ -62,7 +64,12 @@ class ProductDetailScreen extends StatelessWidget {
             SizedBox(height: 30.v)
           ]),
         ),
-        bottomNavigationBar: BlocBuilder<DashCubit, DashState>(
+        bottomNavigationBar: BlocConsumer<DashCubit, DashState>(
+          listener: (context, state) {
+            if (state is AddItemToCartState) {
+              snackBar(AppStrings.ItemAddedToCart);
+            }
+          },
           builder: (context, state) {
             return CustomElevatedButton(
                 text: "Add To Cart",
@@ -70,6 +77,9 @@ class ProductDetailScreen extends StatelessWidget {
                   dashCubit.addItemToCart(
                       dashCubit.dataList?[dashCubit.selectedProductIndex] ??
                           DataModel());
+                  dashCubit.sumOfItemsPrice(dashCubit
+                          .dataList?[dashCubit.selectedProductIndex].price ??
+                      0);
                 },
                 margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
           },

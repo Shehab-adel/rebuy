@@ -78,6 +78,6 @@ class AppStrings {
   static const String displayName = "display_name";
   static const String users = "Users";
   static const String userCartList = "userCartList";
-  // static const String notification="Notification";
+  static const String ItemAddedToCart = "Item added to cart";
   // static const String notification="Notification";
 }

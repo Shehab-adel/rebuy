@@ -13,3 +13,5 @@ class RemovefromFavoriteListState extends CartState {}
 class DeleteItemFromCartListState extends CartState {}
 
 class SuccessfulIncreaseItemToCartState extends CartState {}
+
+class SumOfItemsPriceState extends CartState {}
