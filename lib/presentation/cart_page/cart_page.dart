@@ -20,6 +20,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
+    CartCubit.get(context).changeCount();
     super.initState();
   }
 

@@ -47,11 +47,19 @@ class CartCubit extends Cubit<CartState> {
   }
 
   double itemsPrice = 0;
-
-  void sumOfItemsPrice(double price) {
-    print('${price} *********price');
-    itemsPrice += price;
-    print('${itemsPrice} *********items price');
+  int count = 0;
+  void sumOfItemsPrice(DataModel dataModel) {
+    if (count == 1) {
+      return;
+    } else {
+      itemsPrice += dataModel.price ?? 0 * dataModel.quantity;
+      count = 1;
+    }
     emit(SumOfItemsPriceState());
+  }
+
+  changeCount() {
+    count = 0;
+    emit(ChangeCountState());
   }
 }
