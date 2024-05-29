@@ -132,6 +132,12 @@ class CartlistItemWidget extends StatelessWidget {
                                                           .entries
                                                           .elementAt(index)
                                                           .key);
+                                              // cartCubit
+                                              //     .sumOfItemsPriceByDecreaseIcon(
+                                              //         dashCubit.cartDataModelMap
+                                              //             .entries
+                                              //             .elementAt(index)
+                                              //             .key);
                                             },
                                           ),
                                           Container(
@@ -163,6 +169,12 @@ class CartlistItemWidget extends StatelessWidget {
                                                       .cartDataModelMap.entries
                                                       .elementAt(index)
                                                       .key);
+                                              cartCubit
+                                                  .sumOfItemsPriceByPlusIcon(
+                                                      dashCubit.cartDataModelMap
+                                                          .entries
+                                                          .elementAt(index)
+                                                          .key);
                                             },
                                           ),
                                         ],

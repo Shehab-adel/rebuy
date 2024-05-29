@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/account_page/account_page.dart';
 import 'package:rebuy/presentation/cart_page/cart_page.dart';
+import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/presentation/dashboard_page/dashboard_page.dart';
 import 'package:rebuy/presentation/explore_page/explore_page.dart';
@@ -259,11 +260,12 @@ class DashCubit extends Cubit<DashState> {
 
   Map<DataModel, dynamic> cartDataModelMap = {};
 
-  addItemToCart(DataModel dataModel) {
+  addItemToCart(DataModel dataModel, CartCubit cartCubit) {
     if (cartDataModelMap.keys.contains(dataModel)) {
       return;
     } else {
-      cartDataModelMap.addAll({dataModel: 1});
+      cartDataModelMap.addAll({dataModel: dataModel.quantity});
+      cartCubit.itemsPrice += dataModel.price ?? 0;
       emit(AddItemToCartState());
     }
   }

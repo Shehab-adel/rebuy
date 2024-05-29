@@ -15,8 +15,9 @@ import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({required this.dashCubit});
+  const ProductDetailScreen({required this.dashCubit, required this.cartCubit});
   final DashCubit dashCubit;
+  final CartCubit cartCubit;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,10 +77,8 @@ class ProductDetailScreen extends StatelessWidget {
                 onPressed: () {
                   dashCubit.addItemToCart(
                       dashCubit.dataList?[dashCubit.selectedProductIndex] ??
-                          DataModel());
-                  CartCubit.get(context).sumOfItemsPrice(
-                      dashCubit.dataList?[dashCubit.selectedProductIndex] ??
-                          DataModel());
+                          DataModel(),
+                      cartCubit);
                 },
                 margin: EdgeInsets.only(left: 16.h, right: 16.h, bottom: 50.v));
           },

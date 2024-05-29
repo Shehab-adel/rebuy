@@ -13,18 +13,19 @@ class DataModel extends Equatable {
   int quantity = 1;
   String? review;
 
-  DataModel(
-      {this.image,
-      this.description,
-      this.title,
-      this.oldPrice,
-      this.price,
-      this.disccountPrecentage,
-      this.sizeList,
-      this.docId,
-      this.rating,
-      this.review,
-      this.quantity = 1});
+  DataModel({
+    this.image,
+    this.description,
+    this.title,
+    this.oldPrice,
+    this.price,
+    this.disccountPrecentage,
+    this.sizeList,
+    this.docId,
+    this.rating,
+    this.review,
+    this.quantity = 1,
+  });
 
   DataModel.fromJson(Map<String, dynamic> json) {
     DataModel(

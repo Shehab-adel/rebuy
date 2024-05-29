@@ -10,19 +10,8 @@ import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 import '../cart_page/widgets/cartlist_item_widget.dart';
 
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  @override
-  void initState() {
-    CartCubit.get(context).changeCount();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
