@@ -36,8 +36,7 @@ class CartCubit extends Cubit<CartState> {
   void decreaseItemFromCartList(DataModel dataModel) {
     if (dataModel.quantity > 1) {
       dataModel.quantity--;
-      itemsPrice += dataModel.price ?? 0.0 * dataModel.quantity;
-      print("${dataModel.quantity} *********quantity");
+      itemsPrice -= dataModel.price ?? 0.0 * dataModel.quantity;
       emit(DecreaseItemFromCartListState());
     }
   }
@@ -52,9 +51,5 @@ class CartCubit extends Cubit<CartState> {
   void sumOfItemsPriceByPlusIcon(DataModel dataModel) {
     itemsPrice += dataModel.price ?? 0.0 * dataModel.quantity;
     emit(SumOfItemsPriceByPlusIconState());
-  }
-
-  sumOfItemsPriceByDecreaseIcon(DataModel dataModel) {
-    emit(SumOfItemsPriceByDecreaseIconState());
   }
 }
