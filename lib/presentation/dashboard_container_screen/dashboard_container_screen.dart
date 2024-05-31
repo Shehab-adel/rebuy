@@ -3,14 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
+import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
 import 'package:rebuy/widgets/app_bar/appbar_subtitle_one.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 
-// ignore_for_file: must_be_immutable
-class DashboardContainerScreen extends StatelessWidget {
+class DashboardContainerScreen extends StatefulWidget {
   DashboardContainerScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardContainerScreen> createState() =>
+      _DashboardContainerScreenState();
+}
+
+class _DashboardContainerScreenState extends State<DashboardContainerScreen> {
+  @override
+  void initState() {
+    ProfileCubit.get(context).getFirebaseAuthCurrentUserName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

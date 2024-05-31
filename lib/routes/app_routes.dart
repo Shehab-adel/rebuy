@@ -31,6 +31,7 @@ import 'package:rebuy/presentation/review_product_screen/review_product_screen.d
 import 'package:rebuy/presentation/search_result_no_data_found_screen/search_result_no_data_found_screen.dart';
 import 'package:rebuy/presentation/search_result_screen/search_result_screen.dart';
 import 'package:rebuy/presentation/search_screen/search_screen.dart';
+import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_cubit.dart';
 import 'package:rebuy/presentation/ship_to_screen/ship_to_screen.dart';
 import 'package:rebuy/presentation/show_category_products/show_category_products_screen.dart';
 import 'package:rebuy/presentation/sort_by_screen/sort_by_screen.dart';
@@ -153,7 +154,9 @@ class AppRoutes {
     listCategoryScreen: (context) => ListCategoryScreen(),
     sortByScreen: (context) => SortByScreen(),
     filterScreen: (context) => FilterScreen(),
-    shipToScreen: (context) => ShipToScreen(),
+    shipToScreen: (context) => ShipToScreen(
+          shippingToCubit: ShippingToCubit.get(context),
+        ),
     paymentMethodScreen: (context) => PaymentMethodScreen(),
     chooseCreditOrDebitCardScreen: (context) => ChooseCreditOrDebitCardScreen(),
     successScreen: (context) => SuccessScreen(),

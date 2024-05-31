@@ -11,6 +11,7 @@ import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/explore_page/cubit/explore_cubit.dart';
 import 'package:rebuy/presentation/login_screen/cubit/login_cubit.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
+import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_cubit.dart';
 import 'package:rebuy/routes/app_routes.dart';
 import 'core/constants/app_string.dart';
 import 'presentation/register_screen/cubit/register_cubit.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AddCardCubit()),
         BlocProvider(
             create: (context) => CartCubit(dashCubit: DashCubit.get(context))),
+        BlocProvider(create: (context) => ShippingToCubit()),
       ],
       child: MaterialApp(
         theme: theme,

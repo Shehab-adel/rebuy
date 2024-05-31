@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
+import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_cubit.dart';
+import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_state.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
 import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
@@ -8,7 +12,9 @@ import 'package:rebuy/widgets/custom_elevated_button.dart';
 import '../ship_to_screen/widgets/shiptolist_item_widget.dart';
 
 class ShipToScreen extends StatelessWidget {
-  const ShipToScreen({Key? key}) : super(key: key);
+  const ShipToScreen({Key? key, required this.shippingToCubit})
+      : super(key: key);
+  final ShippingToCubit shippingToCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class ShipToScreen extends StatelessWidget {
                   Navigator.pop(context);
                 }),
             title: AppbarSubtitle(
-                text: "Ship To", margin: EdgeInsets.only(left: 12.h)),
+                text: AppStrings.ShipTo, margin: EdgeInsets.only(left: 12.h)),
             actions: [
               AppbarTrailingImage(
                   imagePath: AppImageConstants.imgPlusIcon,
@@ -36,16 +42,22 @@ class ShipToScreen extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.h),
-                      child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return SizedBox(height: 22.v);
-                          },
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return ShiptolistItemWidget();
-                          })))
+                      child: BlocBuilder<ShippingToCubit, ShippingToState>(
+                        builder: (context, state) {
+                          return ListView.separated(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(height: 22.v);
+                              },
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return ShiptolistItemWidget(
+                                  shippingToCubit: shippingToCubit,
+                                );
+                              });
+                        },
+                      )))
             ])),
         bottomNavigationBar: CustomElevatedButton(
             text: "Next",
@@ -54,6 +66,4 @@ class ShipToScreen extends StatelessWidget {
               Navigator.pushNamed(context, AppRoutes.paymentMethodScreen);
             }));
   }
-
-  /// Section Widget
 }

@@ -79,5 +79,12 @@ class AppStrings {
   static const String users = "Users";
   static const String userCartList = "userCartList";
   static const String ItemAddedToCart = "Item added to cart";
-  // static const String notification="Notification";
+  static const String ShipTo = "Ship To";
+  static const String Edit = "Edit";
+  static const String delete = "Delete";
+  static const String editUserInformation = 'Edit User Information';
+  static const String username = "Username";
+
+  static const String cancel = "Cancel";
+  static const String save = "Save";
 }
