@@ -46,7 +46,7 @@ class ShippingToCubit extends Cubit<ShippingToState> {
             TextButton(
               child: Text(AppStrings.save),
               onPressed: () {
-                // Here you can add the logic to save the edited information
+                emit(ChangeAdressPhoneSate());
                 Navigator.of(context).pop();
               },
             ),

@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
               ..fetchFlashSaleCollection()
               ..fetchMegaSaleCollection()),
         BlocProvider(create: (context) => ExploreCubit()),
-        BlocProvider(
-            create: (context) =>
-                ProfileCubit()..getFirebaseAuthCurrentUserName()),
+        BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => AddCardCubit()),
         BlocProvider(
             create: (context) => CartCubit(dashCubit: DashCubit.get(context))),

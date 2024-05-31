@@ -9,11 +9,10 @@ import 'package:rebuy/widgets/app_bar/appbar_subtitle.dart';
 import 'package:rebuy/widgets/app_bar/custom_app_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-
+  const ProfileScreen({required this.profileCubit});
+  final ProfileCubit profileCubit;
   @override
   Widget build(BuildContext context) {
-    ProfileCubit profileCubit = ProfileCubit.get(context);
     return Scaffold(
         appBar: CustomAppBar(
             leadingWidth: 40.h,

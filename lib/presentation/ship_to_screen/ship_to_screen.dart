@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
-import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_cubit.dart';
 import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_state.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
@@ -42,22 +41,18 @@ class ShipToScreen extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.h),
-                      child: BlocBuilder<ShippingToCubit, ShippingToState>(
-                        builder: (context, state) {
-                          return ListView.separated(
-                              physics: BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              separatorBuilder: (context, index) {
-                                return SizedBox(height: 22.v);
-                              },
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                return ShiptolistItemWidget(
-                                  shippingToCubit: shippingToCubit,
-                                );
-                              });
-                        },
-                      )))
+                      child: ListView.separated(
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(height: 22.v);
+                          },
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return ShiptolistItemWidget(
+                              shippingToCubit: shippingToCubit,
+                            );
+                          })))
             ])),
         bottomNavigationBar: CustomElevatedButton(
             text: "Next",

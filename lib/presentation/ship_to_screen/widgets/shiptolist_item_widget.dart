@@ -20,7 +20,8 @@ class ShiptolistItemWidget extends StatelessWidget {
         decoration: AppDecoration.outlinePrimary.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder5,
         ),
-        child: BlocBuilder<ShippingToCubit, ShippingToState>(
+        child: BlocConsumer<ShippingToCubit, ShippingToState>(
+          listener: (context, state) {},
           builder: (context, state) {
             return Column(
               mainAxisSize: MainAxisSize.min,
