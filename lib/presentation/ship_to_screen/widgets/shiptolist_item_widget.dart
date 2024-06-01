@@ -7,9 +7,11 @@ import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_cubit.dart';
 import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_state.dart';
 
 class ShiptolistItemWidget extends StatelessWidget {
-  const ShiptolistItemWidget({required this.shippingToCubit});
+  const ShiptolistItemWidget(
+      {required this.shippingToCubit, required this.index});
 
   final ShippingToCubit shippingToCubit;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,9 +39,7 @@ class ShiptolistItemWidget extends StatelessWidget {
                   width: 264.h,
                   margin: EdgeInsets.only(right: 30.h),
                   child: Text(
-                    shippingToCubit.addressController.text == ''
-                        ? 'address'
-                        : shippingToCubit.addressController.text,
+                    shippingToCubit.shippingToItemList[index].address,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall!.copyWith(
@@ -49,9 +49,7 @@ class ShiptolistItemWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 20.v),
                 Text(
-                  shippingToCubit.addressController.text == ''
-                      ? 'Phone'
-                      : shippingToCubit.phoneController.text,
+                  shippingToCubit.shippingToItemList[index].phone,
                   style: theme.textTheme.bodySmall,
                 ),
                 SizedBox(height: 19.v),

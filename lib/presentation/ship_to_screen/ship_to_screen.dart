@@ -30,6 +30,9 @@ class ShipToScreen extends StatelessWidget {
                 text: AppStrings.ShipTo, margin: EdgeInsets.only(left: 12.h)),
             actions: [
               AppbarTrailingImage(
+                  onTap: () {
+                    shippingToCubit.showEditDialog(context);
+                  },
                   imagePath: AppImageConstants.imgPlusIcon,
                   margin: EdgeInsets.fromLTRB(16.h, 13.v, 16.h, 14.v))
             ]),
@@ -41,18 +44,24 @@ class ShipToScreen extends StatelessWidget {
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.h),
-                      child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return SizedBox(height: 22.v);
-                          },
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return ShiptolistItemWidget(
-                              shippingToCubit: shippingToCubit,
-                            );
-                          })))
+                      child: BlocBuilder<ShippingToCubit, ShippingToState>(
+                        builder: (context, state) {
+                          return ListView.separated(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(height: 22.v);
+                              },
+                              itemCount:
+                                  shippingToCubit.shippingToItemList.length,
+                              itemBuilder: (context, index) {
+                                return ShiptolistItemWidget(
+                                  shippingToCubit: shippingToCubit,
+                                  index: index,
+                                );
+                              });
+                        },
+                      )))
             ])),
         bottomNavigationBar: CustomElevatedButton(
             text: "Next",

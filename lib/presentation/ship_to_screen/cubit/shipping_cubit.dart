@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/core/utils/shipping_to_item.dart';
 import 'package:rebuy/presentation/ship_to_screen/cubit/shipping_state.dart';
 
 class ShippingToCubit extends Cubit<ShippingToState> {
@@ -46,7 +47,7 @@ class ShippingToCubit extends Cubit<ShippingToState> {
             TextButton(
               child: Text(AppStrings.save),
               onPressed: () {
-                emit(ChangeAdressPhoneSate());
+                addShippingToItemToList();
                 Navigator.of(context).pop();
               },
             ),
@@ -54,5 +55,14 @@ class ShippingToCubit extends Cubit<ShippingToState> {
         );
       },
     );
+  }
+
+  List<ShippingToItem> shippingToItemList = [];
+
+  void addShippingToItemToList() {
+    ShippingToItem shippingToItem = ShippingToItem(
+        address: addressController.text, phone: phoneController.text);
+    shippingToItemList.add(shippingToItem);
+    emit(AddShippingToItemToListState());
   }
 }
