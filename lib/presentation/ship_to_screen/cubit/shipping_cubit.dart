@@ -11,7 +11,8 @@ class ShippingToCubit extends Cubit<ShippingToState> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  void showEditDialog(BuildContext context) {
+  Function? f;
+  void showEditDialog(BuildContext context, {int? index}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -47,7 +48,9 @@ class ShippingToCubit extends Cubit<ShippingToState> {
             TextButton(
               child: Text(AppStrings.save),
               onPressed: () {
-                addShippingToItemToList();
+                isAddFlage == true
+                    ? addShippingToItemToList()
+                    : editShippingToItemIntoList(index ?? 0);
                 Navigator.of(context).pop();
               },
             ),
@@ -58,11 +61,23 @@ class ShippingToCubit extends Cubit<ShippingToState> {
   }
 
   List<ShippingToItem> shippingToItemList = [];
-
-  void addShippingToItemToList() {
+  bool isAddFlage = true;
+  addShippingToItemToList() {
     ShippingToItem shippingToItem = ShippingToItem(
         address: addressController.text, phone: phoneController.text);
     shippingToItemList.add(shippingToItem);
     emit(AddShippingToItemToListState());
+  }
+
+  editShippingToItemIntoList(int index) {
+    shippingToItemList[index].address = addressController.text;
+    shippingToItemList[index].phone = phoneController.text;
+    emit(ChangeAdressPhoneSate());
+  }
+
+  changeIsAdd(bool flage) {
+    isAddFlage = flage;
+    emit(ChangeIsAddState());
+    print('${isAddFlage}--------- isflage');
   }
 }

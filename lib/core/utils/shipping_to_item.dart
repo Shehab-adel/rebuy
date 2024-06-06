@@ -1,6 +1,6 @@
 class ShippingToItem {
-  final String address;
-  final String phone;
+  String address;
+  String phone;
 
   ShippingToItem({required this.address, required this.phone});
 }

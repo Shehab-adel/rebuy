@@ -22,8 +22,7 @@ class ShiptolistItemWidget extends StatelessWidget {
         decoration: AppDecoration.outlinePrimary.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder5,
         ),
-        child: BlocConsumer<ShippingToCubit, ShippingToState>(
-          listener: (context, state) {},
+        child: BlocBuilder<ShippingToCubit, ShippingToState>(
           builder: (context, state) {
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -57,7 +56,8 @@ class ShiptolistItemWidget extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        shippingToCubit.showEditDialog(context);
+                        shippingToCubit.changeIsAdd(false);
+                        shippingToCubit.showEditDialog(context, index: index);
                       },
                       child: Text(
                         AppStrings.Edit,

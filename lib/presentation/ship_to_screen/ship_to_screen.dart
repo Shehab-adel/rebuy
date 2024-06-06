@@ -31,6 +31,7 @@ class ShipToScreen extends StatelessWidget {
             actions: [
               AppbarTrailingImage(
                   onTap: () {
+                    shippingToCubit.changeIsAdd(true);
                     shippingToCubit.showEditDialog(context);
                   },
                   imagePath: AppImageConstants.imgPlusIcon,
