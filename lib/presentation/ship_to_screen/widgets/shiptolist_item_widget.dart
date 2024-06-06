@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,11 +65,16 @@ class ShiptolistItemWidget extends StatelessWidget {
                         style: CustomTextStyles.titleSmallPrimary,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 32.h),
-                      child: Text(
-                        AppStrings.delete,
-                        style: CustomTextStyles.titleSmallPink300,
+                    GestureDetector(
+                      onTap: () {
+                        shippingToCubit.deleteItemFromShippingToList(index);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 32.h),
+                        child: Text(
+                          AppStrings.delete,
+                          style: CustomTextStyles.titleSmallPink300,
+                        ),
                       ),
                     ),
                   ],

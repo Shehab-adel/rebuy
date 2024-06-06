@@ -48,7 +48,7 @@ class ShippingToCubit extends Cubit<ShippingToState> {
             TextButton(
               child: Text(AppStrings.save),
               onPressed: () {
-                isAddFlage == true
+                isAdd == true
                     ? addShippingToItemToList()
                     : editShippingToItemIntoList(index ?? 0);
                 Navigator.of(context).pop();
@@ -61,23 +61,27 @@ class ShippingToCubit extends Cubit<ShippingToState> {
   }
 
   List<ShippingToItem> shippingToItemList = [];
-  bool isAddFlage = true;
-  addShippingToItemToList() {
+  bool isAdd = true;
+  void addShippingToItemToList() {
     ShippingToItem shippingToItem = ShippingToItem(
         address: addressController.text, phone: phoneController.text);
     shippingToItemList.add(shippingToItem);
     emit(AddShippingToItemToListState());
   }
 
-  editShippingToItemIntoList(int index) {
+  void editShippingToItemIntoList(int index) {
     shippingToItemList[index].address = addressController.text;
     shippingToItemList[index].phone = phoneController.text;
     emit(ChangeAdressPhoneSate());
   }
 
-  changeIsAdd(bool flage) {
-    isAddFlage = flage;
+  void changeIsAdd(bool isAdd) {
+    this.isAdd = isAdd;
     emit(ChangeIsAddState());
-    print('${isAddFlage}--------- isflage');
+  }
+
+  void deleteItemFromShippingToList(index) {
+    shippingToItemList.removeAt(index);
+    emit(DeleteItemFromShippingToListState());
   }
 }
