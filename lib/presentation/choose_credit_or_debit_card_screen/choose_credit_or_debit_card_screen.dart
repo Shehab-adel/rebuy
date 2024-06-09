@@ -46,9 +46,21 @@ class ChooseCreditOrDebitCardScreen extends StatelessWidget {
                       return SizedBox(height: 20.v);
                     },
                     itemBuilder: (context, index) {
-                      return CreditcardItemWidget(
-                        chooseCreditCubit: chooseCreditCubit,
-                        index: index,
+                      return Column(
+                        children: [
+                          CreditcardItemWidget(
+                            chooseCreditCubit: chooseCreditCubit,
+                            index: index,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                chooseCreditCubit.deleteCardItemFromList(index);
+                              },
+                              icon: Icon(
+                                Icons.delete,
+                                color: appTheme.blueGray300,
+                              ))
+                        ],
                       );
                     });
               },

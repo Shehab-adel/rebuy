@@ -20,7 +20,7 @@ class ChooseCreditCubit extends Cubit<ChooseCreditState> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: appTheme.blue50,
+          backgroundColor: appTheme.blueA200,
           title: Text(AppStrings.editUserInformation),
           content: SingleChildScrollView(
             child: ListBody(
@@ -48,6 +48,11 @@ class ChooseCreditCubit extends Cubit<ChooseCreditState> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue)),
             ),
             TextButton(
               child: Text(AppStrings.save),
@@ -55,6 +60,11 @@ class ChooseCreditCubit extends Cubit<ChooseCreditState> {
                 addCreditCardItemToList();
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue)),
             ),
           ],
         );
@@ -67,6 +77,10 @@ class ChooseCreditCubit extends Cubit<ChooseCreditState> {
         cardNameController.text, cardSaveController.text);
     creditcardItemList.add(cardITem);
     emit(AddCreditCardItemToListState());
-    print('${cardITem} ------ ${creditcardItemList.length}');
+  }
+
+  void deleteCardItemFromList(index) {
+    creditcardItemList.removeAt(index);
+    emit(DeleteCardItemFromListState());
   }
 }

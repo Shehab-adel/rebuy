@@ -22,10 +22,6 @@ class ShippingToCubit extends Cubit<ShippingToState> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                // TextFormField(
-                //   controller: _usernameController,
-                //   decoration: InputDecoration(hintText: AppStrings.username),
-                // ),
                 TextFormField(
                   controller: addressController,
                   decoration: InputDecoration(hintText: AppStrings.address),
@@ -44,6 +40,11 @@ class ShippingToCubit extends Cubit<ShippingToState> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue)),
             ),
             TextButton(
               child: Text(AppStrings.save),
@@ -53,6 +54,11 @@ class ShippingToCubit extends Cubit<ShippingToState> {
                     : editShippingToItemIntoList(index ?? 0);
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue)),
             ),
           ],
         );
