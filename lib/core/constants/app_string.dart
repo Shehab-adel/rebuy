@@ -83,8 +83,9 @@ class AppStrings {
   static const String Edit = "Edit";
   static const String delete = "Delete";
   static const String editUserInformation = 'Edit User Information';
-  static const String username = "Username";
-
+  static const String cardNum = "Card Number";
+  static const String cardName = "Card Name";
+  static const String cardSave = "Card Save";
   static const String cancel = "Cancel";
   static const String save = "Save";
 }

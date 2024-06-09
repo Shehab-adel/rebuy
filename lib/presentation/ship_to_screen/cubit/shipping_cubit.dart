@@ -11,13 +11,13 @@ class ShippingToCubit extends Cubit<ShippingToState> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  Function? f;
+
   void showEditDialog(BuildContext context, {int? index}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: appTheme.pink300,
+          backgroundColor: appTheme.blue50,
           title: Text(AppStrings.editUserInformation),
           content: SingleChildScrollView(
             child: ListBody(

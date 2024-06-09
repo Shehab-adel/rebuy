@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/presentation/choose_credit_or_debit_card_screen/cubit/choosecreditcubit.dart';
 
-// ignore: must_be_immutable
 class CreditcardItemWidget extends StatelessWidget {
-  const CreditcardItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+  const CreditcardItemWidget(
+      {required this.chooseCreditCubit, required this.index});
 
+  final ChooseCreditCubit chooseCreditCubit;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +32,7 @@ class CreditcardItemWidget extends StatelessWidget {
           ),
           SizedBox(height: 30.v),
           Text(
-            "6326    9124    8124    9875",
+            "${chooseCreditCubit.creditcardItemList[index].cardNum}",
             style: theme.textTheme.headlineSmall,
           ),
           SizedBox(height: 17.v),
@@ -66,7 +66,7 @@ class CreditcardItemWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 2.v),
                 child: Text(
-                  "Dominic Ovo",
+                  "${chooseCreditCubit.creditcardItemList[index].cardName}",
                   style: CustomTextStyles.labelMediumOnPrimaryContainer,
                 ),
               ),
@@ -76,7 +76,7 @@ class CreditcardItemWidget extends StatelessWidget {
                   top: 2.v,
                 ),
                 child: Text(
-                  "06/24",
+                  "${chooseCreditCubit.creditcardItemList[index].cardSave}",
                   style: CustomTextStyles.labelMediumOnPrimaryContainer,
                 ),
               ),

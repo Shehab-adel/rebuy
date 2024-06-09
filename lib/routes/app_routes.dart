@@ -8,6 +8,7 @@ import 'package:rebuy/presentation/cart_page/cart_page.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/presentation/change_password_screen/change_password_screen.dart';
 import 'package:rebuy/presentation/choose_credit_or_debit_card_screen/choose_credit_or_debit_card_screen.dart';
+import 'package:rebuy/presentation/choose_credit_or_debit_card_screen/cubit/choosecreditcubit.dart';
 import 'package:rebuy/presentation/credit_card_and_debit_screen/credit_card_and_debit_screen.dart';
 import 'package:rebuy/presentation/dashboard_container_screen/dashboard_container_screen.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
@@ -159,7 +160,8 @@ class AppRoutes {
           shippingToCubit: ShippingToCubit.get(context),
         ),
     paymentMethodScreen: (context) => PaymentMethodScreen(),
-    chooseCreditOrDebitCardScreen: (context) => ChooseCreditOrDebitCardScreen(),
+    chooseCreditOrDebitCardScreen: (context) =>
+        ChooseCreditOrDebitCardScreen(ChooseCreditCubit.get(context)),
     successScreen: (context) => SuccessScreen(),
     profileScreen: (context) => ProfileScreen(
           profileCubit: ProfileCubit.get(context),
