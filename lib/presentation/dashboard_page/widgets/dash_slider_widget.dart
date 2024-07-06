@@ -30,13 +30,13 @@ class DashSliderWidget extends StatelessWidget {
               itemBuilder: (context, index, realIndex) {
                 return SizedBox(
                   height: 206.v,
-                  width: mediaQueryData.size.width,
+                  width: double.infinity,
                   child: Stack(
                     children: [
                       CustomImageView(
                         imagePath: dashCubit.dataList?[index].image,
                         height: 206.v,
-                        width: mediaQueryData.size.width,
+                        fit: BoxFit.fill,
                         radius: BorderRadius.circular(
                           5.h,
                         ),

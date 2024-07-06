@@ -28,7 +28,6 @@ import 'package:rebuy/presentation/payment_method_screen/payment_method_screen.d
 import 'package:rebuy/presentation/product_detail_screen/product_detail_screen.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/presentation/profile_screen/profile_screen.dart';
-import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
 import 'package:rebuy/presentation/register_screen/register_screen.dart';
 import 'package:rebuy/presentation/review_product_screen/review_product_screen.dart';
 import 'package:rebuy/presentation/search_result_no_data_found_screen/search_result_no_data_found_screen.dart';
