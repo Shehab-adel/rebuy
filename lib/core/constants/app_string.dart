@@ -88,4 +88,12 @@ class AppStrings {
   static const String cardSave = "Card Save";
   static const String cancel = "Cancel";
   static const String save = "Save";
+  static const String admin = 'admin';
+  static const String adminLogin = 'adminLogin';
+  static const String beniseuf = 'Beniseuf';
+  static const String cairo = 'Cairo';
+  static const String branch = 'Branch';
+  static const String dataModel = 'data model';
+  static const String isLoggin = 'isLoggin';
+  static const String logout = 'Logout';
 }

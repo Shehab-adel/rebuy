@@ -13,3 +13,5 @@ class SuccessfulFireStoreRegisterProcess extends RegisterState {}
 class LoadingFireStoreRegisterProcess extends RegisterState {}
 
 class FailFireStoreRegisterProcess extends RegisterState {}
+
+class ChangeBrancheInDropdown extends RegisterState {}

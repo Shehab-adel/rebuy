@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rebuy/core/constants/app_string.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
+import 'package:rebuy/routes/app_routes.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -115,5 +116,20 @@ class RegisterCubit extends Cubit<RegisterState> {
       return 'Username must be 3-15 characters and can only include alphanumeric characters and underscores';
     }
     return null;
+  }
+
+  String dropdownValue = AppStrings.beniseuf;
+  List<String> branchesList = [AppStrings.beniseuf, AppStrings.cairo];
+
+  changeBrancheInDropdown(String? value) {
+    dropdownValue = value ?? AppStrings.beniseuf;
+    CacheHelper.sharedPreferences.setString(AppStrings.branch, dropdownValue);
+    emit(ChangeBrancheInDropdown());
+  }
+
+  String isLogin() {
+    return auth.currentUser == null
+        ? AppRoutes.registerScreen
+        : AppRoutes.dashboardContainerScreen;
   }
 }

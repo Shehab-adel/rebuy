@@ -76,6 +76,24 @@ class RegisterScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: 20.v),
+                        DropdownButton(
+                          value: registerCubit.dropdownValue,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: appTheme.blueGray300,
+                          ),
+                          items: registerCubit.branchesList.map((String item) {
+                            return DropdownMenuItem(
+                              value: item,
+                              child:
+                                  Text(item, style: theme.textTheme.bodySmall),
+                            );
+                          }).toList(),
+                          onChanged: (String? value) {
+                            registerCubit.changeBrancheInDropdown(value);
+                          },
+                        ),
+                        SizedBox(height: 20.v),
                         state is LoadingFireAuthRegisterProcess ||
                                 state is LoadingFireStoreRegisterProcess
                             ? Center(child: CircularProgressIndicator())
