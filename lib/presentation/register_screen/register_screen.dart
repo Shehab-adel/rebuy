@@ -80,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                           value: registerCubit.dropdownValue,
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            color: appTheme.blueGray300,
+                            color: appTheme.blueA200,
                           ),
                           items: registerCubit.branchesList.map((String item) {
                             return DropdownMenuItem(
