@@ -48,7 +48,7 @@ class ShowCategoryProductsScreen extends StatelessWidget {
                           CustomImageView(
                             imagePath: dashCubit.dataList![index].image ?? '',
                             height: 280.v,
-                            fit: BoxFit.contain,
+                            fit: BoxFit.fill,
                           ),
                           SizedBox(height: 25.h),
                           Padding(

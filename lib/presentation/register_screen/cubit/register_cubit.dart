@@ -126,10 +126,4 @@ class RegisterCubit extends Cubit<RegisterState> {
     CacheHelper.sharedPreferences.setString(AppStrings.branch, dropdownValue);
     emit(ChangeBrancheInDropdown());
   }
-
-  String isLogin() {
-    return auth.currentUser == null
-        ? AppRoutes.registerScreen
-        : AppRoutes.dashboardContainerScreen;
-  }
 }

@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/account_page/account_page.dart';
 import 'package:rebuy/presentation/cart_page/cart_page.dart';
 import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
@@ -74,8 +75,11 @@ class DashCubit extends Cubit<DashState> {
   Future<void> fetchDataFromFirestore() async {
     try {
       emit(LoadingFetchCollection());
-      final querySnapshot =
-          await firebaseFirestore.collection(categoryName).get();
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
+          .doc(AppStrings.dataModel)
+          .collection(categoryName)
+          .get();
 
       dataList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
@@ -110,8 +114,11 @@ class DashCubit extends Cubit<DashState> {
   Future<void> fetchFlashSaleCollection() async {
     try {
       emit(LoadingFetchCollection());
-      final querySnapshot =
-          await firebaseFirestore.collection(AppStrings.flashSale).get();
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
+          .doc(AppStrings.dataModel)
+          .collection(AppStrings.flashSale)
+          .get();
 
       flashSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
@@ -145,7 +152,9 @@ class DashCubit extends Cubit<DashState> {
     try {
       emit(LoadingFetchCollection());
       final querySnapshot = await FirebaseFirestore.instance
-          .collection(AppStrings.megaSale)
+          .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
+          .doc(AppStrings.dataModel)
+          .collection(AppStrings.flashSale)
           .get();
 
       megaSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
