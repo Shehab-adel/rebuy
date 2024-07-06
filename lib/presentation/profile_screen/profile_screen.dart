@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_state.dart';
+import 'package:rebuy/presentation/profile_screen/widgets/listTitleBranch.dart';
 import 'package:rebuy/presentation/profile_screen/widgets/profile_details_options_w.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
@@ -87,46 +88,8 @@ class ProfileScreen extends StatelessWidget {
                             Navigator.pushNamed(
                                 context, AppRoutes.changePasswordScreen);
                           }),
-
-                      ListTile(
-                        title: Row(
-                          children: [
-                            Icon(
-                              Icons.location_city,
-                              color: Colors.blue.shade200,
-                            ),
-                            SizedBox(width: 15.h),
-                            Text(
-                              "Branch",
-                              style: theme.textTheme.labelLarge!.copyWith(
-                                  color: theme.colorScheme.onPrimary
-                                      .withOpacity(1)),
-                            ),
-                          ],
-                        ),
-                        trailing: DropdownButton(
-                          dropdownColor: Colors.white,
-                          value: RegisterCubit.get(context).dropdownValue,
-                          icon: CustomImageView(
-                              imagePath: AppImageConstants.imgRightIcon,
-                              height: 24.adaptSize,
-                              width: 24.adaptSize,
-                              margin: EdgeInsets.only(left: 16.h)),
-                          items: RegisterCubit.get(context)
-                              .branchesList
-                              .map((String item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child:
-                                  Text(item, style: theme.textTheme.bodySmall),
-                            );
-                          }).toList(),
-                          onChanged: (String? value) {
-                            RegisterCubit.get(context)
-                                .changeBrancheInDropdown(value);
-                          },
-                        ),
-                      ),
+                      SizedBox(height: 5.v),
+                      ListTitleBranch(registerCubit: RegisterCubit.get(context))
                     ]);
               },
             )));

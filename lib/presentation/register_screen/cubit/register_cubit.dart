@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rebuy/core/constants/app_string.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
-import 'package:rebuy/routes/app_routes.dart';
 import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
