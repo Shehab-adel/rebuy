@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rebuy/core/constants/app_string.dart';
+import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/core/utils/functions.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
@@ -66,5 +68,50 @@ class ProfileCubit extends Cubit<ProfileState> {
     } else {
       return 'Password does not match.';
     }
+  }
+
+  void signOutFromApp() async {
+    emit(LoadingFirebaseLogout());
+
+    await _auth.signOut().then((value) {
+      snackBar('Logout is successfully');
+      emit(SuccessfulFirebaseLogout());
+    }).onError((error, stackTrace) {
+      snackBar(error.toString());
+      emit(FailureFirebaseLogout());
+    });
+  }
+
+  void showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: appTheme.indigoA200,
+          title: Text(AppStrings.confirmLogout),
+          content: Text(AppStrings.Areyousureyouwanttologout),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text(
+                AppStrings.cancel,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                signOutFromApp();
+                Navigator.pushReplacementNamed(
+                    context, AppRoutes.registerScreen);
+              },
+              child: Text(AppStrings.logout,
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:rebuy/core/utils/app_export.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_cubit.dart';
 import 'package:rebuy/presentation/profile_screen/cubit/profile_state.dart';
 import 'package:rebuy/presentation/profile_screen/widgets/listTitleBranch.dart';
+import 'package:rebuy/presentation/profile_screen/widgets/list_title_logout.dart';
 import 'package:rebuy/presentation/profile_screen/widgets/profile_details_options_w.dart';
 import 'package:rebuy/presentation/register_screen/cubit/register_cubit.dart';
 import 'package:rebuy/widgets/app_bar/appbar_leading_image.dart';
@@ -89,7 +90,9 @@ class ProfileScreen extends StatelessWidget {
                                 context, AppRoutes.changePasswordScreen);
                           }),
                       SizedBox(height: 5.v),
-                      ListTitleBranch(registerCubit: RegisterCubit.get(context))
+                      ListTitleBranch(
+                          registerCubit: RegisterCubit.get(context)),
+                      ListTitleLogout(profileCubit: profileCubit)
                     ]);
               },
             )));

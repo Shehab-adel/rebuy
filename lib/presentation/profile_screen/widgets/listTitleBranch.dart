@@ -19,7 +19,7 @@ class ListTitleBranch extends StatelessWidget {
             ),
             SizedBox(width: 15.h),
             Text(
-              "Branch",
+              AppStrings.branch,
               style: theme.textTheme.labelLarge!
                   .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
             ),

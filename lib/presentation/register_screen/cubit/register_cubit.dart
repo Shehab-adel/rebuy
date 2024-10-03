@@ -120,7 +120,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   String dropdownValue = AppStrings.beniseuf;
   List<String> branchesList = [AppStrings.beniseuf, AppStrings.cairo];
 
-  changeBrancheInDropdown(String? value) {
+  void changeBrancheInDropdown(String? value) {
     dropdownValue = value ?? AppStrings.beniseuf;
     CacheHelper.sharedPreferences.setString(AppStrings.branch, dropdownValue);
     emit(ChangeBrancheInDropdown());
