@@ -7,10 +7,8 @@ import 'package:rebuy/presentation/dashboard_page/cubit/dash_cubit.dart';
 import 'package:rebuy/presentation/dashboard_page/cubit/states.dart';
 import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/product_overview_widget.dart';
-import 'package:rebuy/presentation/product_detail_screen/widgets/review_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/select_size_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/specifications_widget.dart';
-import 'package:rebuy/presentation/product_detail_screen/widgets/you_might_also_like_widget.dart';
 import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 
@@ -59,10 +57,10 @@ class ProductDetailScreen extends StatelessWidget {
             SizedBox(height: 53.v),
             SpecificationsWidget(dashCubit: dashCubit),
             SizedBox(height: 53.v),
-            ReviewWidget(dashCubit: dashCubit),
-            SizedBox(height: 53.v),
-            YouMightAlsoLike(dashCubit: dashCubit),
-            SizedBox(height: 30.v)
+            // // ReviewWidget(dashCubit: dashCubit),
+            // SizedBox(height: 53.v),
+            // // YouMightAlsoLike(dashCubit: dashCubit),
+            // SizedBox(height: 30.v)
           ]),
         ),
         bottomNavigationBar: BlocConsumer<DashCubit, DashState>(

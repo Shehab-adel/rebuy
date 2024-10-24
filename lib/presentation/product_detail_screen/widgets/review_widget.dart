@@ -70,30 +70,30 @@ class ReviewWidget extends StatelessWidget {
           ]),
           SizedBox(height: 18.v),
           //User review
-          BlocBuilder<DashCubit, DashState>(builder: (context, state) {
-            return RichText(
-              maxLines: 11,
-              overflow: TextOverflow.ellipsis,
-              text: TextSpan(children: [
-                TextSpan(
-                    text:
-                        '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
-                    style: theme.textTheme.bodySmall!.copyWith(height: 1.80.v)),
-                WidgetSpan(
-                    child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(
-                        context, AppRoutes.writeReviewFillScreen);
-                  },
-                  child: Text('  edit',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: Colors.purple,
-                          height: 1.v)),
-                ))
-              ]),
-            );
-          }),
+          // BlocBuilder<DashCubit, DashState>(builder: (context, state) {
+          //   return RichText(
+          //     maxLines: 11,
+          //     overflow: TextOverflow.ellipsis,
+          //     text: TextSpan(children: [
+          //       TextSpan(
+          //           text:
+          //               '${dashCubit.dataList?[dashCubit.selectedProductIndex].review}',
+          //           style: theme.textTheme.bodySmall!.copyWith(height: 1.80.v)),
+          //       WidgetSpan(
+          //           child: InkWell(
+          //         onTap: () {
+          //           Navigator.pushNamed(
+          //               context, AppRoutes.writeReviewFillScreen);
+          //         },
+          //         child: Text('  edit',
+          //             style: TextStyle(
+          //                 fontStyle: FontStyle.italic,
+          //                 color: Colors.purple,
+          //                 height: 1.v)),
+          //       ))
+          //     ]),
+          //   );
+          // }),
           SizedBox(height: 16.v),
           //Similar List
           SizedBox(

@@ -28,15 +28,15 @@ class TotalPriceDetailsWidget extends StatelessWidget {
                 ShoppingPriceRow(
                     shippingLabel: AppStrings.shipping, priceLabel: "40.00"),
                 SizedBox(height: 14.v),
-                ShoppingPriceRow(
-                    shippingLabel: AppStrings.importCharges,
-                    priceLabel: "128.00"),
-                SizedBox(height: 12.v),
+                // ShoppingPriceRow(
+                //     shippingLabel: AppStrings.importCharges,
+                //     priceLabel: "128.00"),
+                // SizedBox(height: 12.v),
                 Divider(),
                 SizedBox(height: 10.v),
                 ShoppingPriceRow(
                   shippingLabel: AppStrings.totalPrice,
-                  priceLabel: "766.86",
+                  priceLabel: "${cartCubit.itemsPrice + 40}",
                   textStyle1: CustomTextStyles.labelLargePrimary.copyWith(
                       color: theme.colorScheme.onPrimary.withOpacity(1)),
                   textStyle2: CustomTextStyles.labelLargePrimary,

@@ -76,6 +76,7 @@ class RegisterScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: 20.v),
+                        //Branches(Cairo,Benisuef)
                         DropdownButton(
                           value: registerCubit.dropdownValue,
                           icon: Icon(

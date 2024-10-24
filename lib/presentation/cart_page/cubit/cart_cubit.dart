@@ -28,7 +28,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void increaseItemToCart(DataModel dataModel) {
-    dataModel.quantity++;
+    dataModel.quantity = dataModel.quantity + 1;
     print("${dataModel.quantity} *********quantity");
     emit(SuccessfulIncreaseItemToCartState());
   }
@@ -42,6 +42,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void deleteItemFromCartList(DataModel dataModel) {
+    itemsPrice = itemsPrice - (dataModel.price! * dataModel.quantity);
     dashCubit.cartDataModelMap.remove(dataModel);
     emit(DeleteItemFromCartListState());
   }

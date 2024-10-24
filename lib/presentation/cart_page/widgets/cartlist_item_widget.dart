@@ -86,6 +86,7 @@ class CartlistItemWidget extends StatelessWidget {
                                                     .key);
                                           },
                                         ),
+                                        //delete item button
                                         CustomImageView(
                                           imagePath:
                                               AppImageConstants.imgTrashIcon,

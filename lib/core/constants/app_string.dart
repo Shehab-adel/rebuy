@@ -96,4 +96,7 @@ class AppStrings {
   static const String dataModel = 'data model';
   static const String isLoggin = 'isLoggin';
   static const String logout = 'Logout';
+  static const String confirmLogout = 'Confirm Logout';
+  static const String Areyousureyouwanttologout =
+      'Are you sure you want to logout?';
 }
