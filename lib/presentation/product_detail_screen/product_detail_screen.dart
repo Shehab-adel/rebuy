@@ -20,34 +20,26 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            leadingWidth: 25.h,
-            title: Text(
-              dashCubit.dataList?[dashCubit.selectedProductIndex].title ?? '',
-              style: theme.textTheme.titleSmall!
-                  .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
-            ),
-            centerTitle: true,
-            leading: Container(
-              margin: EdgeInsets.only(left: 8.h),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: appTheme.blueGray300,
-                  ),
-                  iconSize: 20),
-            ),
-            actions: [
-              AppbarTrailingImage(
-                  imagePath: AppImageConstants.imgNavExplore,
-                  margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 15.h),
-                  onTap: () {}),
-              AppbarTrailingImage(
-                  imagePath: AppImageConstants.imgMoreIcon,
-                  margin: EdgeInsets.only(left: 16.h, top: 16.v, right: 31.h))
-            ]),
+          leadingWidth: 25.h,
+          title: Text(
+            dashCubit.dataList?[dashCubit.selectedProductIndex].title ?? '',
+            style: theme.textTheme.titleSmall!
+                .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
+          ),
+          centerTitle: true,
+          leading: Container(
+            margin: EdgeInsets.only(left: 8.h),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: appTheme.blueGray300,
+                ),
+                iconSize: 20),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(children: [
             SizedBox(height: 12.v),

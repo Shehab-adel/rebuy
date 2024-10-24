@@ -53,4 +53,9 @@ class CartCubit extends Cubit<CartState> {
     itemsPrice += dataModel.price ?? 0.0 * dataModel.quantity;
     emit(SumOfItemsPriceByPlusIconState());
   }
+
+  void deleteItemFromFavoriteList(int index) {
+    favoriteList.removeAt(index);
+    emit(DeleteItemFromFavoriteList());
+  }
 }

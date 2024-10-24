@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:rebuy/core/utils/app_export.dart';
+import 'package:rebuy/presentation/cart_page/cubit/cart_cubit.dart';
 import 'package:rebuy/widgets/custom_rating_bar.dart';
 
 // ignore: must_be_immutable
 class FavoriteproductItemWidget extends StatelessWidget {
-  FavoriteproductItemWidget({
-    Key? key,
-    this.onTapProductItem,
-  }) : super(
+  FavoriteproductItemWidget(
+      {Key? key, this.onTapProductItem, required this.cartCubit, this.index})
+      : super(
           key: key,
         );
 
   VoidCallback? onTapProductItem;
+  CartCubit cartCubit;
+  int? index;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class FavoriteproductItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomImageView(
-              imagePath: AppImageConstants.imgProductImage2,
+              imagePath: cartCubit.favoriteList.elementAt(index!).image,
               height: 133.adaptSize,
               width: 133.adaptSize,
               radius: BorderRadius.circular(
@@ -40,7 +42,7 @@ class FavoriteproductItemWidget extends StatelessWidget {
             SizedBox(
               width: 107.h,
               child: Text(
-                "Nike Air Max 270 React ENG",
+                cartCubit.favoriteList.elementAt(index!).title ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.labelLarge!.copyWith(
@@ -61,7 +63,7 @@ class FavoriteproductItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "299,43",
+                      "${cartCubit.favoriteList.elementAt(index!).price}",
                       style: CustomTextStyles.labelLargePrimary,
                     ),
                     SizedBox(height: 5.v),
@@ -71,13 +73,13 @@ class FavoriteproductItemWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "534,33",
+                            "${cartCubit.favoriteList.elementAt(index!).oldPrice}",
                             style: CustomTextStyles.bodySmall10.copyWith(
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
                           Text(
-                            "24% Off",
+                            "${cartCubit.favoriteList.elementAt(index!).disccountPrecentage} off",
                             style: theme.textTheme.labelMedium,
                           ),
                         ],
@@ -94,6 +96,9 @@ class FavoriteproductItemWidget extends StatelessWidget {
                     left: 17.h,
                     top: 14.v,
                   ),
+                  onTap: () {
+                    cartCubit.deleteItemFromFavoriteList(index ?? 0);
+                  },
                 ),
               ],
             ),

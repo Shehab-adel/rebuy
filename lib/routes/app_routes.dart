@@ -137,7 +137,9 @@ class AppRoutes {
           dashCubit: DashCubit.get(context),
         ),
     superFlashSaleScreen: (context) => SuperFlashSaleScreen(),
-    favoriteProductScreen: (context) => FavoriteProductScreen(),
+    favoriteProductScreen: (context) => FavoriteProductScreen(
+          cartCubit: CartCubit.get(context),
+        ),
     productDetailScreen: (context) => ProductDetailScreen(
           dashCubit: DashCubit.get(context),
           cartCubit: CartCubit.get(context),

@@ -18,6 +18,18 @@ class ShowCategoryProductsScreen extends StatelessWidget {
               .copyWith(color: theme.colorScheme.onPrimary.withOpacity(1)),
         ),
         centerTitle: true,
+        leading: Container(
+          margin: EdgeInsets.only(left: 8.h),
+          child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: appTheme.blueGray300,
+              ),
+              iconSize: 20),
+        ),
       ),
       body: BlocBuilder<DashCubit, DashState>(builder: (context, state) {
         if (state is LoadingFetchCollection || state is FailFetchCollection) {
