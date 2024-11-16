@@ -9,7 +9,6 @@ import 'package:rebuy/presentation/dashboard_page/models/data_model.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/product_overview_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/select_size_widget.dart';
 import 'package:rebuy/presentation/product_detail_screen/widgets/specifications_widget.dart';
-import 'package:rebuy/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:rebuy/widgets/custom_elevated_button.dart';
 
 class ProductDetailScreen extends StatelessWidget {

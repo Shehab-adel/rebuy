@@ -1,9 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:rebuy/core/constants/app_constants.dart';
 import 'package:rebuy/core/utils/theme/theme_helper.dart';
 import 'package:rebuy/network/local/cache%20helper.dart';
 import 'package:rebuy/presentation/add_card_screen/cubit/add_card_cubit.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   await CacheHelper.init();
+  Stripe.publishableKey = AppConstants.stripepublishableKey;
   runApp(MyApp());
 }
 

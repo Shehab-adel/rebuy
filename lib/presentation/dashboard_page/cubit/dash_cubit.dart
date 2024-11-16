@@ -154,7 +154,7 @@ class DashCubit extends Cubit<DashState> {
       final querySnapshot = await FirebaseFirestore.instance
           .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
           .doc(AppStrings.dataModel)
-          .collection(AppStrings.flashSale)
+          .collection(AppStrings.megaSale)
           .get();
 
       megaSaleList = await Future.wait(querySnapshot.docs.map((doc) async {
