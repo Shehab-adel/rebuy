@@ -1,59 +1,38 @@
+# ♻️ ReBuy - Used Products Marketplace App (Flutter)
 
-# rebuy
-### Table of contents
-- [System requirements](#system-requirements)
-- [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
-- [Check the UI of the entire app](#app-navigations)
-- [Application structure](#project-structure)
-- [How to format your code?](#how-you-can-do-code-formatting)
-- [How you can improve code readability?](#how-you-can-improve-the-readability-of-code)
-- [Libraries and tools used](#libraries-and-tools-used)
-- [Support](#support)
+**ReBuy** is a Flutter mobile application that allows users to **buy and sell used products** easily. The app provides a simple and clean interface where users can browse listings, upload their items, and connect with potential buyers.
 
-### System requirements
+## 🚀 Features
 
-Dart SDK Version 2.18.0 or greater.
-Flutter SDK Version 3.3.0 or greater.
+- 🛍️ Browse used items across different categories
+- 🔍 Search and filter products
+- 📸 Upload and post your own used items with images
+- 🧾 View product details, price, and seller info
+- 📱 Beautiful and responsive user interface
+- 📦 Local data handling
 
-### Figma design guidelines for better UI accuracy
+## 🧪 Current Status
 
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
+This is a **UI/UX focused educational project**, developed for learning and practice purposes.  
+It ** includeس backend/database integration** with firebase in another admin_rebuy_app, but is structured in a way that makes future integration easy.
 
-### Check the UI of the entire app
+## 🛠️ Tech Stack
 
-Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
+- **Flutter**
+- **Dart**
+- **Bloc and cubit** (for state management)
+- **Flutter widgets** (GridView, ListTile, Card, etc.)
 
-### Application structure
-After successful build, your application structure should look like this:
-                    
-```
-.
-├── android                         - It contains files required to run the application on an Android platform.
-├── assets                          - It contains all images and fonts of your application.
-├── ios                             - It contains files required to run the application on an iOS platform.
-├── lib                             - Most important folder in the application, used to write most of the Dart code..
-    ├── main.dart                   - Starting point of the application
-    ├── core
-    │   ├── app_export.dart         - It contains commonly used file imports
-    │   ├── constants               - It contains static constant class file
-    │   └── utils                   - It contains common files and utilities of the application
-    ├── presentation                - It contains widgets of the screens
-    ├── routes                      - It contains all the routes of the application
-    └── theme                       - It contains app theme and decoration classes
-    └── widgets                     - It contains all custom widget classes
-```
-### How to format your code?
+## 📸 Screenshots
 
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
+> (Add screenshots of home screen, item details screen, and upload page here)
 
-### How you can improve code readability?
+## 📦 Getting Started
 
-Resolve the errors and warnings that are shown in the application.
+Follow these steps to run the project on your local machine:
 
-### Support
-
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+```bash
+git clone https://github.com/Shehab-adel/rebuy.git
+cd rebuy
+flutter pub get
+flutter run
