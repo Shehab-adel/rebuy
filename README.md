@@ -29,10 +29,10 @@ It ** includeس backend/database integration** with firebase in another admin_re
 ![Splash Screen](/assets/images/splash_screen)
 
 ### // Register Screen
-![Splash Screen](/assets/images/register_sc)
+![Register Screen](/assets/images/register_sc)
 
 ### // Login Screen
-![Splash Screen](/assets/images/login_screen)
+![Login Screen](/assets/images/login_screen)
 
 ## 📦 Getting Started
 
