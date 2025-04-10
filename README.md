@@ -25,7 +25,14 @@ It ** includeس backend/database integration** with firebase in another admin_re
 
 ## 📸 Screenshots
 
-> (Add screenshots of home screen, item details screen, and upload page here)
+### // Splash Screen
+![Splash Screen](/assets/images/splash_screen)
+
+### // Register Screen
+![Splash Screen](/assets/images/register_sc)
+
+### // Login Screen
+![Splash Screen](/assets/images/login_screen)
 
 ## 📦 Getting Started
 
