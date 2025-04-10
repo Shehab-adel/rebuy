@@ -25,14 +25,7 @@ It ** includeس backend/database integration** with firebase in another admin_re
 
 ## 📸 Screenshots
 
-### // Splash Screen
-![Splash Screen](/assets/images/splash_screen)
-
-### // Register Screen
-![Register Screen](/assets/images/register_sc)
-
-### // Login Screen
-![Login Screen](/assets/images/login_screen)
+https://github.com/Shehab-adel/rebuy/tree/master/assets/images
 
 ## 📦 Getting Started
 
